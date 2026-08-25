@@ -74,10 +74,10 @@ export function SocialProofBar() {
               data-wa-source="social-proof"
               data-service="assistência técnica"
               data-cta-label="social_proof_whatsapp"
-              aria-label="Falar com técnico pelo WhatsApp (prova social)"
+              aria-label="Solicitar atendimento pelo WhatsApp (prova social)"
             >
               <MessageCircle className="h-5 w-5" />
-              Falar com técnico no WhatsApp
+              Solicitar Atendimento
             </a>
           </Button>
         </div>
