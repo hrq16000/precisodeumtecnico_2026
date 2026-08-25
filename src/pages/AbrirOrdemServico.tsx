@@ -433,8 +433,7 @@ export default function AbrirOrdemServico() {
                         Baixar comprovante em PDF
                       </button>
                       <Link
-                        to="/consultar-os"
-                        search={{ os: record.protocol }}
+                        to={`/consultar-os?os=${encodeURIComponent(record.protocol)}`}
                         className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
                       >
                         <Search className="h-4 w-4" aria-hidden="true" />
