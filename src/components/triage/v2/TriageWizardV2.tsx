@@ -891,6 +891,16 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
                     {GEO_PREFILL_LABEL[geoPrefill.source]} — edite se precisar.
                   </p>
                 )}
+                {geoPrefill.source === "none" && !state.contact.neighborhood.trim() && (
+                  <p
+                    data-testid="triage-geo-fallback"
+                    className="mt-1 rounded-lg border border-dashed border-border bg-muted/30 px-2 py-1.5 text-xs text-muted-foreground"
+                  >
+                    Não conseguimos identificar sua localização automaticamente. Informe o bairro
+                    para calcularmos deslocamento e prazo corretos.
+                  </p>
+                )}
+
                 {geoPrefill.source !== "none" && (
                   <p
                     data-testid="triage-geo-confidence"
