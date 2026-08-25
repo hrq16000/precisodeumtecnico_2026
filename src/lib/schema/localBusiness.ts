@@ -67,7 +67,6 @@ export function buildLocalBusinessSchema(opts: LocalBusinessOptions = {}): objec
       opts.description ??
       `Assistência técnica com ${COMPANY.experiencePhrase.toLowerCase()} em informática, notebooks, TVs, redes/Wi-Fi, CFTV, elétrica e ar-condicionado. Atendimento em ${city} e região, com triagem técnica antes do orçamento.`,
     url,
-    email: COMPANY.email,
     foundingDate: COMPANY.foundingYear,
     slogan: "Triagem técnica antes do orçamento. Sem surpresa no preço.",
     knowsLanguage: ["pt-BR"],

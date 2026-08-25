@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { MessageCircle, Mail } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { buildWhatsAppUrlFromText } from "@/lib/whatsapp";
 import { trackCtaClick, trackEvent, type CtaSurface } from "@/lib/analytics";
-import { COMPANY } from "@/data/companyInfo";
 
 const AD_TYPES = [
   "Banner de topo (leaderboard)",
@@ -19,8 +18,8 @@ const PERIODS = ["Mensal", "Trimestral", "Campanha pontual"] as const;
 
 /**
  * Formulário curto de solicitação de proposta de mídia.
- * Não persiste dados: monta a mensagem e entrega no WhatsApp ou e-mail
- * comercial (mesma política de contato do restante do portal).
+ * Não persiste dados: monta a mensagem e entrega no fluxo de WhatsApp —
+ * canal único de contato do portal.
  */
 export function MediaProposalForm() {
   const [segment, setSegment] = useState("");
@@ -48,7 +47,8 @@ export function MediaProposalForm() {
 
   const valid = segment.trim().length >= 2 && territory.trim().length >= 2;
 
-  function handleSubmit(channel: "whatsapp" | "email") {
+  function handleSubmit() {
+    const channel = "whatsapp";
     trackEvent("media_proposal_submit", {
       channel,
       ad_type: adType,
@@ -58,18 +58,12 @@ export function MediaProposalForm() {
     trackCtaClick({
       surface: "advertising" satisfies CtaSurface,
 
-      cta_id: channel === "whatsapp" ? "media_proposal_whatsapp" : "media_proposal_email",
-      label: channel === "whatsapp" ? "Enviar por WhatsApp" : "Enviar por e-mail",
+      cta_id: "media_proposal_whatsapp",
+      label: "Enviar por WhatsApp",
       destination: "/anuncie#proposta",
     });
 
-    const url =
-      channel === "whatsapp"
-        ? buildWhatsAppUrlFromText(message)
-        : `mailto:${COMPANY.email}?subject=${encodeURIComponent(
-            "Solicitação de proposta de mídia",
-          )}&body=${encodeURIComponent(message)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppUrlFromText(message), "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -78,7 +72,7 @@ export function MediaProposalForm() {
       className="rounded-lg border border-border bg-card p-4"
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit("whatsapp");
+        handleSubmit();
       }}
     >
       <h2 className="text-xl font-semibold md:text-2xl">Solicitar proposta de mídia</h2>
@@ -151,12 +145,12 @@ export function MediaProposalForm() {
         </div>
 
         <div className="sm:col-span-2">
-          <Label htmlFor="mp-contact">Seu contato (nome e e-mail ou WhatsApp)</Label>
+          <Label htmlFor="mp-contact">Seu contato (nome e WhatsApp)</Label>
           <Input
             id="mp-contact"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
-            placeholder="Ex.: Ana Souza · ana@empresa.com.br"
+            placeholder="Ex.: Ana Souza · responsável de marketing"
             maxLength={120}
           />
         </div>
@@ -178,16 +172,6 @@ export function MediaProposalForm() {
         <Button type="submit" disabled={!valid} className="min-h-11">
           <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />
           Enviar por WhatsApp
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          disabled={!valid}
-          className="min-h-11"
-          onClick={() => handleSubmit("email")}
-        >
-          <Mail className="mr-2 h-4 w-4" aria-hidden="true" />
-          Enviar por e-mail
         </Button>
       </div>
       <p className="mt-3 text-xs text-muted-foreground">

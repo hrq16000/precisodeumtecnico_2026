@@ -93,7 +93,6 @@ const LOCAL_BUSINESS_JSONLD = `{
   "name": "Preciso de Um Técnico",
   "legalName": "Preciso de Um Técnico",
   "foundingDate": "1998",
-  "email": "contato@precisodeumtecnico.com",
   "currenciesAccepted": "BRL",
   "knowsLanguage": ["pt-BR"],
   "parentOrganization": { "@id": "https://precisodeumtecnico.com/#organization" },
@@ -148,7 +147,6 @@ const ORGANIZATION_JSONLD = `{
   "name": "Preciso de Um Técnico",
   "legalName": "Preciso de Um Técnico",
   "foundingDate": "1998",
-  "email": "contato@precisodeumtecnico.com",
   "url": "https://precisodeumtecnico.com",
   "logo": "https://precisodeumtecnico.com/logo.png",
   "address": {
@@ -167,7 +165,6 @@ const ORGANIZATION_JSONLD = `{
     "@type": "ContactPoint",
     "contactType": "customer service",
     "areaServed": "BR",
-    "email": "contato@precisodeumtecnico.com",
     "availableLanguage": "Portuguese"
   }
 }`;
