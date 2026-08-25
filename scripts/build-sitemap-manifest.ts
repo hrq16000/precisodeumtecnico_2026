@@ -12,7 +12,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 
-const DIST = "dist";
+const DIST = "dist/client";
 if (!existsSync(DIST)) {
   console.error(`✗ ${DIST}/ não existe — rode 'bun run build' primeiro.`);
   process.exit(1);

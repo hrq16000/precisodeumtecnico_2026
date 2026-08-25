@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { Star, Quote } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
 import { supabase } from "@/integrations/supabase/client";

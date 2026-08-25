@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Helmet } from "@/lib/helmet-compat";
+import { Link } from "@/lib/router-compat";
 import {
   ArrowRight, Radio, Speaker, Plug, Wrench, Clock, ShieldCheck,
   CheckCircle2, HelpCircle, AlertTriangle,

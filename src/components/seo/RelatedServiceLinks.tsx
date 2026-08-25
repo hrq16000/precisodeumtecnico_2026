@@ -5,7 +5,7 @@
  * computador e upgrade de SSD/RAM, direcionando cada intenção de busca ao
  * destino canônico correto. Só emite rotas que existem no App.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowRight } from "lucide-react";
 
 export interface RelatedLink {

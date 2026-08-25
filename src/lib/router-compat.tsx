@@ -1,5 +1,5 @@
 /**
- * Router-compat shim — bridges react-router-dom v6 call sites to
+ * Router-compat shim — bridges @/lib/router-compat v6 call sites to
  * @tanstack/react-router without hand-rewriting every component.
  * This is the same load-bearing pattern used in Klar's dev-copy migration.
  */
@@ -13,7 +13,7 @@ import {
   Navigate as TSNavigate,
   Outlet as TSOutlet,
 } from "@tanstack/react-router";
-import { useMemo, useCallback, forwardRef, type ComponentProps, type ReactNode } from "react";
+import { useMemo, useCallback, useState, useEffect, forwardRef, type ComponentProps, type ReactNode } from "react";
 
 // ---------- shared URL parsing ----------
 
@@ -80,7 +80,7 @@ export function useParams<T extends Record<string, string | undefined> = Record<
 }
 
 
-// ---------- useSearchParams (react-router-dom compat) ----------
+// ---------- useSearchParams (@/lib/router-compat compat) ----------
 
 export function useSearchParams(): [URLSearchParams, (init: URLSearchParams | Record<string, string> | ((prev: URLSearchParams) => URLSearchParams), opts?: { replace?: boolean }) => void] {
   const loc = tsLocation();
@@ -156,3 +156,58 @@ export const Outlet = TSOutlet;
 // ---------- NavLink (minimal) ----------
 
 export const NavLink = Link;
+
+// ---------- useNavigationType (react-router-dom compat) ----------
+
+export type NavigationType = "POP" | "PUSH" | "REPLACE";
+
+export function useNavigationType(): NavigationType {
+  const router = useRouter();
+  const [navType, setNavType] = useState<NavigationType>("POP");
+  useEffect(() => {
+    return router.history.subscribe(({ action }) => {
+      const t = action.type;
+      setNavType(t === "PUSH" ? "PUSH" : t === "REPLACE" ? "REPLACE" : "POP");
+    });
+  }, [router]);
+  return navType;
+}
+
+// ---------- matchPath (react-router-dom compat, minimal) ----------
+
+export interface PathMatch<ParamKey extends string = string> {
+  params: Record<ParamKey, string>;
+  pathname: string;
+  pattern: { path: string; end?: boolean };
+}
+
+export function matchPath<ParamKey extends string = string, Path extends string = string>(
+  pattern: { path: Path; end?: boolean } | Path,
+  pathname: string,
+): PathMatch<ParamKey> | null {
+  const p = typeof pattern === "string" ? { path: pattern, end: true } : pattern;
+  const end = p.end !== false;
+  const paramNames: string[] = [];
+  const regexSrc = p.path
+    .split("/")
+    .map((seg) => {
+      if (seg.startsWith(":")) {
+        paramNames.push(seg.slice(1));
+        return "([^/]+)";
+      }
+      if (seg === "*") {
+        paramNames.push("*");
+        return "(.*)";
+      }
+      return seg.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    })
+    .join("/");
+  const regex = new RegExp(`^${regexSrc}${end ? "/?$" : ""}`);
+  const m = pathname.match(regex);
+  if (!m) return null;
+  const params = {} as Record<ParamKey, string>;
+  paramNames.forEach((name, i) => {
+    params[name as ParamKey] = decodeURIComponent(m[i + 1] ?? "");
+  });
+  return { params, pathname, pattern: p };
+}

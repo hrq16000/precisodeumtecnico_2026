@@ -5,7 +5,7 @@
  * prevenção. Página educativa: nada de SOC, monitoramento, conformidade,
  * pentest ou promessa de proteção total. Sem preço, plano ou Offer.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { AlertTriangle, Database, KeySquare, ShieldCheck, Users } from "lucide-react";
 
 const PILLARS = [

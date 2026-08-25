@@ -3,7 +3,7 @@
  * Uma rota = uma keyword-alvo = um H1 único, com Service + FAQPage +
  * BreadcrumbList + LocalBusiness em JSON-LD e CTA de triagem pré-classificado.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import {
   CheckCircle2,
   Clock,

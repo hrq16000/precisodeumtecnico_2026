@@ -1,6 +1,6 @@
 import { Truck, CheckCircle2 } from "lucide-react";
 import { COLLECTION_ONLY_POLICY } from "@/data/collectionOnlyServices";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 
 /**
  * Aviso de atendimento exclusivamente com coleta + política de valores.

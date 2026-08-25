@@ -7,7 +7,7 @@
  *
  * Regra: só emite rotas registradas em src/App.tsx (sem links quebrados).
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowRight } from "lucide-react";
 
 export interface EnterpriseLink {

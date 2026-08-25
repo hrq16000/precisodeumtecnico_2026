@@ -26,7 +26,7 @@ function isChunkLoadError(error: unknown): boolean {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export function lazyRoute<T extends ComponentType<never>>(
+export function lazyRoute<T extends ComponentType<any>>(
   factory: () => Promise<{ default: T }>,
 ) {
   return lazy(async () => {

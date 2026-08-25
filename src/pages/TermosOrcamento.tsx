@@ -7,7 +7,7 @@ import {
 import { PRICING, SLA, COMMERCIAL } from "@/data/pricingPolicy";
 import { COMMERCIAL_TERMS } from "@/data/commercialTerms";
 import { EquipmentValuationTerms } from "@/components/marketing/EquipmentValuationTerms";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const TermosOrcamento = () => {

@@ -6,7 +6,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 
-const DIST = resolve("dist");
+const DIST = resolve("dist/client");
 const FORBIDDEN = [/payload de teste/i, /Ver payload/i];
 const EXT = /\.(html|js|css|json|txt)$/i;
 

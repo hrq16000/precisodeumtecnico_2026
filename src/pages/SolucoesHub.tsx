@@ -5,7 +5,7 @@
  * as páginas comerciais e locais já publicadas. Nenhuma rota nova é inventada:
  * todos os links apontam para páginas existentes.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";

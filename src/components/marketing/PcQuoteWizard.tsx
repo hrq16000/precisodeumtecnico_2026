@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { z } from "zod";
 import { AlertCircle, ArrowLeft, ArrowRight, Download, MessageCircle, Star } from "lucide-react";
 import { buildWhatsAppUrlFromText, readStoredLocation, currentSourcePage } from "@/lib/whatsapp";

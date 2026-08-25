@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useLocation, useNavigationType } from "react-router-dom";
+import { useLocation, useNavigationType } from "@/lib/router-compat";
 
 /**
  * Smart scroll manager for the SPA:
@@ -67,6 +67,7 @@ export function ScrollToTop() {
         window.history.scrollRestoration = prev;
       };
     }
+    return undefined;
   }, []);
 
   useEffect(() => {

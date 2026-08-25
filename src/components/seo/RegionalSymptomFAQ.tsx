@@ -9,7 +9,7 @@
  * aumentar relevância local sem duplicar conteúdo entre 100+ páginas
  * (usamos apenas 3 sintomas por página, escolhidos deterministicamente).
  */
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { SYMPTOMS, type Symptom } from "@/data/symptoms";
 import { buildSymptomFAQ } from "@/components/seo/SymptomFAQ";
 

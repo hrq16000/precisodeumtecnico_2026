@@ -102,7 +102,9 @@ async function fetchByIp(): Promise<UserRegion | null> {
 }
 
 export function useUserRegion() {
-  const [region, setRegion] = useState<UserRegion>(() => readStored() ?? DEFAULT_REGION);
+  // SSR-safe: inicializa com o default (igual ao HTML do servidor) e só lê
+  // localStorage após a hidratação, evitando mismatch server/client.
+  const [region, setRegion] = useState<UserRegion>(DEFAULT_REGION);
   const [loading, setLoading] = useState(false);
   const [askPrompt, setAskPrompt] = useState(false);
 
@@ -112,6 +114,7 @@ export function useUserRegion() {
       const s = readStored();
       if (s) setRegion(s);
     };
+    refresh(); // aplica valor persistido após a hidratação
     window.addEventListener(LOCATION_UPDATED_EVENT, refresh);
     window.addEventListener("storage", refresh);
     return () => {

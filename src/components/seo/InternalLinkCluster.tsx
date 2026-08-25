@@ -7,7 +7,7 @@
  *  - Só emite rotas que existem no App (sem links quebrados).
  *  - Âncoras descritivas e localizadas (bom para busca e para IAs).
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { SYMPTOMS } from "@/data/symptoms";
 import { getBairrosForCity } from "@/data/nationalBairros";
 import { SOLUTION_GUIDES, guidePath, SOLUTIONS_HUB_PATH } from "@/data/solutionGuides";
