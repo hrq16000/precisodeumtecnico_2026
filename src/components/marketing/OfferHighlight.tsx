@@ -34,18 +34,19 @@ export function OfferHighlight({
   onStartTriage,
 }: OfferHighlightProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     if (onStartTriage) {
-      e.preventDefault();
       onStartTriage();
       return;
     }
-    // Fallback enquanto o TriageWizard (Fase B) não está plugado:
-    // rola para a âncora #triagem se existir, ou abre o form atual.
-    const el = document.getElementById("triagem") || document.getElementById("contato");
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Canal padrão: abre o TriageWizard global com o serviço já pré-selecionado.
+    if (isTriageEnabled()) {
+      openTriage({ source: "offer-highlight", category: serviceSlug });
+      return;
     }
+    // Fallback (triagem desligada): rola para a âncora do formulário na página.
+    const el = document.getElementById("triagem") || document.getElementById("contato");
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const termosHref = "/termos-orcamento#visita-99";
