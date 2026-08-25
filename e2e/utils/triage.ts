@@ -158,8 +158,21 @@ export async function completeConsoleTriage(
   await dismissLocationPrompt(page);
   await waitForStep(page, 1);
 
-  await page.getByRole("button", { name: /^Videogame/ }).first().click();
+  // O primeiro clique pode cair antes da hidratação (SSR): re-tenta até a
+  // etapa realmente avançar.
+  const equipmentBtn = page.getByRole("button", { name: /^Videogame/ }).first();
+  await expect(equipmentBtn).toBeVisible({ timeout: STEP_TIMEOUT });
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    await equipmentBtn.click();
+    const advanced = await page
+      .getByText(`Etapa 2/${TRIAGE_STEPS}`)
+      .waitFor({ state: "visible", timeout: 4_000 })
+      .then(() => true)
+      .catch(() => false);
+    if (advanced) break;
+  }
   await waitForStep(page, 2);
+
 
   // Etapa 2 — identificação (auto-advance quando o campo obrigatório é válido).
   await page.locator("#triage-field-console_model").fill("PS5");
