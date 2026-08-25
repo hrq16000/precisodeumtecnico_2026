@@ -199,13 +199,28 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
     const v = validateCurrentStep(state);
     if (!v.ok) {
       dispatch({ type: "NEXT" }); // aplica erros para exibir
-      // rola até primeiro erro
-      const firstErr = Object.keys(v.errors)[0];
-      const el = firstErr ? document.getElementById(`triage-field-${firstErr}`) : null;
-      el?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
-      (el as HTMLElement | null)?.focus?.();
+      const keys = Object.keys(v.errors);
+      setErrorSummary(keys.map((k) => v.errors[k]).filter(Boolean).join(" · "));
+      // Rola até o primeiro erro após o repaint (o campo pode ter acabado
+      // de ganhar a marcação de inválido) e destaca visualmente.
+      const firstErr = keys[0];
+      window.requestAnimationFrame(() => {
+        const el = firstErr
+          ? (document.getElementById(`triage-field-${firstErr}`) as HTMLElement | null)
+          : null;
+        if (!el) return;
+        el.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
+        const focusTarget = (el.matches("input, textarea, select, button")
+          ? el
+          : el.querySelector<HTMLElement>("input, textarea, select, button")) ?? el;
+        focusTarget.focus?.({ preventScroll: true });
+        el.classList.add("triage-field-error-flash");
+        window.setTimeout(() => el.classList.remove("triage-field-error-flash"), 2200);
+      });
       return;
     }
+    setErrorSummary(null);
+
     transitioningRef.current = true;
     // Evita corrida: cancela qualquer auto-advance pendente da mesma etapa.
     cancelPendingAutoAdvance();
