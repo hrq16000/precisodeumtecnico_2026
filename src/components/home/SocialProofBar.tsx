@@ -8,7 +8,7 @@ import { Star, ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { TrustStrip } from "@/components/marketing/TrustStrip";
-import { buildWhatsAppUrl, readStoredLocation, currentSourcePage } from "@/lib/whatsapp";
+import { useWhatsAppLink } from "@/hooks/useWhatsAppLink";
 
 export function SocialProofBar() {
   const [count, setCount] = useState(0);

@@ -2,7 +2,7 @@ import { Link } from "@/lib/router-compat";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Facebook, Instagram } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { trackCtaClick, trackWhatsAppClick } from "@/lib/analytics";
-import { buildWhatsAppUrl, readStoredLocation, currentSourcePage } from "@/lib/whatsapp";
+import { useWhatsAppLink } from "@/hooks/useWhatsAppLink";
 import { COMPANY } from "@/data/companyInfo";
 
 const services = [
