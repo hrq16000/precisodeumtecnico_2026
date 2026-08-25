@@ -232,6 +232,13 @@
     <xhtml:link rel="canonical" href="https://precisodeumtecnico.com/status-os"/>
   </url>
   <url>
+    <loc>https://precisodeumtecnico.com/abrir-os</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+    <xhtml:link rel="canonical" href="https://precisodeumtecnico.com/abrir-os"/>
+  </url>
+  <url>
     <loc>https://precisodeumtecnico.com/exclusao-de-dados</loc>
     <lastmod>2026-08-25</lastmod>
     <changefreq>yearly</changefreq>
