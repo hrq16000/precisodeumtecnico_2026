@@ -1,10 +1,18 @@
+import { useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { isTriageEnabled, openTriage } from "@/lib/triageFlag";
 import { useWhatsAppLink } from "@/hooks/useWhatsAppLink";
+import { readStoredLocation } from "@/lib/whatsapp";
 
 export function WhatsAppFloat() {
   const triageOn = isTriageEnabled();
   const whatsappLink = useWhatsAppLink();
+
+  // SSR-safe: localStorage só após a hidratação (evita mismatch de atributos).
+  const [loc, setLoc] = useState<{ city?: string; neighborhood?: string }>({});
+  useEffect(() => {
+    setLoc(readStoredLocation());
+  }, []);
 
   if (triageOn) {
     return (
