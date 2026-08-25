@@ -31,7 +31,7 @@ export function Logo({
   const target = compact ? HEIGHTS.sm : HEIGHTS[size];
 
   // On the light header (variant "dark"), the header background is already
-  // light — drop the white tile/shadow so the logo doesn't visually "hang"
+  // light — drop the white tile/shadow-sm so the logo doesn't visually "hang"
   // below the header. Keep the white tile only on dark surfaces (hero/footer).
   const bgClasses =
     variant === "light"

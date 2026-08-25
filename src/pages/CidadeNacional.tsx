@@ -144,11 +144,11 @@ const CidadeNacional = () => {
           </nav>
 
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-xs">
               <MapPin className="w-4 h-4" />
               {city.region} • {city.stateName}
             </span>
-            <h1 className="font-display text-3xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-sm">
+            <h1 className="font-display text-3xl md:text-5xl font-bold mb-4 leading-tight drop-shadow-xs">
               Técnico em <span className="text-accent">{city.name} – {city.state}</span>
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/90 mb-6 leading-relaxed">

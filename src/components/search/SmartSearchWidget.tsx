@@ -103,7 +103,7 @@ export function SmartSearchWidget({
 
   return (
     <div
-      className={`rounded-2xl border border-border bg-card p-5 md:p-6 shadow-sm ${className}`}
+      className={`rounded-2xl border border-border bg-card p-5 md:p-6 shadow-xs ${className}`}
       data-testid="smart-search"
     >
       <h2 className="text-lg md:text-xl font-semibold mb-1">{title}</h2>
@@ -171,7 +171,7 @@ export function SmartSearchWidget({
                     type="button"
                     role="option"
                     aria-selected={selected?.label === p.label}
-                    className="w-full rounded px-3 py-2 text-left text-sm hover:bg-muted"
+                    className="w-full rounded-sm px-3 py-2 text-left text-sm hover:bg-muted"
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => {
                       if (blurTimer.current) window.clearTimeout(blurTimer.current);

@@ -80,7 +80,7 @@ export function B2BHero({
 
           {/* Bloco de ação B2B: lateral no hub, faixa em largura total no serviço. */}
           <div
-            className={`rounded-xl border border-border p-4 shadow-sm ${isService ? "bg-background" : "bg-card"}`}
+            className={`rounded-xl border border-border p-4 shadow-xs ${isService ? "bg-background" : "bg-card"}`}
           >
             <p className="mb-3 text-sm font-semibold text-card-foreground">{actionTitle}</p>
             <div className={isService ? "flex flex-col gap-2 sm:flex-row sm:items-center" : "flex flex-col gap-2"}>

@@ -295,7 +295,7 @@ export function TriageWizard({
                   className={cn(
                     "min-h-[88px] rounded-xl border-2 p-4 text-left transition active:scale-[0.98]",
                     state.category === c.value
-                      ? "border-primary bg-primary/5 shadow-sm"
+                      ? "border-primary bg-primary/5 shadow-xs"
                       : "border-border hover:border-primary/40",
                   )}
                 >
@@ -347,7 +347,7 @@ export function TriageWizard({
                   className={cn(
                     "flex min-h-[64px] w-full items-start justify-between gap-3 rounded-xl border-2 p-3.5 text-left transition active:scale-[0.99]",
                     state.symptomSlug === s.slug
-                      ? "border-primary bg-primary/5 shadow-sm"
+                      ? "border-primary bg-primary/5 shadow-xs"
                       : "border-border hover:border-primary/40",
                   )}
                 >

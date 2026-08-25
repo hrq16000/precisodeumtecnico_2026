@@ -24,7 +24,7 @@ const schema = z.object({
 });
 
 const inputClass =
-  "w-full rounded-lg border border-border bg-background px-3 py-3 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring";
+  "w-full rounded-lg border border-border bg-background px-3 py-3 text-base text-foreground focus:outline-hidden focus:ring-2 focus:ring-ring";
 
 export default function AvaliarAtendimento() {
   const [params] = useSearchParams();

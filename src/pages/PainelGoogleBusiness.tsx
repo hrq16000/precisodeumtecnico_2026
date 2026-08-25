@@ -204,7 +204,7 @@ const GoogleBusinessPanel = () => {
                 { label: "Agendamento — urgência", url: `${COMPANY.website}/atendimento-urgente?utm_source=gbp_urgente#agendamento` },
               ].map((l) => (
                 <li key={l.url} className="flex flex-wrap items-center gap-2">
-                  <code className="text-xs bg-muted/60 rounded px-2 py-1 break-all">{l.url}</code>
+                  <code className="text-xs bg-muted/60 rounded-sm px-2 py-1 break-all">{l.url}</code>
                   <Button
                     type="button"
                     size="sm"

@@ -29,7 +29,7 @@ describe("trackWebVital", () => {
     (window as unknown as { dataLayer: unknown[] }).dataLayer = [];
   });
 
-  it("pushes web_vital with rounded value", () => {
+  it("pushes web_vital with rounded-sm value", () => {
     trackWebVital({ name: "LCP", value: 1234.56, id: "v1-1", rating: "good" });
     const dl = (window as unknown as { dataLayer: Array<Record<string, unknown>> }).dataLayer;
     const last = dl[dl.length - 1];

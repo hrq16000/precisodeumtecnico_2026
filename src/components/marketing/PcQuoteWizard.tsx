@@ -196,7 +196,7 @@ export const PcQuoteWizard = ({ sourcePage }: { sourcePage?: string }) => {
   }
 
   const inputBase =
-    "w-full rounded-lg border bg-background px-3 py-3 text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring";
+    "w-full rounded-lg border bg-background px-3 py-3 text-base text-foreground focus:outline-hidden focus:ring-2 focus:ring-ring";
   const inputClass = (invalid?: string) =>
     `${inputBase} ${invalid ? "field-invalid" : "border-border"}`;
   // Aceites obrigatórios ganham destaque pulsante quando o envio é tentado sem marcar.
