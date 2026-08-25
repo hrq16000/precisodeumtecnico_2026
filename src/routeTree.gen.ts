@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AbrirOsRouteImport } from './routes/abrir-os'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AnuncieRouteImport } from './routes/anuncie'
 import { Route as AreaDeAtendimentoCuritibaRouteImport } from './routes/area-de-atendimento-curitiba'
@@ -41,6 +42,7 @@ import { Route as GarantiaECoberturaRouteImport } from './routes/garantia-e-cobe
 import { Route as GestorResponsavelRouteImport } from './routes/gestor-responsavel'
 import { Route as GuiaTecnicoInformaticaRouteImport } from './routes/guia-tecnico-informatica'
 import { Route as ObrigadoRouteImport } from './routes/obrigado'
+import { Route as OrdemDeServicoRouteImport } from './routes/ordem-de-servico'
 import { Route as PatrocinadoresRouteImport } from './routes/patrocinadores'
 import { Route as PoliticaDeAnunciosRouteImport } from './routes/politica-de-anuncios'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
@@ -113,6 +115,11 @@ import { Route as ServicosTrocaDeTelaTvPinhaisBairroRouteImport } from './routes
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AbrirOsRoute = AbrirOsRouteImport.update({
+  id: '/abrir-os',
+  path: '/abrir-os',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -274,6 +281,11 @@ const GuiaTecnicoInformaticaRoute = GuiaTecnicoInformaticaRouteImport.update({
 const ObrigadoRoute = ObrigadoRouteImport.update({
   id: '/obrigado',
   path: '/obrigado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdemDeServicoRoute = OrdemDeServicoRouteImport.update({
+  id: '/ordem-de-servico',
+  path: '/ordem-de-servico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PatrocinadoresRoute = PatrocinadoresRouteImport.update({
@@ -649,6 +661,7 @@ const ServicosTrocaDeTelaTvPinhaisBairroRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/abrir-os': typeof AbrirOsRoute
   '/admin': typeof AdminRoute
   '/anuncie': typeof AnuncieRoute
   '/area-de-atendimento-curitiba': typeof AreaDeAtendimentoCuritibaRoute
@@ -680,6 +693,7 @@ export interface FileRoutesByFullPath {
   '/gestor-responsavel': typeof GestorResponsavelRoute
   '/guia-tecnico-informatica': typeof GuiaTecnicoInformaticaRoute
   '/obrigado': typeof ObrigadoRoute
+  '/ordem-de-servico': typeof OrdemDeServicoRoute
   '/patrocinadores': typeof PatrocinadoresRoute
   '/politica-de-anuncios': typeof PoliticaDeAnunciosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -751,6 +765,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/abrir-os': typeof AbrirOsRoute
   '/admin': typeof AdminRoute
   '/anuncie': typeof AnuncieRoute
   '/area-de-atendimento-curitiba': typeof AreaDeAtendimentoCuritibaRoute
@@ -782,6 +797,7 @@ export interface FileRoutesByTo {
   '/gestor-responsavel': typeof GestorResponsavelRoute
   '/guia-tecnico-informatica': typeof GuiaTecnicoInformaticaRoute
   '/obrigado': typeof ObrigadoRoute
+  '/ordem-de-servico': typeof OrdemDeServicoRoute
   '/patrocinadores': typeof PatrocinadoresRoute
   '/politica-de-anuncios': typeof PoliticaDeAnunciosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -854,6 +870,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/abrir-os': typeof AbrirOsRoute
   '/admin': typeof AdminRoute
   '/anuncie': typeof AnuncieRoute
   '/area-de-atendimento-curitiba': typeof AreaDeAtendimentoCuritibaRoute
@@ -885,6 +902,7 @@ export interface FileRoutesById {
   '/gestor-responsavel': typeof GestorResponsavelRoute
   '/guia-tecnico-informatica': typeof GuiaTecnicoInformaticaRoute
   '/obrigado': typeof ObrigadoRoute
+  '/ordem-de-servico': typeof OrdemDeServicoRoute
   '/patrocinadores': typeof PatrocinadoresRoute
   '/politica-de-anuncios': typeof PoliticaDeAnunciosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -958,6 +976,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/abrir-os'
     | '/admin'
     | '/anuncie'
     | '/area-de-atendimento-curitiba'
@@ -989,6 +1008,7 @@ export interface FileRouteTypes {
     | '/gestor-responsavel'
     | '/guia-tecnico-informatica'
     | '/obrigado'
+    | '/ordem-de-servico'
     | '/patrocinadores'
     | '/politica-de-anuncios'
     | '/politica-de-cookies'
@@ -1060,6 +1080,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/abrir-os'
     | '/admin'
     | '/anuncie'
     | '/area-de-atendimento-curitiba'
@@ -1091,6 +1112,7 @@ export interface FileRouteTypes {
     | '/gestor-responsavel'
     | '/guia-tecnico-informatica'
     | '/obrigado'
+    | '/ordem-de-servico'
     | '/patrocinadores'
     | '/politica-de-anuncios'
     | '/politica-de-cookies'
@@ -1162,6 +1184,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/abrir-os'
     | '/admin'
     | '/anuncie'
     | '/area-de-atendimento-curitiba'
@@ -1193,6 +1216,7 @@ export interface FileRouteTypes {
     | '/gestor-responsavel'
     | '/guia-tecnico-informatica'
     | '/obrigado'
+    | '/ordem-de-servico'
     | '/patrocinadores'
     | '/politica-de-anuncios'
     | '/politica-de-cookies'
@@ -1265,6 +1289,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AbrirOsRoute: typeof AbrirOsRoute
   AdminRoute: typeof AdminRoute
   AnuncieRoute: typeof AnuncieRoute
   AreaDeAtendimentoCuritibaRoute: typeof AreaDeAtendimentoCuritibaRoute
@@ -1296,6 +1321,7 @@ export interface RootRouteChildren {
   GestorResponsavelRoute: typeof GestorResponsavelRoute
   GuiaTecnicoInformaticaRoute: typeof GuiaTecnicoInformaticaRoute
   ObrigadoRoute: typeof ObrigadoRoute
+  OrdemDeServicoRoute: typeof OrdemDeServicoRoute
   PatrocinadoresRoute: typeof PatrocinadoresRoute
   PoliticaDeAnunciosRoute: typeof PoliticaDeAnunciosRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
@@ -1373,6 +1399,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/abrir-os': {
+      id: '/abrir-os'
+      path: '/abrir-os'
+      fullPath: '/abrir-os'
+      preLoaderRoute: typeof AbrirOsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -1590,6 +1623,13 @@ declare module '@tanstack/react-router' {
       path: '/obrigado'
       fullPath: '/obrigado'
       preLoaderRoute: typeof ObrigadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ordem-de-servico': {
+      id: '/ordem-de-servico'
+      path: '/ordem-de-servico'
+      fullPath: '/ordem-de-servico'
+      preLoaderRoute: typeof OrdemDeServicoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/patrocinadores': {
@@ -2073,6 +2113,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AbrirOsRoute: AbrirOsRoute,
   AdminRoute: AdminRoute,
   AnuncieRoute: AnuncieRoute,
   AreaDeAtendimentoCuritibaRoute: AreaDeAtendimentoCuritibaRoute,
@@ -2105,6 +2146,7 @@ const rootRouteChildren: RootRouteChildren = {
   GestorResponsavelRoute: GestorResponsavelRoute,
   GuiaTecnicoInformaticaRoute: GuiaTecnicoInformaticaRoute,
   ObrigadoRoute: ObrigadoRoute,
+  OrdemDeServicoRoute: OrdemDeServicoRoute,
   PatrocinadoresRoute: PatrocinadoresRoute,
   PoliticaDeAnunciosRoute: PoliticaDeAnunciosRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
