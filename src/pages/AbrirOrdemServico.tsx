@@ -69,6 +69,14 @@ export default function AbrirOrdemServico() {
   const message = useMemo(() => (draft.protocol ? buildOsMessage(draft) : ""), [draft]);
   const waUrl = useMemo(() => (ready ? buildOsWhatsAppUrl(draft) : undefined), [ready, draft]);
 
+  /** Persiste a O.S. concluída e libera a tela de comprovante (PDF + QR). */
+  function confirm() {
+    if (!ready) return;
+    const created = recordFromDraft(draft);
+    saveOsRecord(created);
+    setRecord(created);
+  }
+
   function review() {
     const found = validateDraft(draft);
     setErrors(found.map((e) => e.label));
