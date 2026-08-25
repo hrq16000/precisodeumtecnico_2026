@@ -958,7 +958,19 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
               </div>
             </div>
 
+            {/* Prévia da mensagem que será enviada no WhatsApp */}
+            <details className="rounded-lg border border-border bg-muted/20 p-3 text-xs" data-testid="triage-wa-preview">
+              <summary className="cursor-pointer font-medium text-foreground">
+                Prévia da mensagem que vamos enviar
+              </summary>
+              <pre
+                data-testid="triage-wa-preview-message"
+                className="mt-2 max-h-48 overflow-auto whitespace-pre-wrap rounded-sm bg-card p-2 text-xs text-muted-foreground"
+              >{buildWhatsAppTriageMessage(state)}</pre>
+            </details>
+
             {schedulingPreference && (
+
               <p data-testid="triage-scheduling-confirm" className="rounded-lg border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
                 Vamos confirmar no WhatsApp a preferência <strong className="text-foreground">{schedulingPreference}</strong>.
                 Se precisar mudar, responda <strong className="text-foreground">REAGENDAR</strong> na conversa que enviamos outras opções.
