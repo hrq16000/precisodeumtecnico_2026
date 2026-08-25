@@ -47,6 +47,7 @@ import {
   ShieldCheck,
   ShieldAlert,
   Eye,
+  Download,
 } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
