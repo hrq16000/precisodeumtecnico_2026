@@ -45,6 +45,7 @@ export default function AbrirOrdemServico() {
   const [hydrated, setHydrated] = useState(false);
   const [draft, setDraft] = useState<OsDraft>(() => emptyDraft());
   const [errors, setErrors] = useState<string[]>([]);
+  const [record, setRecord] = useState<OsRecord | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
