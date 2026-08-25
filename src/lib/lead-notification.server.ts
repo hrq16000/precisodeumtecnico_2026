@@ -76,19 +76,59 @@ function formatMessage(text: string): string {
   return escapeHtml(text).replace(/\n/g, "<br>");
 }
 
+const RETRY_DELAYS_MS = [400, 1200, 3000];
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** When true, outbound providers are mocked (local dev / offline). */
+function isMockMode(): boolean {
+  return process.env["MOCK_EXTERNAL_APIS"] === "true";
+}
+
 async function sendResendEmail(
   apiKey: string,
   payload: { from: string; to: string[]; subject: string; html: string },
 ): Promise<unknown> {
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-  return res.json();
+  if (isMockMode()) {
+    console.log("[lead-notification][mock] resend email", {
+      to: payload.to,
+      subject: payload.subject,
+    });
+    return { mocked: true, id: `mock_${Date.now()}` };
+  }
+
+  let lastError: unknown = null;
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      // Retry only on transient failures (429 / 5xx).
+      if (res.status === 429 || res.status >= 500) {
+        lastError = `HTTP ${res.status}`;
+        console.warn("[lead-notification] resend transient failure", {
+          attempt,
+          status: res.status,
+        });
+      } else {
+        return await res.json();
+      }
+    } catch (error) {
+      lastError = error;
+      console.warn("[lead-notification] resend network failure", { attempt, error: String(error) });
+    }
+
+    const delay = RETRY_DELAYS_MS[attempt];
+    if (delay !== undefined) await sleep(delay);
+  }
+
+  console.error("[lead-notification] resend exhausted retries", { error: String(lastError) });
+  return { error: "resend_unavailable", detail: String(lastError) };
 }
 
 export async function sendLeadEmails(leadData: LeadPayload): Promise<{ success: boolean; error?: string }> {
