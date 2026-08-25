@@ -25,7 +25,7 @@ const regions = [
 ];
 
 export function Footer() {
-  const whatsappLink = buildWhatsAppUrl({ ...readStoredLocation(), sourcePage: currentSourcePage() });
+  const whatsappLink = useWhatsAppLink();
   const currentYear = new Date().getFullYear();
 
   return (

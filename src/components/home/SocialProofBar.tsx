@@ -33,11 +33,7 @@ export function SocialProofBar() {
     };
   }, []);
 
-  const whatsappLink = buildWhatsAppUrl({
-    service: "assistência técnica",
-    ...readStoredLocation(),
-    sourcePage: currentSourcePage(),
-  });
+  const whatsappLink = useWhatsAppLink({ service: "assistência técnica" });
 
   return (
     <section className="border-b border-border bg-secondary/30 py-6" data-social-proof>
