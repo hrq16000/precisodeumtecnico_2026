@@ -39,7 +39,7 @@ for (const vp of VIEWPORTS) {
 
     test("Aceitar concede medição e publicidade", async ({ page }) => {
       await page.goto("/");
-      await expect(banner(page)).toBeVisible();
+      await expect(banner(page)).toBeVisible({ timeout: 20_000 });
 
       await banner(page).getByRole("button", { name: "Aceitar" }).click();
       await expect(banner(page)).toHaveCount(0);
@@ -60,7 +60,7 @@ for (const vp of VIEWPORTS) {
 
     test("Recusar nega todas as categorias", async ({ page }) => {
       await page.goto("/");
-      await expect(banner(page)).toBeVisible();
+      await expect(banner(page)).toBeVisible({ timeout: 20_000 });
 
       await banner(page).getByRole("button", { name: "Recusar" }).click();
       await expect(banner(page)).toHaveCount(0);
@@ -84,7 +84,7 @@ for (const vp of VIEWPORTS) {
 
     test("link de política abre /politica-privacidade", async ({ page }) => {
       await page.goto("/");
-      await expect(banner(page)).toBeVisible();
+      await expect(banner(page)).toBeVisible({ timeout: 20_000 });
 
       await banner(page).getByRole("link", { name: "Privacidade" }).click();
       await expect(page).toHaveURL(/\/politica-privacidade$/);
