@@ -100,6 +100,43 @@ function formatSla(min: number | null, max: number | null) {
   return `${min ?? max} dias`;
 }
 
+const CSV_COLUMNS: { key: keyof Lead; label: string }[] = [
+  { key: "created_at", label: "Data" },
+  { key: "name", label: "Nome" },
+  { key: "phone", label: "Telefone" },
+  { key: "email", label: "Email" },
+  { key: "city", label: "Cidade" },
+  { key: "neighborhood", label: "Bairro" },
+  { key: "category", label: "Categoria" },
+  { key: "brand", label: "Marca" },
+  { key: "model", label: "Modelo" },
+  { key: "symptom", label: "Sintoma" },
+  { key: "service", label: "Servico" },
+  { key: "service_mode", label: "Modo" },
+  { key: "estimated_ticket_min", label: "Ticket min" },
+  { key: "estimated_ticket_max", label: "Ticket max" },
+  { key: "sla_days_min", label: "SLA min" },
+  { key: "sla_days_max", label: "SLA max" },
+  { key: "triage_completed", label: "Triagem" },
+  { key: "terms_accepted", label: "Aceite" },
+  { key: "source", label: "Origem" },
+  { key: "status", label: "Status" },
+];
+
+function csvCell(value: unknown) {
+  if (value === null || value === undefined) return "";
+  const raw = String(value);
+  // Prefix formula-like values to avoid CSV injection in spreadsheet apps.
+  const safe = /^[=+\-@]/.test(raw) ? `'${raw}` : raw;
+  return `"${safe.replace(/"/g, '""')}"`;
+}
+
+function buildLeadsCsv(rows: Lead[]) {
+  const header = CSV_COLUMNS.map((c) => csvCell(c.label)).join(";");
+  const body = rows.map((row) => CSV_COLUMNS.map((c) => csvCell(row[c.key])).join(";"));
+  return [header, ...body].join("\r\n");
+}
+
 export default function Admin() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
@@ -184,6 +221,19 @@ export default function Admin() {
     else { toast({ title: "Status atualizado" }); fetchLeads(); }
   };
 
+  const exportCsv = () => {
+    const csv = buildLeadsCsv(filteredLeads);
+    // BOM keeps accents readable in Excel pt-BR.
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast({ title: "CSV exportado", description: `${filteredLeads.length} lead(s)` });
+  };
+
   const deleteLead = async (id: string) => {
     if (!confirm("Excluir este lead?")) return;
     const { error } = await supabase.from("leads").delete().eq("id", id);
@@ -214,6 +264,7 @@ export default function Admin() {
     switch (status) {
       case "new": return <Badge variant="default">Novo</Badge>;
       case "contacted": return <Badge variant="secondary">Contactado</Badge>;
+      case "scheduled": return <Badge className="bg-amber-500">Agendado</Badge>;
       case "converted": return <Badge className="bg-green-500">Convertido</Badge>;
       case "lost": return <Badge variant="destructive">Perdido</Badge>;
       default: return <Badge variant="outline">{status}</Badge>;
@@ -288,6 +339,7 @@ export default function Admin() {
               <SelectItem value="all">Todos os status</SelectItem>
               <SelectItem value="new">Novos</SelectItem>
               <SelectItem value="contacted">Contactados</SelectItem>
+              <SelectItem value="scheduled">Agendados</SelectItem>
               <SelectItem value="converted">Convertidos</SelectItem>
               <SelectItem value="lost">Perdidos</SelectItem>
             </SelectContent>
@@ -302,6 +354,9 @@ export default function Admin() {
           </Select>
           <Button variant="outline" onClick={fetchLeads}>
             <RefreshCw className="w-4 h-4 mr-2" /> Atualizar
+          </Button>
+          <Button variant="outline" onClick={exportCsv} disabled={filteredLeads.length === 0}>
+            <Download className="w-4 h-4 mr-2" /> Exportar CSV
           </Button>
         </div>
 
@@ -394,6 +449,7 @@ export default function Admin() {
                                 <SelectContent>
                                   <SelectItem value="new">Novo</SelectItem>
                                   <SelectItem value="contacted">Contactado</SelectItem>
+                                  <SelectItem value="scheduled">Agendado</SelectItem>
                                   <SelectItem value="converted">Convertido</SelectItem>
                                   <SelectItem value="lost">Perdido</SelectItem>
                                 </SelectContent>
