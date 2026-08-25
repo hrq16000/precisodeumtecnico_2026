@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AbrirOsRouteImport } from './routes/abrir-os'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AnuncieRouteImport } from './routes/anuncie'
 import { Route as AreaDeAtendimentoCuritibaRouteImport } from './routes/area-de-atendimento-curitiba'
@@ -113,6 +114,11 @@ import { Route as ServicosTrocaDeTelaTvPinhaisBairroRouteImport } from './routes
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AbrirOsRoute = AbrirOsRouteImport.update({
+  id: '/abrir-os',
+  path: '/abrir-os',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -649,6 +655,7 @@ const ServicosTrocaDeTelaTvPinhaisBairroRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/abrir-os': typeof AbrirOsRoute
   '/admin': typeof AdminRoute
   '/anuncie': typeof AnuncieRoute
   '/area-de-atendimento-curitiba': typeof AreaDeAtendimentoCuritibaRoute
@@ -751,6 +758,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/abrir-os': typeof AbrirOsRoute
   '/admin': typeof AdminRoute
   '/anuncie': typeof AnuncieRoute
   '/area-de-atendimento-curitiba': typeof AreaDeAtendimentoCuritibaRoute
@@ -854,6 +862,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/abrir-os': typeof AbrirOsRoute
   '/admin': typeof AdminRoute
   '/anuncie': typeof AnuncieRoute
   '/area-de-atendimento-curitiba': typeof AreaDeAtendimentoCuritibaRoute
@@ -958,6 +967,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/abrir-os'
     | '/admin'
     | '/anuncie'
     | '/area-de-atendimento-curitiba'
@@ -1060,6 +1070,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/abrir-os'
     | '/admin'
     | '/anuncie'
     | '/area-de-atendimento-curitiba'
@@ -1162,6 +1173,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/abrir-os'
     | '/admin'
     | '/anuncie'
     | '/area-de-atendimento-curitiba'
@@ -1265,6 +1277,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AbrirOsRoute: typeof AbrirOsRoute
   AdminRoute: typeof AdminRoute
   AnuncieRoute: typeof AnuncieRoute
   AreaDeAtendimentoCuritibaRoute: typeof AreaDeAtendimentoCuritibaRoute
@@ -1373,6 +1386,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/abrir-os': {
+      id: '/abrir-os'
+      path: '/abrir-os'
+      fullPath: '/abrir-os'
+      preLoaderRoute: typeof AbrirOsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -2073,6 +2093,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AbrirOsRoute: AbrirOsRoute,
   AdminRoute: AdminRoute,
   AnuncieRoute: AnuncieRoute,
   AreaDeAtendimentoCuritibaRoute: AreaDeAtendimentoCuritibaRoute,
