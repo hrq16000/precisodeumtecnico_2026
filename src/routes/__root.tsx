@@ -268,10 +268,12 @@ function RoutePageviewTracker() {
 }
 
 function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
   return (
     <StrictMode>
       <GlobalErrorBoundary>
         <HelmetProvider>
+          <QueryClientProvider client={queryClient}>
           <AuthProvider>
             <TooltipProvider>
               <Toaster />
@@ -287,6 +289,7 @@ function RootComponent() {
               </Suspense>
             </TooltipProvider>
           </AuthProvider>
+          </QueryClientProvider>
         </HelmetProvider>
       </GlobalErrorBoundary>
     </StrictMode>
