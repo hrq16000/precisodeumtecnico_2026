@@ -33,6 +33,8 @@ export const WA_SOURCES = [
   "parts-policy-footer",
   "privacy-policy",
   "garantia-hero",
+  "processo-hero",
+  "precos-politicas-hero",
   "garantia-final",
   // Guias editoriais
   "guia-informatica",
