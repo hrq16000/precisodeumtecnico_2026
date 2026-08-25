@@ -132,7 +132,7 @@ async function sendResendEmail(
 }
 
 export async function sendLeadEmails(leadData: LeadPayload): Promise<{ success: boolean; error?: string }> {
-  const apiKey = process.env["RESEND_API_KEY"];
+  const apiKey = process.env["RESEND_API_KEY"] ?? (isMockMode() ? "mock-key" : undefined);
   if (!apiKey) {
     console.error("[send-lead-notification] RESEND_API_KEY is not configured");
     return { success: false, error: "Email service not configured" };
