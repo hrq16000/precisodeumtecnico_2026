@@ -62,6 +62,9 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [copyFallback, setCopyFallback] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  /** Resumo acessível dos campos pendentes na etapa atual. */
+  const [errorSummary, setErrorSummary] = useState<string | null>(null);
+
   const transitioningRef = useRef(false);
   const advanceTimerRef = useRef<number | null>(null);
   const scrollAnchorRef = useRef<HTMLDivElement | null>(null);
@@ -199,13 +202,28 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
     const v = validateCurrentStep(state);
     if (!v.ok) {
       dispatch({ type: "NEXT" }); // aplica erros para exibir
-      // rola até primeiro erro
-      const firstErr = Object.keys(v.errors)[0];
-      const el = firstErr ? document.getElementById(`triage-field-${firstErr}`) : null;
-      el?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
-      (el as HTMLElement | null)?.focus?.();
+      const keys = Object.keys(v.errors);
+      setErrorSummary(keys.map((k) => v.errors[k]).filter(Boolean).join(" · "));
+      // Rola até o primeiro erro após o repaint (o campo pode ter acabado
+      // de ganhar a marcação de inválido) e destaca visualmente.
+      const firstErr = keys[0];
+      window.requestAnimationFrame(() => {
+        const el = firstErr
+          ? (document.getElementById(`triage-field-${firstErr}`) as HTMLElement | null)
+          : null;
+        if (!el) return;
+        el.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
+        const focusTarget = (el.matches("input, textarea, select, button")
+          ? el
+          : el.querySelector<HTMLElement>("input, textarea, select, button")) ?? el;
+        focusTarget.focus?.({ preventScroll: true });
+        el.classList.add("triage-field-error-flash");
+        window.setTimeout(() => el.classList.remove("triage-field-error-flash"), 2200);
+      });
       return;
     }
+    setErrorSummary(null);
+
     transitioningRef.current = true;
     // Evita corrida: cancela qualquer auto-advance pendente da mesma etapa.
     cancelPendingAutoAdvance();
@@ -554,6 +572,17 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
 
       {/* BODY scrollable */}
       <div ref={scrollAnchorRef} className="flex-1 overflow-y-auto px-4 py-5 sm:px-6">
+        {errorSummary && (
+          <div
+            data-testid="triage-error-summary"
+            role="alert"
+            aria-live="assertive"
+            className="mb-4 rounded-lg border-2 border-destructive/50 bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive"
+          >
+            Preencha: {errorSummary}
+          </div>
+        )}
+
         {/* STEP 1: EQUIPAMENTO */}
         {state.currentStep === "equipment" && (
           <section className="space-y-3">
@@ -929,7 +958,19 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
               </div>
             </div>
 
+            {/* Prévia da mensagem que será enviada no WhatsApp */}
+            <details className="rounded-lg border border-border bg-muted/20 p-3 text-xs" data-testid="triage-wa-preview">
+              <summary className="cursor-pointer font-medium text-foreground">
+                Prévia da mensagem que vamos enviar
+              </summary>
+              <pre
+                data-testid="triage-wa-preview-message"
+                className="mt-2 max-h-48 overflow-auto whitespace-pre-wrap rounded-sm bg-card p-2 text-xs text-muted-foreground"
+              >{buildWhatsAppTriageMessage(state)}</pre>
+            </details>
+
             {schedulingPreference && (
+
               <p data-testid="triage-scheduling-confirm" className="rounded-lg border border-border bg-muted/30 p-3 text-xs text-muted-foreground">
                 Vamos confirmar no WhatsApp a preferência <strong className="text-foreground">{schedulingPreference}</strong>.
                 Se precisar mudar, responda <strong className="text-foreground">REAGENDAR</strong> na conversa que enviamos outras opções.
