@@ -6,6 +6,11 @@
   "scripts": {
     "predev": "bun scripts/write-ads-txt.ts && bun scripts/build-sitemap.ts && bun scripts/build-image-sitemap.ts && bun scripts/build-atom.ts",
     "dev": "vite dev",
+    "dev:local": "MOCK_EXTERNAL_APIS=true vite dev",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "functions:serve": "supabase functions serve --env-file .env",
     "prebuild": "bun scripts/write-ads-txt.ts && bun scripts/write-indexnow-key.ts && bun scripts/build-sitemap.ts && bun scripts/build-image-sitemap.ts && bun scripts/build-atom.ts && bun scripts/build-og-preview.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
