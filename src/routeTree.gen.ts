@@ -29,6 +29,7 @@ import { Route as ComoAvaliarRouteImport } from './routes/como-avaliar'
 import { Route as ComoEscolherTecnicoPrecoPrazoRouteImport } from './routes/como-escolher-tecnico-preco-prazo'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ConsertoDeNotebookCuritibaRouteImport } from './routes/conserto-de-notebook-curitiba'
+import { Route as ConsultarOsRouteImport } from './routes/consultar-os'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as CreditosDeImagensRouteImport } from './routes/creditos-de-imagens'
 import { Route as DadosDaEmpresaRouteImport } from './routes/dados-da-empresa'
@@ -217,6 +218,11 @@ const ConsertoDeNotebookCuritibaRoute =
     path: '/conserto-de-notebook-curitiba',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ConsultarOsRoute = ConsultarOsRouteImport.update({
+  id: '/consultar-os',
+  path: '/consultar-os',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
@@ -680,6 +686,7 @@ export interface FileRoutesByFullPath {
   '/como-escolher-tecnico-preco-prazo': typeof ComoEscolherTecnicoPrecoPrazoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/conserto-de-notebook-curitiba': typeof ConsertoDeNotebookCuritibaRoute
+  '/consultar-os': typeof ConsultarOsRoute
   '/contato': typeof ContatoRoute
   '/creditos-de-imagens': typeof CreditosDeImagensRoute
   '/dados-da-empresa': typeof DadosDaEmpresaRoute
@@ -784,6 +791,7 @@ export interface FileRoutesByTo {
   '/como-escolher-tecnico-preco-prazo': typeof ComoEscolherTecnicoPrecoPrazoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/conserto-de-notebook-curitiba': typeof ConsertoDeNotebookCuritibaRoute
+  '/consultar-os': typeof ConsultarOsRoute
   '/contato': typeof ContatoRoute
   '/creditos-de-imagens': typeof CreditosDeImagensRoute
   '/dados-da-empresa': typeof DadosDaEmpresaRoute
@@ -889,6 +897,7 @@ export interface FileRoutesById {
   '/como-escolher-tecnico-preco-prazo': typeof ComoEscolherTecnicoPrecoPrazoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/conserto-de-notebook-curitiba': typeof ConsertoDeNotebookCuritibaRoute
+  '/consultar-os': typeof ConsultarOsRoute
   '/contato': typeof ContatoRoute
   '/creditos-de-imagens': typeof CreditosDeImagensRoute
   '/dados-da-empresa': typeof DadosDaEmpresaRoute
@@ -995,6 +1004,7 @@ export interface FileRouteTypes {
     | '/como-escolher-tecnico-preco-prazo'
     | '/como-funciona'
     | '/conserto-de-notebook-curitiba'
+    | '/consultar-os'
     | '/contato'
     | '/creditos-de-imagens'
     | '/dados-da-empresa'
@@ -1099,6 +1109,7 @@ export interface FileRouteTypes {
     | '/como-escolher-tecnico-preco-prazo'
     | '/como-funciona'
     | '/conserto-de-notebook-curitiba'
+    | '/consultar-os'
     | '/contato'
     | '/creditos-de-imagens'
     | '/dados-da-empresa'
@@ -1203,6 +1214,7 @@ export interface FileRouteTypes {
     | '/como-escolher-tecnico-preco-prazo'
     | '/como-funciona'
     | '/conserto-de-notebook-curitiba'
+    | '/consultar-os'
     | '/contato'
     | '/creditos-de-imagens'
     | '/dados-da-empresa'
@@ -1308,6 +1320,7 @@ export interface RootRouteChildren {
   ComoEscolherTecnicoPrecoPrazoRoute: typeof ComoEscolherTecnicoPrecoPrazoRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   ConsertoDeNotebookCuritibaRoute: typeof ConsertoDeNotebookCuritibaRoute
+  ConsultarOsRoute: typeof ConsultarOsRoute
   ContatoRoute: typeof ContatoRoute
   CreditosDeImagensRoute: typeof CreditosDeImagensRoute
   DadosDaEmpresaRoute: typeof DadosDaEmpresaRoute
@@ -1532,6 +1545,13 @@ declare module '@tanstack/react-router' {
       path: '/conserto-de-notebook-curitiba'
       fullPath: '/conserto-de-notebook-curitiba'
       preLoaderRoute: typeof ConsertoDeNotebookCuritibaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultar-os': {
+      id: '/consultar-os'
+      path: '/consultar-os'
+      fullPath: '/consultar-os'
+      preLoaderRoute: typeof ConsultarOsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -2133,6 +2153,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComoEscolherTecnicoPrecoPrazoRoute: ComoEscolherTecnicoPrecoPrazoRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   ConsertoDeNotebookCuritibaRoute: ConsertoDeNotebookCuritibaRoute,
+  ConsultarOsRoute: ConsultarOsRoute,
   ContatoRoute: ContatoRoute,
   CreditosDeImagensRoute: CreditosDeImagensRoute,
   DadosDaEmpresaRoute: DadosDaEmpresaRoute,
