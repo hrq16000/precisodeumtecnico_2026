@@ -69,6 +69,7 @@ export const WA_SOURCES = [
   // Ordem de serviço
   "status-os-share",
   "status-os-fallback",
+  "abrir-os-confirm",
 ] as const;
 
 export type WaSource = (typeof WA_SOURCES)[number];
