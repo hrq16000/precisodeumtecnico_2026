@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { ImageIcon } from "lucide-react";
 import { PublicPhotoFigure } from "@/components/media/PublicPhotoFigure";
 import type { PublicPhoto } from "@/data/publicPhotos";

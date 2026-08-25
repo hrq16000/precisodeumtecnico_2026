@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "@/lib/router-compat";
 import { z } from "zod";
 import { Star, CheckCircle2, Loader2 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";

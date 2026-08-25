@@ -5,7 +5,7 @@
  * já registrada no App (sem criar serviço novo, sem preço e sem promessa
  * de disponibilidade). Conteúdo derivado das seções já publicadas.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowRight, HardDrive, Laptop, ShieldCheck, Wifi } from "lucide-react";
 
 const PILLARS = [

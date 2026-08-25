@@ -8,7 +8,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 
-const DIST = "dist";
+const DIST = "dist/client";
 const INDEX = join(DIST, "sitemap.xml");
 const MANIFEST = join(DIST, "sitemaps.manifest.json");
 const errors: string[] = [];

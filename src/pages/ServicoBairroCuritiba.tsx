@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Helmet } from "@/lib/helmet-compat";
+import { Link, useParams, Navigate } from "@/lib/router-compat";
 import { ArrowRight, MapPin, ShieldCheck, Clock, HelpCircle, ChevronRight } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";

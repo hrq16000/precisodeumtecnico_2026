@@ -1,9 +1,10 @@
 import { MessageCircle } from "lucide-react";
 import { isTriageEnabled, openTriage } from "@/lib/triageFlag";
-import { buildWhatsAppUrl, readStoredLocation, currentSourcePage } from "@/lib/whatsapp";
+import { useWhatsAppLink } from "@/hooks/useWhatsAppLink";
 
 export function WhatsAppFloat() {
   const triageOn = isTriageEnabled();
+  const whatsappLink = useWhatsAppLink();
 
   if (triageOn) {
     return (
@@ -21,8 +22,6 @@ export function WhatsAppFloat() {
     );
   }
 
-  const loc = readStoredLocation();
-  const whatsappLink = buildWhatsAppUrl({ ...loc, sourcePage: currentSourcePage() });
   return (
     <a
       href={whatsappLink}

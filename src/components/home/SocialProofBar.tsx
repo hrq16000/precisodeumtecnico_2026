@@ -3,12 +3,12 @@
  * autorizadas para publicação no banco. Nenhum número é fabricado.
  */
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Star, ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { TrustStrip } from "@/components/marketing/TrustStrip";
-import { buildWhatsAppUrl, readStoredLocation, currentSourcePage } from "@/lib/whatsapp";
+import { useWhatsAppLink } from "@/hooks/useWhatsAppLink";
 
 export function SocialProofBar() {
   const [count, setCount] = useState(0);
@@ -33,11 +33,7 @@ export function SocialProofBar() {
     };
   }, []);
 
-  const whatsappLink = buildWhatsAppUrl({
-    service: "assistência técnica",
-    ...readStoredLocation(),
-    sourcePage: currentSourcePage(),
-  });
+  const whatsappLink = useWhatsAppLink({ service: "assistência técnica" });
 
   return (
     <section className="border-b border-border bg-secondary/30 py-6" data-social-proof>

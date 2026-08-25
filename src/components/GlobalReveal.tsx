@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "@/lib/router-compat";
 
 /**
  * Global scroll-reveal: aplica a classe `.is-visible` em qualquer

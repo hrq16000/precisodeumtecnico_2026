@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation } from "@/lib/router-compat";
 import { PublicPhotoBand } from "./PublicPhotoBand";
 import { CITY_PHOTO_BY_SLUG, pickLocalityPhotos } from "@/data/publicPhotos";
 

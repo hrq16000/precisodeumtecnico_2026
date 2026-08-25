@@ -5,7 +5,7 @@
  * ("como podemos atender"). Usa exclusivamente rotas já existentes e
  * canônicas — nenhuma URL nova é criada aqui.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowRight, Activity } from "lucide-react";
 
 interface SymptomEntry {

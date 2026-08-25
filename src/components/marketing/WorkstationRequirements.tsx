@@ -5,7 +5,7 @@
  * Regra de claims: nenhuma promessa de desempenho por software, FPS,
  * tempo de render, benchmark ou certificação de fabricante.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 
 const REQUIREMENTS: { label: string; detail: string }[] = [

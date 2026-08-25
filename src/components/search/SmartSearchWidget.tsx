@@ -10,7 +10,7 @@
  * publicadas.
  */
 import { useMemo, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MapPin, Search, MessageCircle, ArrowRight } from "lucide-react";

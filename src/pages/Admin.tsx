@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/layout/Layout";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -203,7 +203,7 @@ export default function Admin() {
     }
     setSignedMedia(
       (data || []).map((d, i) => ({
-        url: d.signedUrl,
+        url: d.signedUrl ?? "",
         path: paths[i],
         isVideo: /\.(mp4|mov|webm|m4v)$/i.test(paths[i]),
       }))

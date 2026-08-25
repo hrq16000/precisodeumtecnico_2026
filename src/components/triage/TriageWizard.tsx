@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import {
   ArrowLeft, ArrowRight, CheckCircle2, ChevronRight, Loader2,
   ShieldAlert, Zap, X, Send, MessageCircle,
@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
+import { sendLeadNotification } from "@/lib/lead-notification.functions";
 import { SYMPTOMS } from "@/data/symptoms";
 import {
   CATEGORIES, advanceHint, buildPayload, canAdvance, getSymptom, makeInitialState, reducer,
@@ -202,13 +203,14 @@ export function TriageWizard({
 
       // Notifica o time (email via Resend) — fire-and-forget.
       try {
-        await supabase.functions.invoke("send-lead-notification", {
-          body: {
+        const service = payload.symptom ?? payload.category;
+        await sendLeadNotification({
+          data: {
             name: payload.name,
             email: payload.email,
             phone: payload.phone,
-            service: payload.symptom ?? payload.category,
-            city: payload.city,
+            ...(service ? { service } : {}),
+            ...(payload.city ? { city: payload.city } : {}),
             message:
               `[TRIAGEM] ${payload.category ?? ""} ${payload.brand ?? ""} ${payload.model ?? ""}\n` +
               `Sintoma: ${payload.symptom ?? "(custom)"}\n` +

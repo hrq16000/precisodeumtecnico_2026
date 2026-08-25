@@ -1,0 +1,10 @@
+{"functions": [
+  {"name": "mcp", "classification": "MCP server", "signal": "JSON-RPC handler, .lovable/mcp/manifest.json", "outcome": "left"},
+  {"name": "send-lead-notification", "classification": "internal-only", "signal": "called from 3 src/ files; only Resend API + validation", "outcome": "migrated"},
+  {"name": "sitemap-status", "classification": "unknown/external", "signal": "public monitoring endpoint hit by CI (.github/workflows/ci.yml) and external uptime monitors", "outcome": "left"},
+  {"name": "submit-sitemap-gsc", "classification": "unknown/external", "signal": "manual/scheduled curl invocation via connector gateway; no src/ call sites", "outcome": "left"},
+  {"name": "submit-sitemap-indexnow", "classification": "unknown/external", "signal": "manual/scheduled invocation; validated by scripts/check-indexnow.ts against fixed URL", "outcome": "left"},
+  {"name": "triage-media-alerts", "classification": "cron target", "signal": "cron.schedule 'triage-media-alerts-10min' in supabase/migrations/20260630014830", "outcome": "left"},
+  {"name": "triage-media-cleanup", "classification": "cron target", "signal": "cron.schedule 'triage-media-cleanup-hourly' in supabase/migrations/20260630014830", "outcome": "left"},
+  {"name": "triage-media-upload", "classification": "internal-only (service-role HMAC)", "signal": "1 src/ call site, but depends on SUPABASE_SERVICE_ROLE_KEY for HMAC-signed uploads (security memory: secure media uploads via Edge Functions); left to preserve the secure upload path", "outcome": "left"}
+]}

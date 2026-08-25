@@ -5,11 +5,11 @@ interface Props { onReset: () => void; children: ReactNode }
 interface State { hasError: boolean; message?: string }
 
 export class TriageErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false };
+  override state: State = { hasError: false };
   static getDerivedStateFromError(err: Error): State {
     return { hasError: true, message: err.message };
   }
-  componentDidCatch(_err: Error, _info: ErrorInfo) {
+  override componentDidCatch(_err: Error, _info: ErrorInfo) {
     // Não expor dados sensíveis nos logs.
     // eslint-disable-next-line no-console
     console.warn("[triage] boundary caught error");
@@ -18,7 +18,7 @@ export class TriageErrorBoundary extends Component<Props, State> {
     this.setState({ hasError: false, message: undefined });
     this.props.onReset();
   };
-  render() {
+  override render() {
     if (!this.state.hasError) return this.props.children;
     return (
       <div className="space-y-4 p-6 text-center" role="alert">

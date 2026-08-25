@@ -3,10 +3,10 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // src/lib/mcp/index.ts
-import { defineMcp } from "npm:@lovable.dev/mcp-js@0.26.1";
+import { defineMcp } from "npm:@lovable.dev/mcp-js@0.26.3";
 
 // src/lib/mcp/tools/list-services.ts
-import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.1";
+import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.3";
 import { z } from "npm:zod@^3.24.2";
 
 // src/data/services.ts
@@ -1129,7 +1129,7 @@ var list_services_default = defineTool({
 });
 
 // src/lib/mcp/tools/get-service.ts
-import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.26.1";
+import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.26.3";
 import { z as z2 } from "npm:zod@^3.24.2";
 var get_service_default = defineTool2({
   name: "get_service",
@@ -1175,7 +1175,7 @@ var get_service_default = defineTool2({
 });
 
 // src/lib/mcp/tools/get-pricing-and-terms.ts
-import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.1";
+import { defineTool as defineTool3 } from "npm:@lovable.dev/mcp-js@0.26.3";
 
 // src/data/pricingPolicy.ts
 var PRICING = {
@@ -1284,7 +1284,7 @@ var get_pricing_and_terms_default = defineTool3({
 });
 
 // src/lib/mcp/tools/list-coverage.ts
-import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.1";
+import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.3";
 import { z as z3 } from "npm:zod@^3.24.2";
 
 // src/data/regions.ts
@@ -2058,7 +2058,7 @@ var list_coverage_default = defineTool4({
 });
 
 // src/lib/mcp/tools/list-faqs.ts
-import { defineTool as defineTool5 } from "npm:@lovable.dev/mcp-js@0.26.1";
+import { defineTool as defineTool5 } from "npm:@lovable.dev/mcp-js@0.26.3";
 import { z as z4 } from "npm:zod@^3.24.2";
 
 // src/data/homeFaqs.ts
@@ -2134,5 +2134,5 @@ var mcp_default = defineMcp({
 });
 
 // lovable-mcp-supabase-entry.ts
-import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.26.1/stacks/supabase";
+import { createSupabaseHandler } from "npm:@lovable.dev/mcp-js@0.26.3/stacks/supabase";
 Deno.serve(createSupabaseHandler(mcp_default, { functionName: "mcp" }));

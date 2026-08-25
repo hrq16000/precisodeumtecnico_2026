@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { TriageDebugExport } from "@/components/triage/v2/TriageDebugExport";
 import { supabase } from "@/integrations/supabase/client";
+import { sendLeadNotification } from "@/lib/lead-notification.functions";
 import {
   EQUIPMENTS, PRICING, URGENCY_OPTIONS, TERMS_VERSION,
   routeLabel, getReferenceRangeFor, type EquipmentId,
@@ -329,11 +330,12 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
       } catch { /* não bloqueia */ }
 
       try {
-        await supabase.functions.invoke("send-lead-notification", {
-          body: {
+        await sendLeadNotification({
+          data: {
             name: payload.name, email: payload.email, phone: payload.phone,
             service: summary.symptom ?? state.equipment,
-            city: state.contact.neighborhood.trim() || undefined, message,
+            ...(state.contact.neighborhood.trim() ? { city: state.contact.neighborhood.trim() } : {}),
+            message,
           },
         });
       } catch { /* não bloqueia */ }

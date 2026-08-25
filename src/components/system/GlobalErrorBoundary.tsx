@@ -17,13 +17,13 @@ interface State {
  * garantindo que o site permaneça navegável mesmo com falha em uma rota.
  */
 export class GlobalErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false };
+  override state: State = { hasError: false };
 
   static getDerivedStateFromError(error: Error): State {
     return { hasError: true, message: error.message };
   }
 
-  componentDidCatch(error: Error, info: ErrorInfo): void {
+  override componentDidCatch(error: Error, info: ErrorInfo): void {
     captureHandledError(error, {
       componentStack: info.componentStack ?? undefined,
       route: typeof window !== "undefined" ? window.location.pathname : undefined,
@@ -40,7 +40,7 @@ export class GlobalErrorBoundary extends Component<Props, State> {
 
   reset = () => this.setState({ hasError: false, message: undefined });
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
       return (

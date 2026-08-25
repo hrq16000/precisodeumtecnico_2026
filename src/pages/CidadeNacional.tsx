@@ -1,5 +1,5 @@
-import { useParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { useParams, Link } from "@/lib/router-compat";
+import { Helmet } from "@/lib/helmet-compat";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { Button } from "@/components/ui/button";

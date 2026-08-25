@@ -1,8 +1,8 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { buildWebPageSchema } from "@/lib/seo/webPageSchema";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import {
   Gamepad2,
   Monitor,

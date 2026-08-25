@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useLocation, matchPath } from "react-router-dom";
+import { useLocation, matchPath } from "@/lib/router-compat";
 import { pushLocalAnalyticsEvent, type RouteType } from "@/lib/localAnalytics";
 
 /**

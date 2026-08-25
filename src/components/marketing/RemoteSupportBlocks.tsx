@@ -5,7 +5,7 @@
  * orientação. Nada aqui promete acesso permanente, plano, monitoramento ou
  * solução universal sem presencial. Nenhum preço, prazo ou capacidade nova.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import {
   AlertTriangle,
   CheckCircle2,

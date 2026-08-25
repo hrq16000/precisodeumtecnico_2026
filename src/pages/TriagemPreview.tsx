@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { Layout } from "@/components/layout/Layout";
 import { TriageWizardV2 } from "@/components/triage/v2/TriageWizardV2";
 import { OfferHighlight } from "@/components/marketing/OfferHighlight";

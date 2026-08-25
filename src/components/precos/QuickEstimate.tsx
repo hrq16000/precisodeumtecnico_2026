@@ -217,9 +217,9 @@ export function QuickEstimate() {
                       cta_label: "Enviar estimativa no WhatsApp",
                     });
                     trackEvent("price_estimate_complete", {
-                      equipment,
+                      equipment: equipment ?? undefined,
                       service_mode: result.route,
-                      urgencia: urgency,
+                      urgencia: urgency ?? undefined,
                       price_label: result.priceLabel,
                     });
                   }}

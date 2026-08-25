@@ -5,7 +5,7 @@
  * transformar a página em lista de artigos: no máximo dois links, sem CTA
  * paralelo, sem formulário e sem alterar o contrato semântico da página.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { BookOpen, ArrowRight } from "lucide-react";
 
 export interface RelatedGuideLink {

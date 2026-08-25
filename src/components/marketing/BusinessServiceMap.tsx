@@ -4,7 +4,7 @@
  * Navegação visual para no máximo sete rotas canônicas já existentes.
  * Sem preço, sem plano e sem repetir os cards da home.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { ArrowUpRight } from "lucide-react";
 
 const ENTRIES = [

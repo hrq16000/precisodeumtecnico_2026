@@ -1,8 +1,126 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@source "../src";
 
-/* Fontes movidas para <link> no index.html (não bloquear CSSOM via @import). */
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   Theme — ported from tailwind.config.ts + src/index.css (v3)
+   ============================================================ */
+@theme inline {
+  /* Fonts (loaded via <link> in __root.tsx head) */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+
+  /* Extra breakpoint */
+  --breakpoint-xs: 390px;
+
+  /* Semantic colors (HSL triplets defined in :root / .dark below) */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-glow: hsl(var(--primary-glow));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-whatsapp: hsl(var(--whatsapp));
+  --color-whatsapp-hover: hsl(var(--whatsapp-hover));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* Border radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Animations (from tailwind.config.ts) */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-fade-in-up: fade-in-up 0.7s ease-out both;
+  --animate-scale-in: scale-in 0.4s ease-out both;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scale-in {
+    0% { opacity: 0; transform: scale(0.96); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+}
+
+/* container config ported from tailwind.config.ts (center, padding 2rem, 2xl 1400px) */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/* tailwind.config.ts backgroundImage.hero-pattern */
+@utility bg-hero-pattern {
+  background-image:
+    radial-gradient(circle at 20% 50%, hsla(210, 90%, 50%, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, hsla(200, 85%, 50%, 0.1) 0%, transparent 50%);
+}
 
 /* Scroll suave universal (respeita prefers-reduced-motion). */
 html { scroll-behavior: smooth; }
@@ -10,14 +128,13 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
 }
 
-
 @layer base {
   :root {
     /* Primary - Deep Blue */
     --primary: 217 91% 35%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 217 91% 45%;
-    
+
     /* Background */
     --background: 220 14% 96%;
     --foreground: 222 47% 11%;
@@ -138,7 +255,7 @@ html { scroll-behavior: smooth; }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   html {
@@ -190,7 +307,7 @@ html { scroll-behavior: smooth; }
   }
   .skip-link:focus-visible,
   .skip-link:focus {
-    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg outline-none ring-2 ring-ring;
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg outline-hidden ring-2 ring-ring;
   }
 
   .whatsapp-btn {
@@ -222,7 +339,6 @@ html { scroll-behavior: smooth; }
   [data-toc-anchor] {
     scroll-margin-top: 5.5rem;
   }
-
 
   @keyframes pulse-glow {
     0%, 100% {
@@ -315,10 +431,10 @@ html { scroll-behavior: smooth; }
 
   /* Floating Animation */
   .float-animation {
-    animation: float 6s ease-in-out infinite;
+    animation: float-slow 6s ease-in-out infinite;
   }
 
-  @keyframes float {
+  @keyframes float-slow {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
   }
@@ -340,7 +456,7 @@ html { scroll-behavior: smooth; }
 
   /* Tech Grid Background */
   .tech-grid {
-    background-image: 
+    background-image:
       linear-gradient(to right, hsla(217, 91%, 35%, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, hsla(217, 91%, 35%, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
@@ -367,21 +483,12 @@ html { scroll-behavior: smooth; }
     animation: fadeUp 0.6s ease-out forwards;
   }
 
-
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-
   .animate-slide-in-left {
     animation: slideInLeft 0.6s ease-out forwards;
   }
 
   .animate-slide-in-right {
     animation: slideInRight 0.6s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
   }
 
   @keyframes fadeUp {
@@ -392,15 +499,6 @@ html { scroll-behavior: smooth; }
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
     }
   }
 
@@ -426,17 +524,6 @@ html { scroll-behavior: smooth; }
     }
   }
 
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
   .stagger-1 { animation-delay: 0.1s; }
   .stagger-2 { animation-delay: 0.2s; }
   .stagger-3 { animation-delay: 0.3s; }
@@ -446,8 +533,6 @@ html { scroll-behavior: smooth; }
 }
 
 @layer utilities {
-  html { scroll-behavior: smooth; }
-
   /* Smooth hover lift used across cards and CTAs */
   .hover-lift {
     @apply transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg;
@@ -579,7 +664,7 @@ body[data-triage-open="true"] footer a[href^="tel:"] {
     border: 3px solid hsl(var(--muted));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.85);
+    background: hsl(var(--primary));
   }
   ::-webkit-scrollbar-corner {
     background: hsl(var(--muted));

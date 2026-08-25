@@ -5,7 +5,7 @@
  * garantia e peças. Público misto (uso geral, gamer, workstation, empresa).
  * Nenhuma promessa de desempenho, benchmark ou catálogo de componentes.
  */
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/router-compat";
 import { Cpu, Layers, Settings2, Building2, Gamepad2, Briefcase, Home } from "lucide-react";
 
 const FLOW = [

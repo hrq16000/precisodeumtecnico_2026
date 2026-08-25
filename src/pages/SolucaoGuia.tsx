@@ -5,7 +5,7 @@
  * e páginas comerciais). O CTA abre a triagem já pré-preenchida com o
  * equipamento e o sintoma do guia, via deep-link #triagem.
  */
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "@/lib/router-compat";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";

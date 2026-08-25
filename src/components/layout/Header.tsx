@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "@/lib/router-compat";
 import { Button } from "@/components/ui/button";
 import {
   Menu,
@@ -262,8 +262,9 @@ export function Header() {
                         </>
                       )}
                       <NavigationMenuItem key={item.to}>
-                        <Link to={item.to}>
-                          <NavigationMenuLink
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={item.to}
                             className={cn(
                               "group/link relative inline-flex h-10 w-max items-center gap-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-primary/5 focus:outline-hidden",
                               active && "text-primary",
@@ -282,8 +283,8 @@ export function Header() {
                                 active ? "scale-x-100" : "scale-x-0 group-hover/link:scale-x-100",
                               )}
                             />
-                          </NavigationMenuLink>
-                        </Link>
+                          </Link>
+                        </NavigationMenuLink>
                       </NavigationMenuItem>
                     </React.Fragment>
 

@@ -24,6 +24,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { supabase } from "@/integrations/supabase/client";
+import { sendLeadNotification } from "@/lib/lead-notification.functions";
 import { toast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle, MessageCircle } from "lucide-react";
 import { getStoredTermsAcceptance } from "@/lib/analytics";
@@ -92,23 +93,23 @@ export function ContactForm() {
 
   const sendEmailNotification = async (data: ContactFormValues) => {
     try {
-      const response = await supabase.functions.invoke("send-lead-notification", {
-        body: {
+      const response = await sendLeadNotification({
+        data: {
           name: data.name,
           email: data.email,
           phone: data.phone,
-          service: data.service || undefined,
-          city: data.city || undefined,
+          ...(data.service ? { service: data.service } : {}),
+          ...(data.city ? { city: data.city } : {}),
           message: data.message,
           website: honeypot, // Honeypot field
         },
       });
 
-      if (response.error) {
+      if (!response.success) {
         console.error("Error sending email notification:", response.error);
         // Don't throw - email is secondary, lead was already saved
       } else {
-        console.log("Email notification sent successfully:", response.data);
+        console.log("Email notification sent successfully");
       }
     } catch (err) {
       console.error("Failed to send email notification:", err);

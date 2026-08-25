@@ -155,7 +155,7 @@ export function MediaUploader({
         for (const file of Array.from(files)) {
           const info = await inspect(file, maxVideoSeconds);
           if ("error" in info) {
-            setError(info.error);
+            setError(info.error ?? "Arquivo inválido.");
             continue;
           }
           // E2E stub: pula upload real e devolve path sintético consistente

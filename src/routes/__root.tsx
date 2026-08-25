@@ -8,7 +8,7 @@ import {
   Scripts,
   useRouter,
 } from "@tanstack/react-router";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "@/lib/helmet-compat";
 
 import appCss from "../styles.css?url";
 
@@ -67,15 +67,16 @@ if (typeof window !== "undefined") {
         el.tagName.toLowerCase() === "a" &&
         (el.getAttribute("href") || "").includes("wa.me");
       try {
+        const surface = el.dataset["waSurface"];
         trackWhatsAppClick({
           source,
-          service,
-          city,
-          bairro: neighborhood,
+          ...(service !== undefined && { service }),
+          ...(city !== undefined && { city }),
+          ...(neighborhood !== undefined && { bairro: neighborhood }),
           source_component: el.tagName.toLowerCase(),
           cta_id,
-          surface: el.dataset["waSurface"],
-          destination: isWhatsAnchor ? "whatsapp" : undefined,
+          ...(surface !== undefined && { surface }),
+          ...(isWhatsAnchor && { destination: "whatsapp" }),
         });
       } catch {
         /* analytics nunca quebra fluxo */

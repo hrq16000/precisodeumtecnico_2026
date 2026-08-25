@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "@/lib/helmet-compat";
 import { Layout } from "@/components/layout/Layout";
 import { COMPANY } from "@/data/companyInfo";
 import { COMMERCIAL } from "@/data/pricingPolicy";

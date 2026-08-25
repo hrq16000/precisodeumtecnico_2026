@@ -4,15 +4,11 @@ import { OfferHighlight } from "@/components/marketing/OfferHighlight";
 import { GeoStatusChip } from "@/components/layout/GeoStatusChip";
 import { SLA } from "@/data/pricingPolicy";
 import { COMPANY } from "@/data/companyInfo";
-import { buildWhatsAppUrl, readStoredLocation, currentSourcePage } from "@/lib/whatsapp";
+import { useWhatsAppLink } from "@/hooks/useWhatsAppLink";
 
 
 export function HeroSection() {
-  const whatsappLink = buildWhatsAppUrl({
-    service: "assistência técnica",
-    ...readStoredLocation(),
-    sourcePage: currentSourcePage(),
-  });
+  const whatsappLink = useWhatsAppLink({ service: "assistência técnica" });
   return <section className="relative flex items-center overflow-hidden bg-gradient-to-br from-[#1e3a5f] via-[#2d4a6f] to-[#1a3050]">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
