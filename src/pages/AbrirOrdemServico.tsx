@@ -374,6 +374,8 @@ export default function AbrirOrdemServico() {
                     ariaLabel="Confirmar e enviar a Ordem de Serviço pelo WhatsApp"
                     href={waUrl}
                     data-testid="os-submit"
+                    data-wa-keep="abrir-os"
+                    onClick={confirm}
                     className="justify-center"
                   >
                     Confirmar e enviar O.S.
