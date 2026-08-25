@@ -46,6 +46,10 @@ jobs:
           ! rg -n "bancada-90|taxa-90|visita-90|diagn[oó]stico-90" src e2e
       - name: Gate — capacidade de montagem de PC (rota bloqueada sem prova)
         run: bun run check:pc-assembly-service
+      - name: Otimização de fotos (WebP/AVIF)
+        run: bun run photos:optimize
+      - name: Gate — créditos e privacidade das fotos
+        run: bun run check:photos
       - name: Run tests
         run: bun run test
       - name: Build
