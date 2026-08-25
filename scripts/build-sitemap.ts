@@ -100,6 +100,8 @@ const mainUrls: Url[] = [
   { loc: `${BASE}/contato`, changefreq: "monthly", priority: 0.7, lastmod: fileDate("src/pages/Contato.tsx") },
   { loc: `${BASE}/termos-orcamento-pre-aprovado`, changefreq: "yearly", priority: 0.5, lastmod: fileDate("src/pages/TermosOrcamento.tsx") },
   { loc: `${BASE}/politica-de-pecas-do-cliente`, changefreq: "monthly", priority: 0.6, lastmod: fileDate("src/pages/PoliticaPecasCliente.tsx") },
+  { loc: `${BASE}/processo-de-atendimento`, changefreq: "monthly", priority: 0.7, lastmod: fileDate("src/pages/ProcessoAtendimento.tsx") },
+  { loc: `${BASE}/precos-e-politicas`, changefreq: "monthly", priority: 0.7, lastmod: fileDate("src/pages/PrecosEPoliticas.tsx") },
   { loc: `${BASE}/garantia-e-cobertura`, changefreq: "monthly", priority: 0.6, lastmod: fileDate("src/pages/GarantiaCobertura.tsx") },
   { loc: `${BASE}/obrigado`, changefreq: "monthly", priority: 0.4, lastmod: fileDate("src/pages/Obrigado.tsx") },
   { loc: `${BASE}/creditos-de-imagens`, changefreq: "monthly", priority: 0.3, lastmod: fileDate("src/pages/CreditosDeImagens.tsx") },
