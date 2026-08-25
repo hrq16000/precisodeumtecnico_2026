@@ -27,3 +27,17 @@ test("hash desconhecido não abre a triagem", async ({ page }) => {
   await page.waitForTimeout(1500);
   await expect(page.getByRole("dialog", { name: /Triagem t/i })).toHaveCount(0);
 });
+
+test("recarregar com #agendamento restaura o rascunho da triagem", async ({ page }) => {
+  await page.goto("/?cidade=Curitiba&bairro=Batel#agendamento");
+  await expect(page.getByRole("dialog")).toBeVisible({ timeout: 15_000 });
+
+  // Avança a etapa 1 para gerar rascunho persistido.
+  await page.getByRole("button", { name: /^Videogame/ }).first().click();
+  await expect(page.getByText("Etapa 2/7")).toBeVisible({ timeout: 20_000 });
+
+  await page.goto("/?cidade=Curitiba&bairro=Batel#agendamento");
+  await expect(page.getByRole("dialog")).toBeVisible({ timeout: 15_000 });
+  // Estado preservado: continua na etapa de identificação do videogame.
+  await expect(page.getByText("Etapa 2/7")).toBeVisible({ timeout: 20_000 });
+});
