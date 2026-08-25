@@ -177,17 +177,17 @@ export default function Anuncie() {
             </Button>
             <Button asChild variant="outline" className="min-h-11">
               <a
-                href={`mailto:${COMPANY.email}?subject=Interesse%20em%20anunciar%20no%20portal`}
+                href="#proposta"
                 onClick={() =>
                   trackCtaClick({
                     surface: "advertising",
-                    cta_id: "media_email_hero",
+                    cta_id: "media_proposal_hero",
                     label: "Falar com o comercial",
-                    destination: "mailto",
+                    destination: "/anuncie#proposta",
                   })
                 }
               >
-                <Mail className="mr-2 h-4 w-4" aria-hidden="true" />
+                <FileText className="mr-2 h-4 w-4" aria-hidden="true" />
                 Falar com o comercial
               </a>
             </Button>
