@@ -9,7 +9,6 @@ const jsonLd = {
   name: COMPANY.legalName,
   url: COMPANY.website,
   foundingDate: COMPANY.foundingYear,
-  taxID: COMPANY.cnpj,
   areaServed: COMPANY.areaServed,
   sameAs: [COMPANY.facebook, COMPANY.instagram],
 };
@@ -28,7 +27,7 @@ export default function DadosEmpresa() {
     <Layout>
       <Helmet>
         <title>Dados da Empresa — Preciso de um Técnico</title>
-        <meta name="description" content={`CNPJ ${COMPANY.cnpj} · ${COMPANY.experiencePhrase} · Área de atendimento: ${COMPANY.areaServed}.`} />
+        <meta name="description" content={`${COMPANY.experiencePhrase} · Área de atendimento: ${COMPANY.areaServed}.`} />
         <link rel="canonical" href="https://precisodeumtecnico.com/dados-da-empresa" />
         <meta property="og:title" content="Dados da Empresa — Preciso de um Técnico" />
         <meta property="og:url" content="https://precisodeumtecnico.com/dados-da-empresa" />
@@ -46,10 +45,6 @@ export default function DadosEmpresa() {
           <div>
             <dt className="text-xs uppercase text-muted-foreground">Razão / Marca</dt>
             <dd className="font-semibold text-lg">{COMPANY.legalName}</dd>
-          </div>
-          <div>
-            <dt className="text-xs uppercase text-muted-foreground">CNPJ</dt>
-            <dd className="font-mono text-lg">{COMPANY.cnpj}</dd>
           </div>
           <div>
             <dt className="text-xs uppercase text-muted-foreground">Experiência</dt>

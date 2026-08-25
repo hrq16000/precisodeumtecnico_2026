@@ -118,7 +118,7 @@ export default function GestorResponsavel() {
               Iniciar triagem técnica
             </Button>
             <Link to="/dados-da-empresa" className="text-primary underline">
-              Dados da empresa e CNPJ
+              Dados da empresa
             </Link>
           </div>
         </div>
