@@ -1,6 +1,7 @@
 import { Zap } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { cn } from "@/lib/utils";
+import { isTriageEnabled, openTriage } from "@/lib/triageFlag";
 
 interface OfferHighlightProps {
   /** Slug do serviço para pré-popular o TriageWizard (Fase B). */
