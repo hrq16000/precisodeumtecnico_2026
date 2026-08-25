@@ -306,9 +306,9 @@ export function TriageMediaAuditLog() {
           >
             <div className="max-w-3xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
               {previewUrl.isVideo ? (
-                <video src={previewUrl.url} controls className="max-h-[90vh] rounded" />
+                <video src={previewUrl.url} controls className="max-h-[90vh] rounded-sm" />
               ) : (
-                <img src={previewUrl.url} alt="Mídia de triagem" className="max-h-[90vh] rounded" />
+                <img src={previewUrl.url} alt="Mídia de triagem" className="max-h-[90vh] rounded-sm" />
               )}
               <Button className="mt-3" variant="secondary" onClick={() => setPreviewUrl(null)}>Fechar</Button>
             </div>

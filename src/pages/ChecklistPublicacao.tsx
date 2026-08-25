@@ -214,7 +214,7 @@ export default function ChecklistPublicacao() {
         <iframe
           ref={frameRef}
           title="inspeção de rota"
-          className="mt-6 h-64 w-full rounded border border-border opacity-60"
+          className="mt-6 h-64 w-full rounded-sm border border-border opacity-60"
           aria-hidden="true"
         />
       </div>

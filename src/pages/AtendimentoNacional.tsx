@@ -163,7 +163,7 @@ const AtendimentoNacional = () => {
               { n: 2, t: "Acionamos um parceiro", d: "Encaminhamos para um técnico parceiro homologado e mais próximo da sua região." },
               { n: 3, t: "Orçamento e execução", d: "Visita técnica, orçamento por escrito e serviço com garantia. Sem surpresas." },
             ].map((s) => (
-              <li key={s.n} className="bg-card rounded-xl p-6 border border-border/60 shadow-sm">
+              <li key={s.n} className="bg-card rounded-xl p-6 border border-border/60 shadow-xs">
                 <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold flex items-center justify-center mb-3">
                   {s.n}
                 </div>

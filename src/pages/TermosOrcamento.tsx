@@ -64,7 +64,7 @@ const TermosOrcamento = () => {
         <div className="container mx-auto px-4 max-w-4xl space-y-12 md:space-y-16">
 
           {/* 1 – Orçamento Pré-Aprovado */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary/10 p-3 rounded-xl">
                 <FileText className="h-6 w-6 text-primary" />
@@ -165,7 +165,7 @@ const TermosOrcamento = () => {
 
 
           {/* 2 – Logística */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary/10 p-3 rounded-xl">
                 <Truck className="h-6 w-6 text-primary" />
@@ -217,7 +217,7 @@ const TermosOrcamento = () => {
           </div>
 
           {/* 3 – Prazos */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary/10 p-3 rounded-xl">
                 <Clock className="h-6 w-6 text-primary" />
@@ -300,7 +300,7 @@ const TermosOrcamento = () => {
           </div>
 
           {/* 4 – Compromisso */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary/10 p-3 rounded-xl">
                 <Wrench className="h-6 w-6 text-primary" />
@@ -341,7 +341,7 @@ const TermosOrcamento = () => {
           </div>
 
           {/* 5 – Cancelamento */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-destructive/10 p-3 rounded-xl">
                 <XCircle className="h-6 w-6 text-destructive" />
@@ -383,7 +383,7 @@ const TermosOrcamento = () => {
           </div>
 
           {/* 5.1 – Declaração de valor do equipamento */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <EquipmentValuationTerms />
             <p className="text-sm text-muted-foreground mt-6">
               Vai fornecer peças para montagem ou upgrade?{" "}
@@ -395,7 +395,7 @@ const TermosOrcamento = () => {
           </div>
 
           {/* 6 – Aceitação */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary/10 p-3 rounded-xl">
                 <CheckCircle className="h-6 w-6 text-primary" />
@@ -433,7 +433,7 @@ const TermosOrcamento = () => {
           </div>
 
           {/* 7 – Condições comerciais */}
-          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-sm">
+          <div className="bg-card border border-border rounded-2xl p-6 md:p-10 shadow-xs">
             <div className="flex items-center gap-3 mb-6">
               <div className="bg-primary/10 p-3 rounded-xl">
                 <CreditCard className="h-6 w-6 text-primary" />

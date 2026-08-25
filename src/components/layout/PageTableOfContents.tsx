@@ -27,7 +27,7 @@ interface Props {
 }
 
 const focusRing =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded";
+  "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm";
 
 export function PageTableOfContents({ items, title = "Nesta página", className = "" }: Props) {
   if (items.length < 2) return null;

@@ -473,16 +473,16 @@ export default function StatusOrdemServico() {
               className="rounded-xl border border-border bg-card p-6 mb-10"
             >
               <span className="sr-only">Consultando Ordem de Serviço…</span>
-              <div className="h-5 w-40 rounded bg-secondary animate-pulse mb-3" />
-              <div className="h-3 w-2/3 rounded bg-secondary animate-pulse mb-6" />
+              <div className="h-5 w-40 rounded-sm bg-secondary animate-pulse mb-3" />
+              <div className="h-3 w-2/3 rounded-sm bg-secondary animate-pulse mb-6" />
               <div className="h-2 w-full rounded-full bg-secondary animate-pulse mb-6" />
               <div className="space-y-3">
                 {[0, 1, 2, 3].map((i) => (
                   <div key={i} className="flex gap-3">
                     <div className="h-6 w-6 rounded-full bg-secondary animate-pulse shrink-0" />
                     <div className="flex-1">
-                      <div className="h-3 w-1/3 rounded bg-secondary animate-pulse mb-2" />
-                      <div className="h-3 w-3/4 rounded bg-secondary animate-pulse" />
+                      <div className="h-3 w-1/3 rounded-sm bg-secondary animate-pulse mb-2" />
+                      <div className="h-3 w-3/4 rounded-sm bg-secondary animate-pulse" />
                     </div>
                   </div>
                 ))}

@@ -152,7 +152,7 @@ export function ServicesSection() {
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className={`absolute top-3 left-3 w-10 h-10 rounded-lg ${service.color} flex items-center justify-center backdrop-blur-sm`}>
+                <div className={`absolute top-3 left-3 w-10 h-10 rounded-lg ${service.color} flex items-center justify-center backdrop-blur-xs`}>
                   <service.icon className="w-5 h-5" />
                 </div>
                 <div className="absolute bottom-3 left-3 right-3">

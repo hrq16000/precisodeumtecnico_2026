@@ -110,7 +110,7 @@ export function OfferHighlight({
           className={cn(
             "inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold uppercase tracking-wide transition",
             "bg-primary-foreground text-primary shadow-md hover:shadow-xl hover:scale-[1.02]",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
+            "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
             variant === "full" ? "sm:text-base" : "",
           )}
           aria-label="Iniciar triagem técnica"

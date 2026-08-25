@@ -466,8 +466,8 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
                   onClick={() => onChange(opt.value)}
                   className={cn(
                     "min-h-[44px] rounded-lg border-2 px-3 py-2.5 text-left text-sm transition",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    selected ? "border-primary bg-primary/5 shadow-sm" : "border-border hover:border-primary/40",
+                    "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring",
+                    selected ? "border-primary bg-primary/5 shadow-xs" : "border-border hover:border-primary/40",
                   )}
                 >
                   {opt.label}
@@ -534,7 +534,7 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
           <button
             onClick={onClose}
             aria-label="Fechar triagem"
-            className="rounded-md p-1 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="rounded-md p-1 text-muted-foreground hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring"
           >
             <X className="h-5 w-5" />
           </button>
@@ -568,8 +568,8 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
                     onClick={() => dispatch({ type: "SET_EQUIPMENT", value: e.id })}
                     className={cn(
                       "min-h-[76px] rounded-xl border-2 p-3 text-left transition active:scale-[0.98]",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                      selected ? "border-primary bg-primary/5 shadow-sm" : "border-border hover:border-primary/40",
+                      "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring",
+                      selected ? "border-primary bg-primary/5 shadow-xs" : "border-border hover:border-primary/40",
                     )}
                   >
                     <div className="text-xl leading-none" aria-hidden>{e.emoji}</div>
@@ -633,8 +633,8 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
                       onClick={() => dispatch({ type: "SET_URGENCY", value: u.id })}
                       className={cn(
                         "min-h-[44px] rounded-lg border-2 px-3 py-2.5 text-left text-sm transition",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                        selected ? "border-primary bg-primary/5 shadow-sm" : "border-border hover:border-primary/40",
+                        "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring",
+                        selected ? "border-primary bg-primary/5 shadow-xs" : "border-border hover:border-primary/40",
                       )}
                     >
                       {u.label}
@@ -909,8 +909,8 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
                         }
                         className={cn(
                           "min-h-[44px] rounded-lg border-2 px-3 py-2 text-left text-sm transition",
-                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                          selected ? "border-primary bg-primary/5 shadow-sm" : "border-border hover:border-primary/40",
+                          "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring",
+                          selected ? "border-primary bg-primary/5 shadow-xs" : "border-border hover:border-primary/40",
                         )}
                       >
                         {slot.label}
@@ -939,7 +939,7 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
             {copyFallback && (
               <div data-testid="triage-wa-fallback" role="alert" className="space-y-2 rounded-lg border border-amber-500 bg-amber-50 p-3 text-sm text-amber-900">
                 <p>Não foi possível abrir o WhatsApp automaticamente. Copie a mensagem e envie:</p>
-                <pre data-testid="triage-wa-fallback-message" className="max-h-40 overflow-auto whitespace-pre-wrap rounded bg-white p-2 text-xs">{copyFallback}</pre>
+                <pre data-testid="triage-wa-fallback-message" className="max-h-40 overflow-auto whitespace-pre-wrap rounded-sm bg-white p-2 text-xs">{copyFallback}</pre>
                 <Button
                   type="button"
                   size="sm"

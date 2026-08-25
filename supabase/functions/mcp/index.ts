@@ -7,7 +7,7 @@ import { defineMcp } from "npm:@lovable.dev/mcp-js@0.26.1";
 
 // src/lib/mcp/tools/list-services.ts
 import { defineTool } from "npm:@lovable.dev/mcp-js@0.26.1";
-import { z } from "npm:zod@^3.25.76";
+import { z } from "npm:zod@^3.24.2";
 
 // src/data/services.ts
 var servicesData = {
@@ -1130,7 +1130,7 @@ var list_services_default = defineTool({
 
 // src/lib/mcp/tools/get-service.ts
 import { defineTool as defineTool2 } from "npm:@lovable.dev/mcp-js@0.26.1";
-import { z as z2 } from "npm:zod@^3.25.76";
+import { z as z2 } from "npm:zod@^3.24.2";
 var get_service_default = defineTool2({
   name: "get_service",
   title: "Detalhes de um servi\xE7o",
@@ -1285,7 +1285,7 @@ var get_pricing_and_terms_default = defineTool3({
 
 // src/lib/mcp/tools/list-coverage.ts
 import { defineTool as defineTool4 } from "npm:@lovable.dev/mcp-js@0.26.1";
-import { z as z3 } from "npm:zod@^3.25.76";
+import { z as z3 } from "npm:zod@^3.24.2";
 
 // src/data/regions.ts
 var curitibaBairros = [
@@ -2059,7 +2059,7 @@ var list_coverage_default = defineTool4({
 
 // src/lib/mcp/tools/list-faqs.ts
 import { defineTool as defineTool5 } from "npm:@lovable.dev/mcp-js@0.26.1";
-import { z as z4 } from "npm:zod@^3.25.76";
+import { z as z4 } from "npm:zod@^3.24.2";
 
 // src/data/homeFaqs.ts
 var homeFaqs = [

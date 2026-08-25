@@ -128,7 +128,7 @@ export function ServiceAreaMap({ surface = "city_page" }: { surface?: "city_page
             <p className="mt-1 text-xs text-muted-foreground">{TRAVEL_DISCLAIMER}</p>
             <ul className="mt-3 flex flex-wrap gap-2">
               {active.places.map((p) => (
-                <li key={p} className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">
+                <li key={p} className="text-xs px-2 py-1 rounded-sm bg-muted text-muted-foreground">
                   {p}
                 </li>
               ))}

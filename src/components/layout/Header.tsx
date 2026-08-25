@@ -114,7 +114,7 @@ export function Header() {
 
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-background shadow-xs">
       {/* Top Bar */}
       <div className="hidden lg:block bg-primary text-primary-foreground py-2">
         <div className="container-custom">
@@ -193,7 +193,7 @@ export function Header() {
                                       <NavigationMenuLink asChild>
                                         <Link
                                           to={service.href}
-                                          className="group/item flex items-start gap-3 select-none rounded-lg p-3 leading-none no-underline outline-none border border-transparent transition-all duration-300 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover:border-primary/20 hover:shadow-md hover:-translate-y-0.5 focus:bg-secondary"
+                                          className="group/item flex items-start gap-3 select-none rounded-lg p-3 leading-none no-underline outline-hidden border border-transparent transition-all duration-300 hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 hover:border-primary/20 hover:shadow-md hover:-translate-y-0.5 focus:bg-secondary"
                                         >
                                           <div className="shrink-0 w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center transition-all duration-300 group-hover/item:bg-primary group-hover/item:text-primary-foreground group-hover/item:scale-110 group-hover/item:rotate-6">
                                             <SIcon className="w-4.5 h-4.5" />
@@ -216,7 +216,7 @@ export function Header() {
                                   <NavigationMenuLink asChild>
                                     <Link
                                       to="/servicos"
-                                      className="group/all flex items-center justify-center gap-2 select-none rounded-lg p-3 no-underline outline-none bg-gradient-to-r from-primary to-primary-glow text-primary-foreground font-semibold text-sm shadow-md hover:shadow-lg hover:brightness-110 transition-all duration-300"
+                                      className="group/all flex items-center justify-center gap-2 select-none rounded-lg p-3 no-underline outline-hidden bg-gradient-to-r from-primary to-primary-glow text-primary-foreground font-semibold text-sm shadow-md hover:shadow-lg hover:brightness-110 transition-all duration-300"
                                     >
                                       <Sparkles className="w-4 h-4 transition-transform duration-500 group-hover/all:rotate-180" />
                                       Ver todos os serviços
@@ -246,7 +246,7 @@ export function Header() {
                                       <NavigationMenuLink asChild>
                                         <Link
                                           to={region.href}
-                                          className="group/r flex items-center gap-3 select-none rounded-lg px-3 py-2.5 leading-none no-underline outline-none transition-all duration-300 hover:bg-primary/10 hover:translate-x-1 font-medium text-sm"
+                                          className="group/r flex items-center gap-3 select-none rounded-lg px-3 py-2.5 leading-none no-underline outline-hidden transition-all duration-300 hover:bg-primary/10 hover:translate-x-1 font-medium text-sm"
                                         >
                                           <RIcon className="w-4 h-4 text-primary shrink-0 transition-transform duration-300 group-hover/r:scale-125" />
                                           <span className="flex-1">{region.name}</span>
@@ -265,7 +265,7 @@ export function Header() {
                         <Link to={item.to}>
                           <NavigationMenuLink
                             className={cn(
-                              "group/link relative inline-flex h-10 w-max items-center gap-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-primary/5 focus:outline-none",
+                              "group/link relative inline-flex h-10 w-max items-center gap-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-primary/5 focus:outline-hidden",
                               active && "text-primary",
                             )}
                           >
@@ -358,7 +358,7 @@ export function Header() {
                               "hover:bg-primary/5 hover:translate-x-1",
                               "border border-transparent",
                               active
-                                ? "bg-primary/10 text-primary border-primary/20 shadow-sm"
+                                ? "bg-primary/10 text-primary border-primary/20 shadow-xs"
                                 : "text-foreground/80 hover:text-foreground",
                             )}
                           >

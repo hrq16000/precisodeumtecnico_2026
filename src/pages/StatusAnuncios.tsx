@@ -152,7 +152,7 @@ export default function StatusAnuncios() {
         <h1 className="text-3xl font-bold md:text-4xl">Status de anúncios e SEO</h1>
         <p className="mt-3 text-muted-foreground">
           Relatório executado no seu navegador, contra o site publicado. Publisher AdSense:{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-sm">{PUBLISHER_ID}</code>.
+          <code className="rounded-sm bg-muted px-1 py-0.5 text-sm">{PUBLISHER_ID}</code>.
         </p>
 
         <div className="mt-5 flex flex-wrap gap-2">

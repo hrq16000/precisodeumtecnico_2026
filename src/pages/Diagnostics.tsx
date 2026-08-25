@@ -653,7 +653,7 @@ export default function Diagnostics() {
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
                 placeholder="/blog/algum-post"
-                className="flex-1 px-3 py-2 rounded border border-border bg-background"
+                className="flex-1 px-3 py-2 rounded-sm border border-border bg-background"
               />
               <Button onClick={() => auditPath(target)} disabled={loading || bulkRunning}>
                 {loading ? "Carregando..." : "Auditar URL"}
@@ -844,7 +844,7 @@ export default function Diagnostics() {
               value={bulkInput}
               onChange={(e) => setBulkInput(e.target.value)}
               rows={8}
-              className="w-full px-3 py-2 rounded border border-border bg-background font-mono text-xs"
+              className="w-full px-3 py-2 rounded-sm border border-border bg-background font-mono text-xs"
               disabled={bulkRunning}
             />
             <div className="flex flex-wrap gap-2 mt-3 items-center">
@@ -926,7 +926,7 @@ export default function Diagnostics() {
                 {robotsAudit.raw && (
                   <details className="mt-3">
                     <summary className="cursor-pointer text-xs text-muted-foreground">Ver robots.txt</summary>
-                    <pre className="mt-2 text-xs bg-secondary/40 p-3 rounded overflow-auto max-h-64">{robotsAudit.raw}</pre>
+                    <pre className="mt-2 text-xs bg-secondary/40 p-3 rounded-sm overflow-auto max-h-64">{robotsAudit.raw}</pre>
                   </details>
                 )}
               </>
@@ -1094,7 +1094,7 @@ export default function Diagnostics() {
                 )}
                 <details>
                   <summary className="cursor-pointer text-xs text-muted-foreground">Ver JSON</summary>
-                  <pre className="mt-2 text-xs bg-secondary/40 p-3 rounded overflow-auto max-h-96">
+                  <pre className="mt-2 text-xs bg-secondary/40 p-3 rounded-sm overflow-auto max-h-96">
 {JSON.stringify(s.parsed, null, 2)}
                   </pre>
                 </details>
