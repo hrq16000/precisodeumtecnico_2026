@@ -113,7 +113,9 @@ export function GlobalTriageLauncher() {
       const neighborhood = el.dataset.triageNeighborhood || undefined;
       const kind: "whatsapp" | "tel" = isTel ? "tel" : "whatsapp";
 
-      if (anchor?.dataset.waKeep === "footer") {
+      // data-wa-keep marca fluxos que já coletaram o contexto (rodapé,
+      // abertura de O.S.) e devem seguir direto para o WhatsApp.
+      if (anchor?.dataset.waKeep) {
         logWaEvent({ source: source || "footer-keep", href, kind, bypass: true });
         return;
       }

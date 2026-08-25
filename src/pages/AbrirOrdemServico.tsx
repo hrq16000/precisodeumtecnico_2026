@@ -10,8 +10,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ClipboardList, ShieldCheck, Truck, Wrench, AlertTriangle, Search } from "lucide-react";
+import {
+  ClipboardList,
+  ShieldCheck,
+  Truck,
+  Wrench,
+  AlertTriangle,
+  Search,
+  FileDown,
+  CheckCircle2,
+} from "lucide-react";
 import { VISIT_TERMS, COLLECTION_TERMS } from "@/data/serviceOrderTerms";
+import { QrCode } from "@/components/QrCode";
+import { recordFromDraft, saveOsRecord, type OsRecord } from "@/lib/serviceOrderRecords";
+import { downloadOsReceipt } from "@/lib/serviceOrderPdf";
 import {
   buildOsMessage,
   buildOsWhatsAppUrl,
@@ -33,6 +45,7 @@ export default function AbrirOrdemServico() {
   const [hydrated, setHydrated] = useState(false);
   const [draft, setDraft] = useState<OsDraft>(() => emptyDraft());
   const [errors, setErrors] = useState<string[]>([]);
+  const [record, setRecord] = useState<OsRecord | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -56,6 +69,14 @@ export default function AbrirOrdemServico() {
   const ready = validateDraft(draft).length === 0;
   const message = useMemo(() => (draft.protocol ? buildOsMessage(draft) : ""), [draft]);
   const waUrl = useMemo(() => (ready ? buildOsWhatsAppUrl(draft) : undefined), [ready, draft]);
+
+  /** Persiste a O.S. concluída e libera a tela de comprovante (PDF + QR). */
+  function confirm() {
+    if (!ready) return;
+    const created = recordFromDraft(draft);
+    saveOsRecord(created);
+    setRecord(created);
+  }
 
   function review() {
     const found = validateDraft(draft);
@@ -353,6 +374,8 @@ export default function AbrirOrdemServico() {
                     ariaLabel="Confirmar e enviar a Ordem de Serviço pelo WhatsApp"
                     href={waUrl}
                     data-testid="os-submit"
+                    data-wa-keep="abrir-os"
+                    onClick={confirm}
                     className="justify-center"
                   >
                     Confirmar e enviar O.S.
@@ -375,6 +398,51 @@ export default function AbrirOrdemServico() {
                   Consultar uma O.S.
                 </Link>
               </div>
+
+              {record && (
+                <div
+                  data-testid="os-receipt"
+                  className="mt-6 rounded-lg border border-primary/40 bg-primary/5 p-4 md:p-5"
+                >
+                  <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary" aria-hidden="true" />
+                    O.S. {record.protocol} registrada
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Guarde o comprovante: ele reúne o código rastreável, os prazos, os valores
+                    pré-aprovados e as regras de segurança aceitas.
+                  </p>
+                  <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
+                    <div className="shrink-0 text-center">
+                      <QrCode
+                        value={`https://precisodeumtecnico.com/consultar-os?os=${encodeURIComponent(record.protocol)}`}
+                        alt={`QR code da Ordem de Serviço ${record.protocol}`}
+                        size={140}
+                        className="mx-auto rounded-md border border-border bg-background p-2"
+                      />
+                      <p className="mt-2 text-xs text-muted-foreground">Leitura rápida no atendimento</p>
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      <button
+                        type="button"
+                        onClick={() => downloadOsReceipt(record)}
+                        data-testid="os-pdf"
+                        className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                      >
+                        <FileDown className="h-4 w-4" aria-hidden="true" />
+                        Baixar comprovante em PDF
+                      </button>
+                      <Link
+                        to={`/consultar-os?os=${encodeURIComponent(record.protocol)}`}
+                        className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                      >
+                        <Search className="h-4 w-4" aria-hidden="true" />
+                        Acompanhar esta O.S.
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </form>
         </div>

@@ -20,12 +20,12 @@ export function WhatsAppFloat() {
         type="button"
         onClick={() => openTriage({ source: "float" })}
         className="whatsapp-float"
-        aria-label="Iniciar triagem técnica"
+        aria-label="Solicitar atendimento (triagem técnica)"
         data-wa-source="float"
         data-service="assistência técnica"
       >
         <MessageCircle className="w-6 h-6" />
-        <span className="hidden sm:inline font-semibold">Falar com técnico</span>
+        <span className="hidden sm:inline font-semibold">Solicitar Atendimento</span>
       </button>
     );
   }

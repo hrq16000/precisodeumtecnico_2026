@@ -40,7 +40,7 @@ const FAQ_GROUPS: FaqGroup[] = [
       { q: "Vocês parcelam?", a: COMMERCIAL.installments + ", quando aplicável. Consulte no fechamento do orçamento." },
       { q: "Posso remarcar ou cancelar?", a: "Sim, sem custo até 4h antes do agendamento. Após esse prazo, a taxa de visita R$ 99,99 é cobrada." },
       { q: "O valor pode mudar depois?", a: "Só com sua aprovação. Trabalhamos com orçamento pré-aprovado; nada é executado sem confirmação." },
-      { q: "Como agendar pelo WhatsApp?", a: "Clique em qualquer botão 'Falar com técnico'. O sistema abre a triagem — ao final você é encaminhado ao WhatsApp com sua região preenchida." },
+      { q: "Como agendar pelo WhatsApp?", a: "Clique em qualquer botão 'Solicitar Atendimento'. O sistema abre a triagem — ao final você é encaminhado ao WhatsApp com sua região preenchida." },
       { q: "Como enviar fotos e vídeos?", a: "Direto no formulário de triagem. Sem cadastro com mídia prévia não iniciamos atendimento (padrão de qualidade e segurança)." },
     ],
   },

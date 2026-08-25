@@ -115,6 +115,7 @@ const mainUrls: Url[] = [
   { loc: `${BASE}/avaliacoes`, changefreq: "weekly", priority: 0.75, lastmod: fileDate("src/pages/Avaliacoes.tsx") },
   { loc: `${BASE}/status-os`, changefreq: "weekly", priority: 0.6, lastmod: fileDate("src/pages/StatusOrdemServico.tsx") },
   { loc: `${BASE}/abrir-os`, changefreq: "weekly", priority: 0.8, lastmod: fileDate("src/pages/AbrirOrdemServico.tsx") },
+  { loc: `${BASE}/consultar-os`, changefreq: "weekly", priority: 0.7, lastmod: fileDate("src/pages/ConsultarOrdemServico.tsx") },
   { loc: `${BASE}/exclusao-de-dados`, changefreq: "yearly", priority: 0.4, lastmod: fileDate("src/pages/ExclusaoDeDados.tsx") },
 
   { loc: `${BASE}/guias/organizacao-de-ti-para-pequenos-escritorios`, changefreq: "monthly", priority: 0.7, lastmod: fileDate("src/data/enterpriseGuides.ts") },
