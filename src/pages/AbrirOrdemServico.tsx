@@ -10,8 +10,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ClipboardList, ShieldCheck, Truck, Wrench, AlertTriangle, Search } from "lucide-react";
+import {
+  ClipboardList,
+  ShieldCheck,
+  Truck,
+  Wrench,
+  AlertTriangle,
+  Search,
+  FileDown,
+  CheckCircle2,
+} from "lucide-react";
 import { VISIT_TERMS, COLLECTION_TERMS } from "@/data/serviceOrderTerms";
+import { QrCode } from "@/components/QrCode";
+import { recordFromDraft, saveOsRecord, type OsRecord } from "@/lib/serviceOrderRecords";
+import { downloadOsReceipt } from "@/lib/serviceOrderPdf";
 import {
   buildOsMessage,
   buildOsWhatsAppUrl,
