@@ -42,6 +42,7 @@ import { Route as GarantiaECoberturaRouteImport } from './routes/garantia-e-cobe
 import { Route as GestorResponsavelRouteImport } from './routes/gestor-responsavel'
 import { Route as GuiaTecnicoInformaticaRouteImport } from './routes/guia-tecnico-informatica'
 import { Route as ObrigadoRouteImport } from './routes/obrigado'
+import { Route as OrdemDeServicoRouteImport } from './routes/ordem-de-servico'
 import { Route as PatrocinadoresRouteImport } from './routes/patrocinadores'
 import { Route as PoliticaDeAnunciosRouteImport } from './routes/politica-de-anuncios'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
@@ -280,6 +281,11 @@ const GuiaTecnicoInformaticaRoute = GuiaTecnicoInformaticaRouteImport.update({
 const ObrigadoRoute = ObrigadoRouteImport.update({
   id: '/obrigado',
   path: '/obrigado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdemDeServicoRoute = OrdemDeServicoRouteImport.update({
+  id: '/ordem-de-servico',
+  path: '/ordem-de-servico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PatrocinadoresRoute = PatrocinadoresRouteImport.update({
@@ -687,6 +693,7 @@ export interface FileRoutesByFullPath {
   '/gestor-responsavel': typeof GestorResponsavelRoute
   '/guia-tecnico-informatica': typeof GuiaTecnicoInformaticaRoute
   '/obrigado': typeof ObrigadoRoute
+  '/ordem-de-servico': typeof OrdemDeServicoRoute
   '/patrocinadores': typeof PatrocinadoresRoute
   '/politica-de-anuncios': typeof PoliticaDeAnunciosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -790,6 +797,7 @@ export interface FileRoutesByTo {
   '/gestor-responsavel': typeof GestorResponsavelRoute
   '/guia-tecnico-informatica': typeof GuiaTecnicoInformaticaRoute
   '/obrigado': typeof ObrigadoRoute
+  '/ordem-de-servico': typeof OrdemDeServicoRoute
   '/patrocinadores': typeof PatrocinadoresRoute
   '/politica-de-anuncios': typeof PoliticaDeAnunciosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -894,6 +902,7 @@ export interface FileRoutesById {
   '/gestor-responsavel': typeof GestorResponsavelRoute
   '/guia-tecnico-informatica': typeof GuiaTecnicoInformaticaRoute
   '/obrigado': typeof ObrigadoRoute
+  '/ordem-de-servico': typeof OrdemDeServicoRoute
   '/patrocinadores': typeof PatrocinadoresRoute
   '/politica-de-anuncios': typeof PoliticaDeAnunciosRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -999,6 +1008,7 @@ export interface FileRouteTypes {
     | '/gestor-responsavel'
     | '/guia-tecnico-informatica'
     | '/obrigado'
+    | '/ordem-de-servico'
     | '/patrocinadores'
     | '/politica-de-anuncios'
     | '/politica-de-cookies'
@@ -1102,6 +1112,7 @@ export interface FileRouteTypes {
     | '/gestor-responsavel'
     | '/guia-tecnico-informatica'
     | '/obrigado'
+    | '/ordem-de-servico'
     | '/patrocinadores'
     | '/politica-de-anuncios'
     | '/politica-de-cookies'
@@ -1205,6 +1216,7 @@ export interface FileRouteTypes {
     | '/gestor-responsavel'
     | '/guia-tecnico-informatica'
     | '/obrigado'
+    | '/ordem-de-servico'
     | '/patrocinadores'
     | '/politica-de-anuncios'
     | '/politica-de-cookies'
@@ -1309,6 +1321,7 @@ export interface RootRouteChildren {
   GestorResponsavelRoute: typeof GestorResponsavelRoute
   GuiaTecnicoInformaticaRoute: typeof GuiaTecnicoInformaticaRoute
   ObrigadoRoute: typeof ObrigadoRoute
+  OrdemDeServicoRoute: typeof OrdemDeServicoRoute
   PatrocinadoresRoute: typeof PatrocinadoresRoute
   PoliticaDeAnunciosRoute: typeof PoliticaDeAnunciosRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
@@ -1610,6 +1623,13 @@ declare module '@tanstack/react-router' {
       path: '/obrigado'
       fullPath: '/obrigado'
       preLoaderRoute: typeof ObrigadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ordem-de-servico': {
+      id: '/ordem-de-servico'
+      path: '/ordem-de-servico'
+      fullPath: '/ordem-de-servico'
+      preLoaderRoute: typeof OrdemDeServicoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/patrocinadores': {
@@ -2126,6 +2146,7 @@ const rootRouteChildren: RootRouteChildren = {
   GestorResponsavelRoute: GestorResponsavelRoute,
   GuiaTecnicoInformaticaRoute: GuiaTecnicoInformaticaRoute,
   ObrigadoRoute: ObrigadoRoute,
+  OrdemDeServicoRoute: OrdemDeServicoRoute,
   PatrocinadoresRoute: PatrocinadoresRoute,
   PoliticaDeAnunciosRoute: PoliticaDeAnunciosRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
