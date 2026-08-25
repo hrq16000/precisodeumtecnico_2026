@@ -572,6 +572,17 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
 
       {/* BODY scrollable */}
       <div ref={scrollAnchorRef} className="flex-1 overflow-y-auto px-4 py-5 sm:px-6">
+        {errorSummary && (
+          <div
+            data-testid="triage-error-summary"
+            role="alert"
+            aria-live="assertive"
+            className="mb-4 rounded-lg border-2 border-destructive/50 bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive"
+          >
+            Preencha: {errorSummary}
+          </div>
+        )}
+
         {/* STEP 1: EQUIPAMENTO */}
         {state.currentStep === "equipment" && (
           <section className="space-y-3">
