@@ -11,7 +11,6 @@ export const COMPANY = {
   foundingYear: "1998",
   areaServed: "Curitiba e Região Metropolitana + prestadores parceiros no Brasil",
   serviceHours: "08h às 22h (WhatsApp 24h)",
-  email: "contato@precisodeumtecnico.com",
   website: "https://precisodeumtecnico.com",
   facebook: "https://www.facebook.com/precisodeumtecnico/",
   instagram: "https://www.instagram.com/PrecisoDeUmTecnico",

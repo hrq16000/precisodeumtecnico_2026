@@ -61,7 +61,6 @@ export default function ServicoCuritibaContratacao() {
     legalName: COMPANY.legalName,
     url: BASE,
     foundingDate: COMPANY.foundingYear,
-    email: COMPANY.email,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",

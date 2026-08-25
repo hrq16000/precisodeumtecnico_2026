@@ -59,10 +59,6 @@ export default function DadosEmpresa() {
             <dd>{COMPANY.serviceHours}</dd>
           </div>
           <div>
-            <dt className="text-xs uppercase text-muted-foreground">E-mail</dt>
-            <dd>{COMPANY.email}</dd>
-          </div>
-          <div>
             <dt className="text-xs uppercase text-muted-foreground">Redes</dt>
             <dd className="flex gap-4">
               <a href={COMPANY.facebook} target="_blank" rel="noopener noreferrer" className="underline">Facebook</a>
