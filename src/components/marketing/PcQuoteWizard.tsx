@@ -52,15 +52,20 @@ const PERIOD_OPTIONS = [
 
 
 export const PcQuoteWizard = ({ sourcePage }: { sourcePage?: string }) => {
-  const stored = useMemo(() => readStoredLocation(), []);
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState<Errors>({});
   const [model, setModel] = useState("");
   const [usage, setUsage] = useState<string>("");
   const [partsBy, setPartsBy] = useState<"cliente" | "indicacao" | "indefinido">("cliente");
   const [parts, setParts] = useState("");
-  const [city, setCity] = useState(stored.city ?? "");
-  const [neighborhood, setNeighborhood] = useState(stored.neighborhood ?? "");
+  const [city, setCity] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  // SSR-safe: localStorage só após a hidratação (evita mismatch de value nos inputs).
+  useEffect(() => {
+    const stored = readStoredLocation();
+    setCity((cur) => cur || (stored.city ?? ""));
+    setNeighborhood((cur) => cur || (stored.neighborhood ?? ""));
+  }, []);
   const [preferredPeriod, setPreferredPeriod] = useState<string>("");
   const [preferredDay, setPreferredDay] = useState<string>("");
   const [acceptTerms, setAcceptTerms] = useState(false);
