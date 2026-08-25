@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { WaSource } from "@/lib/waSources";
@@ -57,13 +57,19 @@ export const WhatsAppCTA = forwardRef<HTMLAnchorElement, WhatsAppCTAProps>(funct
   },
   ref,
 ) {
-  const stored = useStoredLocation ? readStoredLocation() : {};
+  // SSR-safe: o primeiro render (servidor e hidratação) usa apenas o contexto
+  // determinístico das props; localStorage/window entram só após a hidratação,
+  // evitando mismatch de atributos no href.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
+
+  const stored = hydrated && useStoredLocation ? readStoredLocation() : {};
   const merged: WhatsAppContext = {
     service,
     city: context?.city ?? stored.city,
     neighborhood: context?.neighborhood ?? stored.neighborhood,
     address: context?.address ?? stored.address,
-    sourcePage: context?.sourcePage ?? currentSourcePage(),
+    sourcePage: context?.sourcePage ?? (hydrated ? currentSourcePage() : ""),
   };
   const url = href ?? buildWhatsAppUrl(merged);
 
