@@ -1,10 +1,9 @@
 /**
- * Fonte única institucional. Não duplicar CNPJ/histórico em outros lugares.
+ * Fonte única institucional. Não duplicar histórico em outros lugares.
  */
 export const COMPANY = {
   legalName: "Preciso de Um Técnico",
   brand: "Preciso de Um Técnico",
-  cnpj: "41.723.708/0001-58",
   /** Frase pública padrão. Anos exatos evitados por falta de fonte canônica. */
   experiencePhrase: "Mais de 25 anos de experiência",
   experienceYears: 25,

@@ -48,6 +48,8 @@ import { Route as PoliticaDePecasDoClienteRouteImport } from './routes/politica-
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as PoliticaPrivacidadeRouteImport } from './routes/politica-privacidade'
 import { Route as PrecosRouteImport } from './routes/precos'
+import { Route as PrecosEPoliticasRouteImport } from './routes/precos-e-politicas'
+import { Route as ProcessoDeAtendimentoRouteImport } from './routes/processo-de-atendimento'
 import { Route as PublicidadeRouteImport } from './routes/publicidade'
 import { Route as RemocaoDeVirusCuritibaRouteImport } from './routes/remocao-de-virus-curitiba'
 import { Route as SegurancaDosDadosRouteImport } from './routes/seguranca-dos-dados'
@@ -308,6 +310,16 @@ const PoliticaPrivacidadeRoute = PoliticaPrivacidadeRouteImport.update({
 const PrecosRoute = PrecosRouteImport.update({
   id: '/precos',
   path: '/precos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrecosEPoliticasRoute = PrecosEPoliticasRouteImport.update({
+  id: '/precos-e-politicas',
+  path: '/precos-e-politicas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessoDeAtendimentoRoute = ProcessoDeAtendimentoRouteImport.update({
+  id: '/processo-de-atendimento',
+  path: '/processo-de-atendimento',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PublicidadeRoute = PublicidadeRouteImport.update({
@@ -675,6 +687,8 @@ export interface FileRoutesByFullPath {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/politica-privacidade': typeof PoliticaPrivacidadeRoute
   '/precos': typeof PrecosRoute
+  '/precos-e-politicas': typeof PrecosEPoliticasRoute
+  '/processo-de-atendimento': typeof ProcessoDeAtendimentoRoute
   '/publicidade': typeof PublicidadeRoute
   '/remocao-de-virus-curitiba': typeof RemocaoDeVirusCuritibaRoute
   '/seguranca-dos-dados': typeof SegurancaDosDadosRoute
@@ -775,6 +789,8 @@ export interface FileRoutesByTo {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/politica-privacidade': typeof PoliticaPrivacidadeRoute
   '/precos': typeof PrecosRoute
+  '/precos-e-politicas': typeof PrecosEPoliticasRoute
+  '/processo-de-atendimento': typeof ProcessoDeAtendimentoRoute
   '/publicidade': typeof PublicidadeRoute
   '/remocao-de-virus-curitiba': typeof RemocaoDeVirusCuritibaRoute
   '/seguranca-dos-dados': typeof SegurancaDosDadosRoute
@@ -876,6 +892,8 @@ export interface FileRoutesById {
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/politica-privacidade': typeof PoliticaPrivacidadeRoute
   '/precos': typeof PrecosRoute
+  '/precos-e-politicas': typeof PrecosEPoliticasRoute
+  '/processo-de-atendimento': typeof ProcessoDeAtendimentoRoute
   '/publicidade': typeof PublicidadeRoute
   '/remocao-de-virus-curitiba': typeof RemocaoDeVirusCuritibaRoute
   '/seguranca-dos-dados': typeof SegurancaDosDadosRoute
@@ -978,6 +996,8 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/politica-privacidade'
     | '/precos'
+    | '/precos-e-politicas'
+    | '/processo-de-atendimento'
     | '/publicidade'
     | '/remocao-de-virus-curitiba'
     | '/seguranca-dos-dados'
@@ -1078,6 +1098,8 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/politica-privacidade'
     | '/precos'
+    | '/precos-e-politicas'
+    | '/processo-de-atendimento'
     | '/publicidade'
     | '/remocao-de-virus-curitiba'
     | '/seguranca-dos-dados'
@@ -1178,6 +1200,8 @@ export interface FileRouteTypes {
     | '/politica-de-privacidade'
     | '/politica-privacidade'
     | '/precos'
+    | '/precos-e-politicas'
+    | '/processo-de-atendimento'
     | '/publicidade'
     | '/remocao-de-virus-curitiba'
     | '/seguranca-dos-dados'
@@ -1279,6 +1303,8 @@ export interface RootRouteChildren {
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   PoliticaPrivacidadeRoute: typeof PoliticaPrivacidadeRoute
   PrecosRoute: typeof PrecosRoute
+  PrecosEPoliticasRoute: typeof PrecosEPoliticasRoute
+  ProcessoDeAtendimentoRoute: typeof ProcessoDeAtendimentoRoute
   PublicidadeRoute: typeof PublicidadeRoute
   RemocaoDeVirusCuritibaRoute: typeof RemocaoDeVirusCuritibaRoute
   SegurancaDosDadosRoute: typeof SegurancaDosDadosRoute
@@ -1613,6 +1639,20 @@ declare module '@tanstack/react-router' {
       path: '/precos'
       fullPath: '/precos'
       preLoaderRoute: typeof PrecosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/precos-e-politicas': {
+      id: '/precos-e-politicas'
+      path: '/precos-e-politicas'
+      fullPath: '/precos-e-politicas'
+      preLoaderRoute: typeof PrecosEPoliticasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/processo-de-atendimento': {
+      id: '/processo-de-atendimento'
+      path: '/processo-de-atendimento'
+      fullPath: '/processo-de-atendimento'
+      preLoaderRoute: typeof ProcessoDeAtendimentoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/publicidade': {
@@ -2072,6 +2112,8 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   PoliticaPrivacidadeRoute: PoliticaPrivacidadeRoute,
   PrecosRoute: PrecosRoute,
+  PrecosEPoliticasRoute: PrecosEPoliticasRoute,
+  ProcessoDeAtendimentoRoute: ProcessoDeAtendimentoRoute,
   PublicidadeRoute: PublicidadeRoute,
   RemocaoDeVirusCuritibaRoute: RemocaoDeVirusCuritibaRoute,
   SegurancaDosDadosRoute: SegurancaDosDadosRoute,

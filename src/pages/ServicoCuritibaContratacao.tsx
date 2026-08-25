@@ -60,7 +60,6 @@ export default function ServicoCuritibaContratacao() {
     name: COMPANY.brand,
     legalName: COMPANY.legalName,
     url: BASE,
-    taxID: COMPANY.cnpj,
     foundingDate: COMPANY.foundingYear,
     email: COMPANY.email,
     priceRange: "$$",

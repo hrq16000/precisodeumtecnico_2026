@@ -39,8 +39,6 @@ export function buildOrganizationSchema(): object {
     legalName: COMPANY.legalName,
     url: COMPANY.website,
     email: COMPANY.email,
-    taxID: COMPANY.cnpj,
-    vatID: COMPANY.cnpj,
     foundingDate: COMPANY.foundingYear,
     description: `${COMPANY.brand} — assistência técnica com ${COMPANY.experiencePhrase.toLowerCase()}, atuando desde ${COMPANY.foundingYear} em ${COMPANY.areaServed}.`,
     areaServed: COMPANY.areaServed,

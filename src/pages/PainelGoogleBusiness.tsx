@@ -65,7 +65,6 @@ const GoogleBusinessPanel = () => {
         `E-mail: ${COMPANY.email}`,
         `Site: ${site}`,
         `Horário: ${hours}`,
-        `CNPJ: ${COMPANY.cnpj}`,
       ].join("\n"),
     [name, city, region, phoneLabel, site, hours],
   );

@@ -145,7 +145,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-background/60 text-sm text-center md:text-left space-y-1">
               <p>© {currentYear} {COMPANY.legalName}. Todos os direitos reservados.</p>
-              <p>CNPJ: {COMPANY.cnpj} · {COMPANY.experiencePhrase}</p>
+              <p>{COMPANY.experiencePhrase}</p>
             </div>
             <div className="flex flex-wrap gap-6">
               <Link to="/faq" className="text-background/60 hover:text-background text-sm transition-colors">
