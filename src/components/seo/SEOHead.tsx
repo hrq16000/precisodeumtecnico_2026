@@ -154,7 +154,6 @@ export function SEOHead({
     description:
       "Assistência técnica especializada em Curitiba e Região Metropolitana. Informática, elétrica, CFTV, notebooks, ar-condicionado e muito mais.",
     url: "https://precisodeumtecnico.com",
-    taxID: "41.723.708/0001-58",
     foundingDate: "1998",
     address: {
       "@type": "PostalAddress",
