@@ -76,8 +76,10 @@ test.describe("Triage WhatsApp flow (V2)", () => {
     });
 
     await waitForStep(page, 7);
-    await expect(page.getByText("Equipamento:")).toBeVisible();
-    await expect(page.getByText("Não lê disco")).toBeVisible();
+    // .first(): a prévia da mensagem (details) repete os mesmos rótulos.
+    await expect(page.getByText("Equipamento:").first()).toBeVisible();
+    await expect(page.getByText("Não lê disco").first()).toBeVisible();
+
 
     await fillContactStep(page, {
       name: "Cliente Teste",
