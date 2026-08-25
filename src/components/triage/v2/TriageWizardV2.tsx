@@ -62,6 +62,9 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [copyFallback, setCopyFallback] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  /** Resumo acessível dos campos pendentes na etapa atual. */
+  const [errorSummary, setErrorSummary] = useState<string | null>(null);
+
   const transitioningRef = useRef(false);
   const advanceTimerRef = useRef<number | null>(null);
   const scrollAnchorRef = useRef<HTMLDivElement | null>(null);
