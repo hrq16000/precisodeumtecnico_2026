@@ -398,6 +398,52 @@ export default function AbrirOrdemServico() {
                   Consultar uma O.S.
                 </Link>
               </div>
+
+              {record && (
+                <div
+                  data-testid="os-receipt"
+                  className="mt-6 rounded-lg border border-primary/40 bg-primary/5 p-4 md:p-5"
+                >
+                  <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <CheckCircle2 className="h-4 w-4 text-primary" aria-hidden="true" />
+                    O.S. {record.protocol} registrada
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Guarde o comprovante: ele reúne o código rastreável, os prazos, os valores
+                    pré-aprovados e as regras de segurança aceitas.
+                  </p>
+                  <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
+                    <div className="shrink-0 text-center">
+                      <QrCode
+                        value={`https://precisodeumtecnico.com/consultar-os?os=${encodeURIComponent(record.protocol)}`}
+                        alt={`QR code da Ordem de Serviço ${record.protocol}`}
+                        size={140}
+                        className="mx-auto rounded-md border border-border bg-background p-2"
+                      />
+                      <p className="mt-2 text-xs text-muted-foreground">Leitura rápida no atendimento</p>
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      <button
+                        type="button"
+                        onClick={() => downloadOsReceipt(record)}
+                        data-testid="os-pdf"
+                        className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                      >
+                        <FileDown className="h-4 w-4" aria-hidden="true" />
+                        Baixar comprovante em PDF
+                      </button>
+                      <Link
+                        to="/consultar-os"
+                        search={{ os: record.protocol }}
+                        className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                      >
+                        <Search className="h-4 w-4" aria-hidden="true" />
+                        Acompanhar esta O.S.
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </form>
         </div>
