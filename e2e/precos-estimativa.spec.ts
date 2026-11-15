@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("/precos — estimativa rápida em 3 perguntas", () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+
   test("mostra melhor opção e WhatsApp pré-preenchido", async ({ page }) => {
     await page.goto("/precos");
     const card = page.locator("#estimativa-rapida-card");

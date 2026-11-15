@@ -75,6 +75,8 @@ jobs:
 
       - name: Install Playwright (chromium)
         run: bun run e2e:install
+      - name: Validate pricing flow on mobile
+        run: bun run e2e e2e/precos-estimativa.spec.ts --reporter=list
       - name: Run E2E (a11y + flows + tracking)
         run: bun run e2e
       - name: Upload Playwright traces/vídeos (falhas)
