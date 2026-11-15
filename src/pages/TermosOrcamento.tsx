@@ -99,10 +99,9 @@ const TermosOrcamento = () => {
               </div>
 
               <p>
-                Esses valores representam uma <strong className="text-foreground">autorização inicial</strong> para
-                diagnóstico técnico e possível reparo. Se o valor final do reparo for superior ao pré-aprovado,
-                o cliente é <strong className="text-foreground">informado previamente</strong> e nenhum reparo
-                adicional é executado sem confirmação.
+                A autorização inicial cobre a modalidade escolhida. Na visita, ela cobre a inspeção e os
+                ajustes simples que couberem nesse atendimento. A execução por demanda tem orçamento e
+                aprovação próprios.
               </p>
 
               <div className="flex items-start gap-3 bg-accent/50 rounded-lg p-4 mt-4">

@@ -5,6 +5,7 @@
  * eliminando o risco de divergência UI ↔ schema.
  */
 
+import { PRICING } from "./pricingPolicy";
 import { COMMERCIAL_TERMS } from "./commercialTerms";
 
 export interface HomeFaq { question: string; answer: string }
@@ -12,7 +13,7 @@ export interface HomeFaq { question: string; answer: string }
 export const homeFaqs: HomeFaq[] = [
   {
     question: "Qual o valor da visita técnica?",
-    answer: `A visita técnica para diagnóstico custa a partir de ${COMMERCIAL_TERMS.diagnosisFee.priceLabel} (até 30 minutos). Esse valor pode ser abatido do serviço caso você aprove o orçamento. O diagnóstico inclui análise completa do problema e orçamento sem compromisso.`,
+    answer: PRICING.technicalVisit.description,
   },
   {
     question: "Vocês atendem em domicílio?",

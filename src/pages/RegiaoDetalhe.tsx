@@ -190,7 +190,7 @@ const RegiaoDetalhe = () => {
                 <div className="price-tag">
                   A partir de R$ 99,99
                 </div>
-                <span className="text-white/70 text-sm">até 30 min de serviço</span>
+                <span className="text-white/70 text-sm">até 20 min de inspeção</span>
               </div>
 
               {/* Trust Indicators */}

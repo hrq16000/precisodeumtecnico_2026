@@ -168,7 +168,7 @@ export default function AbrirOrdemServico() {
                       value: "visita" as OsMode,
                       icon: Wrench,
                       title: "Visita técnica",
-                      desc: "Serviços rápidos (até 30 min), montagem ou inspeção presencial.",
+                      desc: "Inspeção presencial de até 20 minutos, com ajustes simples quando couberem.",
                     },
                     {
                       value: "coleta" as OsMode,
