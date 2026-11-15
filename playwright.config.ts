@@ -12,7 +12,7 @@ export default defineConfig({
   reporter: process.env.CI ? [["github"], ["list"]] : "list",
   outputDir: "./test-results",
   use: {
-    baseURL: process.env.E2E_BASE_URL ?? "http://localhost:5173",
+    baseURL: process.env.E2E_BASE_URL ?? "http://127.0.0.1:5173",
     // Depuração: em qualquer falha guardamos trace.zip + vídeo + screenshot
     // em ./test-results/<teste>/ — reduz flakiness cega no CI.
     trace: "retain-on-failure",
@@ -26,9 +26,11 @@ export default defineConfig({
   webServer: process.env.E2E_BASE_URL
     ? undefined
     : {
-        command: "bun run dev",
-        url: "http://localhost:5173",
+        command: "bun run dev --host 127.0.0.1 --port 5173 --strictPort",
+        url: "http://127.0.0.1:5173",
         reuseExistingServer: !process.env.CI,
+        stdout: "pipe",
+        stderr: "pipe",
         timeout: 120_000,
       },
 });
