@@ -65,7 +65,7 @@ const FAQ = [
   {
     question: "O deslocamento tem custo?",
     answer:
-      "A visita técnica tem taxa mínima de R$ 99,99, que cobre o deslocamento e o diagnóstico presencial. A coleta para bancada é de R$ 299,99 e inclui retirada e devolução do equipamento.",
+      "A visita técnica de inspeção custa R$ 99,99 e dura até 20 minutos. A coleta para bancada é de R$ 299,99 e inclui retirada e devolução do equipamento.",
   },
   {
     question: "Consigo confirmar o bairro sem ligar?",

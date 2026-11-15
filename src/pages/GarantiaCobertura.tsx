@@ -39,7 +39,7 @@ const FAQ = [
   },
   {
     question: "Vou pagar alguma coisa se o problema não for de garantia?",
-    answer: `Se a análise mostrar causa fora da cobertura, o atendimento vira um novo serviço: diagnóstico ou visita a ${COMMERCIAL_TERMS.diagnosisFee.priceLabel} por bloco de até 30 minutos, e atendimento com coleta a partir de ${PRICING.pickupDelivery.priceLabel}.`,
+    answer: `Se a análise mostrar causa fora da cobertura, o atendimento vira um novo serviço: diagnóstico em bancada por ${COMMERCIAL_TERMS.diagnosisFee.priceLabel} ou visita de inspeção de até 20 minutos por R$ 99,99, e atendimento com coleta a partir de ${PRICING.pickupDelivery.priceLabel}.`,
   },
 ];
 

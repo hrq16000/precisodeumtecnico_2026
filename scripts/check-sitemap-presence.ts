@@ -1,5 +1,5 @@
 // Guard pós-build: garante que TODOS os shards listados no sitemap-index
-// existem fisicamente em dist/ e batem com o manifesto determinístico.
+// existem fisicamente em .output/public/ e batem com o manifesto determinístico.
 // Falha o build antes do deploy quando algum sitemap está ausente ou
 // corrompido — evita subir estados parciais para o S3.
 //
@@ -8,7 +8,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 
-const DIST = "dist/client";
+const DIST = ".output/public";
 const INDEX = join(DIST, "sitemap.xml");
 const MANIFEST = join(DIST, "sitemaps.manifest.json");
 const errors: string[] = [];
@@ -29,14 +29,14 @@ if (!errors.length) {
   for (const url of shardUrls) {
     const fname = url.split("/").pop()!;
     const path = join(DIST, fname);
-    if (!existsSync(path)) { errors.push(`shard ausente em dist/: ${fname}`); continue; }
+    if (!existsSync(path)) { errors.push(`shard ausente em .output/public/: ${fname}`); continue; }
     const entry = byName.get(fname);
     if (!entry) { errors.push(`shard sem entrada no manifesto: ${fname}`); continue; }
     const actualHash = createHash("sha256").update(readFileSync(path)).digest("hex");
     if (actualHash !== entry.sha256) errors.push(`hash divergente do manifesto: ${fname}`);
   }
 
-  console.log(`✓ sitemap-index com ${shardUrls.length} shards, todos presentes e íntegros em dist/`);
+  console.log(`✓ sitemap-index com ${shardUrls.length} shards, todos presentes e íntegros em .output/public/`);
 }
 
 if (errors.length) {

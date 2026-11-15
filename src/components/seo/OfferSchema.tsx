@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 /**
  * Schema.org Offer/Service JSON-LD para a oferta âncora R$ 99,99 (visita
  * técnica ou diagnóstico em bancada) e R$ 299,99 (coleta e entrega).
@@ -32,20 +33,10 @@ export function buildOfferSchema(input: OfferSchemaInput) {
     offers: [
       {
         "@type": "Offer",
-        name: "Visita técnica (30 min)",
+        name: PRICING.technicalVisit.label,
         url: `${input.url}#visita-99`,
         priceCurrency: "BRL",
-        price: "99.99",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "99.99",
-          priceCurrency: "BRL",
-          referenceQuantity: {
-            "@type": "QuantitativeValue",
-            value: 30,
-            unitCode: "MIN",
-          },
-        },
+        price: PRICING.technicalVisit.priceBRL.toFixed(2),
         availability: "https://schema.org/InStock",
         eligibleRegion: areas.map((a) => ({ "@type": "Place", name: a })),
       },

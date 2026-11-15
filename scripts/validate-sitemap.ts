@@ -3,7 +3,7 @@
 //  - existência de public/sitemap.xml + public/robots.txt;
 //  - sitemap.xml é sitemapindex apontando para shards existentes;
 //  - cada shard tem <urlset> válido, URLs https, sem duplicação intra e inter-shard;
-//  - cada <url> traz <xhtml:link rel="canonical"> igual à <loc>;
+//  - nos shards de páginas, cada <url> traz <xhtml:link rel="canonical"> igual à <loc>;
 //  - robots.txt aponta Sitemap: absoluto https e não bloqueia áreas indexáveis;
 //  - shards city/bairros usam nomenclatura esperada.
 //
@@ -39,7 +39,8 @@ if (errors.length === 0) {
       push(`shard ausente no disco: ${fname}`);
       continue;
     }
-    if (!/^sitemap-(main|servicos|cidades|regions|bairros|nacional-servicos-piloto|city-[a-z0-9-]+|bairros-[a-z0-9-]+)\.xml$/.test(fname)) {
+    const isImageShard = fname === "sitemap-images.xml";
+    if (!/^sitemap-(images|main|servicos|cidades|regions|bairros|nacional-servicos-piloto|city-[a-z0-9-]+|bairros-[a-z0-9-]+)\.xml$/.test(fname)) {
       push(`nomenclatura inesperada de shard: ${fname}`);
     }
 
@@ -57,16 +58,17 @@ if (errors.length === 0) {
       const can = block.match(/<xhtml:link[^>]*rel="canonical"[^>]*href="([^"]+)"/)?.[1]?.trim();
       if (!loc) { push(`${fname}: <url> sem <loc>`); continue; }
       if (!/^https:\/\//i.test(loc)) push(`${fname}: URL não-https ${loc}`);
-      if (!can) push(`${fname}: <loc> ${loc} sem canonical`);
-      else if (can !== loc) push(`${fname}: canonical (${can}) difere de loc (${loc})`);
+      if (isImageShard && !/<image:loc>https:\/\//i.test(block)) push(`${fname}: <loc> ${loc} sem imagem HTTPS`);
+      if (!isImageShard && !can) push(`${fname}: <loc> ${loc} sem canonical`);
+      else if (can && can !== loc) push(`${fname}: canonical (${can}) difere de loc (${loc})`);
       if (localSeen.has(loc)) push(`${fname}: duplicada intra-shard ${loc}`);
       localSeen.add(loc);
-      if (allLocs.has(loc)) push(`URL duplicada entre shards: ${loc} (em ${allLocs.get(loc)} e ${fname})`);
-      allLocs.set(loc, fname);
+      if (!isImageShard && allLocs.has(loc)) push(`URL duplicada entre shards: ${loc} (em ${allLocs.get(loc)} e ${fname})`);
+      if (!isImageShard) allLocs.set(loc, fname);
       shardCount++;
     }
     shardStats.push({ file: fname, count: shardCount });
-    totalUrls += shardCount;
+    if (!isImageShard) totalUrls += shardCount;
   }
 
   const robots = readFileSync("public/robots.txt", "utf8");

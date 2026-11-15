@@ -56,7 +56,7 @@ var servicesData = {
       { step: 6, title: "Garantia por Escrito", description: "Receba garantia de 90 dias a 1 ano por escrito e nota fiscal" }
     ],
     pricing: [
-      { name: "Visita T\xE9cnica + Diagn\xF3stico", price: "R$ 99,99", description: "Diagn\xF3stico completo no local (at\xE9 30 min)" },
+      { name: "Visita t\xE9cnica de inspe\xE7\xE3o", price: "R$ 99,99", description: "Inspe\xE7\xE3o no local (at\xE9 20 min)" },
       { name: "Formata\xE7\xE3o Completa", price: "A partir de R$ 150,00", description: "Windows + drivers + programas essenciais" },
       { name: "Formata\xE7\xE3o + Backup", price: "A partir de R$ 200,00", description: "Backup completo + formata\xE7\xE3o + restaura\xE7\xE3o" },
       { name: "Limpeza Interna Completa", price: "A partir de R$ 80,00", description: "Limpeza + troca de pasta t\xE9rmica premium" },
@@ -270,7 +270,7 @@ var servicesData = {
       { step: 7, title: "Garantia por Escrito", description: "Garantia do servi\xE7o e nota fiscal" }
     ],
     pricing: [
-      { name: "Visita T\xE9cnica + Diagn\xF3stico", price: "R$ 99,99", description: "Avalia\xE7\xE3o completa da instala\xE7\xE3o" },
+      { name: "Visita t\xE9cnica de inspe\xE7\xE3o", price: "R$ 99,99", description: "Inspe\xE7\xE3o da instala\xE7\xE3o (at\xE9 20 min)" },
       { name: "Instala\xE7\xE3o de Tomada", price: "A partir de R$ 60,00", description: "Tomada + espelho + instala\xE7\xE3o" },
       { name: "Instala\xE7\xE3o de Interruptor", price: "A partir de R$ 50,00", description: "Interruptor + instala\xE7\xE3o" },
       { name: "Instala\xE7\xE3o Chuveiro El\xE9trico", price: "A partir de R$ 120,00", description: "Instala\xE7\xE3o completa + disjuntor" },
@@ -1186,15 +1186,16 @@ var PRICING = {
     priceLabel: "R$ 99,99",
     description: "Diagn\xF3stico em bancada, at\xE9 30 minutos, no nosso endere\xE7o. Valor abatido em caso de fechamento."
   },
-  /** Visita técnica — cobrança por bloco de 30 min, limitada a 2h */
   technicalVisit: {
-    label: "Visita t\xE9cnica (bloco de at\xE9 30 min)",
+    label: "Visita t\xE9cnica de inspe\xE7\xE3o (at\xE9 20 min)",
     priceBRL: 99.99,
     priceLabel: "R$ 99,99",
     minPriceBRL: 99.99,
-    /** Máximo de blocos cobráveis em visita presencial */
-    maxBlocks: 4,
-    description: "Visita t\xE9cnica no endere\xE7o do cliente: R$ 99,99 por bloco de at\xE9 30 minutos, limitado a 2 horas (4 blocos). Al\xE9m disso, apenas mediante aprova\xE7\xE3o espec\xEDfica."
+    durationMinutes: 20,
+    description: "Visita de inspe\xE7\xE3o de at\xE9 20 minutos por R$ 99,99. Inclui avalia\xE7\xE3o no local e ajustes simples compat\xEDveis com a inspe\xE7\xE3o. O valor \xE9 abatido se voc\xEA aprovar o servi\xE7o."
+  },
+  demandService: {
+    description: "A estimativa usual \xE9 de R$ 299,99 por demanda. Confirmamos o valor e o escopo antes de come\xE7ar ou, quando o trabalho for contratado por tempo, o limite de at\xE9 1 hora. A execu\xE7\xE3o cobre o que for tecnicamente compat\xEDvel com o combinado. Pe\xE7as, trabalho fora do escopo e tempo adicional exigem nova aprova\xE7\xE3o."
   },
   /** Coleta e entrega personalizada até 2h no endereço — valor mínimo pré-aprovado */
   pickupDelivery: {

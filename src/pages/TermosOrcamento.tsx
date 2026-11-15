@@ -82,7 +82,7 @@ const TermosOrcamento = () => {
 
               <div className="grid md:grid-cols-3 gap-4 my-6" id="visita-99">
                 <div className="bg-primary/5 border-2 border-primary/20 rounded-xl p-5 text-center">
-                  <p className="text-xs text-muted-foreground mb-1">Visita técnica (até 30 min)</p>
+                  <p className="text-xs text-muted-foreground mb-1">{PRICING.technicalVisit.label}</p>
                   <p className="text-3xl font-bold text-primary">{PRICING.technicalVisit.priceLabel}</p>
                   <p className="text-xs text-muted-foreground mt-1">no endereço do cliente</p>
                 </div>
@@ -108,8 +108,7 @@ const TermosOrcamento = () => {
               <div className="flex items-start gap-3 bg-accent/50 rounded-lg p-4 mt-4">
                 <AlertTriangle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                 <p className="text-sm text-foreground">
-                  <strong>Exceção:</strong> intervalos de até 30 minutos de atendimento estão inclusos no valor
-                  da visita/bancada. Tempo adicional é acordado por escrito antes da execução.
+                  {PRICING.technicalVisit.description} {PRICING.demandService.description}
                 </p>
               </div>
 
@@ -275,9 +274,9 @@ const TermosOrcamento = () => {
                 <div className="flex items-center justify-between gap-3 bg-accent/50 rounded-xl p-4 border border-border">
                   <div className="flex items-center gap-3">
                     <Clock className="h-5 w-5 text-primary shrink-0" />
-                    <span className="font-medium text-foreground">Exceção — atendimento expresso</span>
+                    <span className="font-medium text-foreground">Duração da visita de inspeção</span>
                   </div>
-                  <span className="font-bold text-primary text-sm md:text-base text-right">Intervalos de até 30 min</span>
+                  <span className="font-bold text-primary text-sm md:text-base text-right">Até {PRICING.technicalVisit.durationMinutes} min</span>
                 </div>
               </div>
 

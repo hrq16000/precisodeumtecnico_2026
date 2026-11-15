@@ -1,7 +1,7 @@
 // Gera artefatos determinísticos de sitemap:
-//   - dist/sitemaps.manifest.json      → sha256 + tamanho de cada shard
-//   - dist/sitemap-diagnostics.json    → esperados (do sitemap-index) x
-//                                        encontrados em dist/, com missing/extra
+//   - .output/public/sitemaps.manifest.json      → sha256 + tamanho de cada shard
+//   - .output/public/sitemap-diagnostics.json    → esperados (do sitemap-index) x
+//                                        encontrados em .output/public/, com missing/extra
 //
 // Roda no postbuild. Nunca falha o build sozinho — apenas escreve o
 // diagnóstico. O guard `check-sitemap-presence.ts` faz o hard-fail
@@ -12,7 +12,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 
-const DIST = "dist/client";
+const DIST = ".output/public";
 if (!existsSync(DIST)) {
   console.error(`✗ ${DIST}/ não existe — rode 'bun run build' primeiro.`);
   process.exit(1);
@@ -20,7 +20,7 @@ if (!existsSync(DIST)) {
 
 const files = readdirSync(DIST).filter((f) => /^sitemap.*\.xml$/.test(f)).sort();
 if (!files.length) {
-  console.error("✗ nenhum sitemap*.xml em dist/");
+  console.error("✗ nenhum sitemap*.xml em .output/public/");
   process.exit(1);
 }
 
@@ -46,7 +46,7 @@ console.log(`✓ sitemaps.manifest.json com ${entries.length} shards → ${outPa
 for (const e of entries) console.log(`  • ${e.file}  ${e.bytes}B  ${e.sha256.slice(0, 12)}…`);
 
 // ---------------------------------------------------------------------------
-// Diagnóstico: esperado (sitemap-index) x encontrado (dist/)
+// Diagnóstico: esperado (sitemap-index) x encontrado (.output/public/)
 // ---------------------------------------------------------------------------
 const INDEX = join(DIST, "sitemap.xml");
 const expectedShards: string[] = [];
@@ -124,17 +124,17 @@ console.log(`✓ sitemap-diagnostics.json → ${diagPath}`);
 
 if (missing.length || extra.length) {
   console.warn("");
-  console.warn("⚠ Inconsistência detectada entre sitemap-index e dist/:");
+  console.warn("⚠ Inconsistência detectada entre sitemap-index e .output/public/:");
   console.warn(`  esperados: ${expectedShards.length}  |  encontrados: ${files.length}`);
   if (missing.length) {
-    console.warn(`  ✗ ausentes em dist/ (${missing.length}):`);
+    console.warn(`  ✗ ausentes em .output/public/ (${missing.length}):`);
     for (const m of missing) console.warn(`      - ${m}`);
   }
   if (extra.length) {
-    console.warn(`  ⚠ presentes em dist/ mas fora do index (${extra.length}):`);
+    console.warn(`  ⚠ presentes em .output/public/ mas fora do index (${extra.length}):`);
     for (const x of extra) console.warn(`      - ${x}`);
   }
-  console.warn("  → detalhes completos em dist/sitemap-diagnostics.json");
+  console.warn("  → detalhes completos em .output/public/sitemap-diagnostics.json");
 } else {
   console.log(`✓ diagnóstico OK: ${expectedShards.length} shards esperados, todos presentes.`);
 }

@@ -13,16 +13,19 @@ export const PRICING = {
     description:
       "Diagnóstico em bancada, até 30 minutos, no nosso endereço. Valor abatido em caso de fechamento.",
   },
-  /** Visita técnica — cobrança por bloco de 30 min, limitada a 2h */
   technicalVisit: {
-    label: "Visita técnica (bloco de até 30 min)",
+    label: "Visita técnica de inspeção (até 20 min)",
     priceBRL: 99.99,
     priceLabel: "R$ 99,99",
     minPriceBRL: 99.99,
-    /** Máximo de blocos cobráveis em visita presencial */
-    maxBlocks: 4,
+    durationMinutes: 20,
     description:
-      "Visita técnica no endereço do cliente: R$ 99,99 por bloco de até 30 minutos, limitado a 2 horas (4 blocos). Além disso, apenas mediante aprovação específica.",
+      "Visita de inspeção de até 20 minutos por R$ 99,99. Inclui avaliação no local e ajustes simples compatíveis com a inspeção. O valor é abatido se você aprovar o serviço.",
+  },
+
+  demandService: {
+    description:
+      "A estimativa usual é de R$ 299,99 por demanda. Confirmamos o valor e o escopo antes de começar ou, quando o trabalho for contratado por tempo, o limite de até 1 hora. A execução cobre o que for tecnicamente compatível com o combinado. Peças, trabalho fora do escopo e tempo adicional exigem nova aprovação.",
   },
 
   /** Coleta e entrega personalizada até 2h no endereço — valor mínimo pré-aprovado */

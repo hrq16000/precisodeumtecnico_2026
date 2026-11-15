@@ -6,7 +6,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 
-const DIST = resolve("dist/client");
+const DIST = resolve(".output/public");
 const FORBIDDEN = [/payload de teste/i, /Ver payload/i];
 const EXT = /\.(html|js|css|json|txt)$/i;
 
@@ -24,7 +24,7 @@ let failed = 0;
 try {
   statSync(DIST);
 } catch {
-  console.warn("[no-debug] dist/ ausente — pulei (build não rodou).");
+  console.warn("[no-debug] .output/public/ ausente — pulei (build não rodou).");
   process.exit(0);
 }
 

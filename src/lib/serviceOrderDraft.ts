@@ -98,7 +98,7 @@ export function validateDraft(d: OsDraft): OsFieldError[] {
 }
 
 const MODE_LABEL: Record<OsMode, string> = {
-  visita: "Visita técnica (presencial, até 30 min por bloco)",
+  visita: "Visita técnica de inspeção",
   coleta: "Coleta para laboratório avançado",
 };
 

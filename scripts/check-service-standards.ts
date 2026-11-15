@@ -46,8 +46,9 @@ for (const slug of curated) {
   if (std.executionSlaLabel !== SLA.minLabel) {
     errors.push(`"${slug}": prazo "${std.executionSlaLabel}" ≠ SLA oficial "${SLA.minLabel}"`);
   }
-  if (!/30 minutos/.test(std.diagnosisDurationLabel)) {
-    errors.push(`"${slug}": tempo de diagnóstico não declara o bloco de 30 minutos`);
+  const visitDuration = `até ${PRICING.technicalVisit.durationMinutes} minutos de inspeção`;
+  if (std.diagnosisDurationLabel !== visitDuration) {
+    errors.push(`"${slug}": duração da inspeção diverge da política (${visitDuration})`);
   }
   const lists: [string, string[]][] = [
     ["included", std.included],

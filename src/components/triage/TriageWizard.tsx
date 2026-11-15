@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Link } from "@/lib/router-compat";
 import {
@@ -156,20 +157,15 @@ export function TriageWizard({
     dispatch({ type: "START_SUBMIT" });
     const payload = buildPayload(state, source);
 
-    // Guarda dupla: valor mínimo R$ 99,99 obrigatório em visita/bancada; R$ 299,99 em coleta.
-    // O trigger no BD reforça. Fonte única: src/data/pricingPolicy.ts.
     const mode = payload.service_mode;
-    if (mode === "visita" || mode === "bancada") {
-      if (!payload.estimated_ticket_min || payload.estimated_ticket_min < 99.99) {
-        payload.estimated_ticket_min = 99.99;
-      }
+    const minimumByMode = {
+      visita: PRICING.technicalVisit.priceBRL,
+      bancada: PRICING.benchDiagnosis.priceBRL,
+      coleta: PRICING.pickupDelivery.minPriceBRL,
+    } as const;
+    if (mode === "visita" || mode === "bancada" || mode === "coleta") {
+      payload.estimated_ticket_min = Math.max(payload.estimated_ticket_min ?? 0, minimumByMode[mode]);
     }
-    if (mode === "coleta") {
-      if (!payload.estimated_ticket_min || payload.estimated_ticket_min < 299.99) {
-        payload.estimated_ticket_min = 299.99;
-      }
-    }
-
 
     setLastPayload(payload);
     setTriageWhatsApp(buildWhatsAppResult(payload));
@@ -482,7 +478,7 @@ export function TriageWizard({
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Visita técnica de 30 min: <strong>R$ 99,99</strong>. Abatido em caso de fechamento.
+                  {PRICING.technicalVisit.description}
                 </p>
               </div>
             )}
@@ -547,9 +543,8 @@ export function TriageWizard({
                   }
                 />
                 <span>
-                  Estou ciente de que o atendimento presencial possui taxa mínima de{" "}
-                  <strong>R$ 99,99 (bancada ou visita técnica com laudo em até 30 min)</strong>{" "}
-                  e que coleta/entrega personalizada tem mínimo pré-aprovado de <strong>R$ 299,99</strong>.
+                  Estou ciente das condições de atendimento. {PRICING.technicalVisit.description}{" "}
+                  {PRICING.benchDiagnosis.description} {PRICING.pickupDelivery.description}
                 </span>
 
               </label>

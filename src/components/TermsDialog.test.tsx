@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { render, screen, fireEvent, waitFor, cleanup } from "@testing-library/react";
 import { TermsDialog } from "./TermsDialog";
 
 function getDataLayer(): Array<Record<string, unknown>> {
@@ -10,6 +10,8 @@ function eventsNamed(name: string) {
 }
 
 describe("TermsDialog", () => {
+  afterEach(cleanup);
+
   beforeEach(() => {
     window.dataLayer = [];
     window.sessionStorage.clear();

@@ -206,7 +206,7 @@ export function advanceHint(state: TriageState): string | null {
       return null;
     }
     case "accept":
-      if (!state.accepts.bancada) return "Confirme ciência da taxa mínima de R$ 99,99 (visita).";
+      if (!state.accepts.bancada) return "Confirme ciência das condições da modalidade.";
       if (!state.accepts.visita) return "Confirme ciência dos prazos técnicos.";
       if (!state.accepts.sla) return "Confirme leitura dos Termos e Condições.";
       return null;

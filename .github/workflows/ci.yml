@@ -56,17 +56,17 @@ jobs:
         env:
           BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
         run: bun run build
-      - name: Guard — IndexNow key file publicado em dist/
+      - name: Guard — IndexNow key file publicado em .output/public/
         if: env.BING_INDEXNOW_KEY != ''
         env:
           BING_INDEXNOW_KEY: ${{ secrets.BING_INDEXNOW_KEY }}
         run: |
           set -e
-          if [ ! -f "dist/${BING_INDEXNOW_KEY}.txt" ]; then
-            echo "::error::Arquivo dist/${BING_INDEXNOW_KEY}.txt ausente — build não publicou a verificação IndexNow."
+          if [ ! -f ".output/public/${BING_INDEXNOW_KEY}.txt" ]; then
+            echo "::error::Arquivo .output/public/${BING_INDEXNOW_KEY}.txt ausente — build não publicou a verificação IndexNow."
             exit 1
           fi
-          CONTENT=$(cat "dist/${BING_INDEXNOW_KEY}.txt")
+          CONTENT=$(cat ".output/public/${BING_INDEXNOW_KEY}.txt")
           if [ "$CONTENT" != "$BING_INDEXNOW_KEY" ]; then
             echo "::error::Conteúdo do arquivo de verificação IndexNow não bate com a chave."
             exit 1

@@ -51,7 +51,7 @@ const SECTIONS: { id: string; title: string; paragraphs: string[]; list?: string
       "Dois orçamentos só são comparáveis quando descrevem o mesmo escopo. É comum receber um valor menor que exclui deslocamento, backup, limpeza interna ou reinstalação de programas — itens que reaparecem no fim como cobrança adicional.",
       "Antes de comparar números, iguale o escopo. Pergunte se o valor cobre diagnóstico, mão de obra, deslocamento e teste final; se a peça está inclusa ou é orçada à parte; e se há custo de retorno caso o sintoma volte dentro da garantia.",
       "Outra distorção comum é comparar visita com bancada. Uma visita técnica resolve o que pode ser feito no local; uma análise em bancada envolve retirada, testes com instrumentos e recolocação. São serviços diferentes e naturalmente têm valores diferentes.",
-      "No nosso atendimento, a visita técnica com diagnóstico parte de R$ 99,99 e o valor do serviço é sempre apresentado e aprovado antes de qualquer execução. Quando o caso exige análise em bancada com retirada do equipamento, a coleta parte de R$ 299,99.",
+      "No nosso atendimento, a visita de inspeção custa R$ 99,99 e o valor do serviço é sempre apresentado e aprovado antes de qualquer execução. Quando o caso exige análise em bancada com retirada do equipamento, a coleta parte de R$ 299,99.",
     ],
   },
   {

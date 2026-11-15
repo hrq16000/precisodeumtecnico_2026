@@ -19,7 +19,7 @@ const STEPS = [
   {
     icon: ClipboardList,
     title: "2. Você vê a faixa de preço antes de decidir",
-    text: "Com o sintoma classificado, a própria triagem indica o caminho: visita técnica (a partir de R$ 99,99) ou coleta para bancada (R$ 299,99). A faixa completa por tipo de serviço fica na página de preços e condições, sem valor escondido.",
+    text: "Com o sintoma classificado, a própria triagem indica o caminho: visita de inspeção (R$ 99,99 por até 20 minutos) ou coleta para bancada (R$ 299,99). A faixa completa por tipo de serviço fica na página de preços e condições, sem valor escondido.",
   },
   {
     icon: Wrench,
@@ -42,7 +42,7 @@ const FAQ = [
   {
     question: "Como sei quanto vou pagar antes de fechar?",
     answer:
-      "A triagem mostra qual modalidade se aplica ao seu caso — visita técnica a partir de R$ 99,99 ou coleta para bancada por R$ 299,99. O valor do reparo em si só é fechado depois do diagnóstico, sempre com aprovação sua antes da execução.",
+      "A triagem mostra qual modalidade se aplica ao seu caso — visita de inspeção por R$ 99,99 ou coleta para bancada por R$ 299,99. O valor do reparo em si só é fechado depois do diagnóstico, sempre com aprovação sua antes da execução.",
   },
   {
     question: "Como encontro um técnico que atenda o meu bairro?",

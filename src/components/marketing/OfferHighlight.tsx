@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { Zap } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { cn } from "@/lib/utils";
@@ -19,7 +20,7 @@ interface OfferHighlightProps {
  * Faixa amarela de destaque da oferta âncora.
  *
  * Hierarquia visual obrigatória (memória do projeto):
- *   1. Preço R$ 99,99 / 30 min  (foreground máximo)
+ *   1. Preço da visita de inspeção  (foreground máximo)
  *   2. Link "Termos e Condições" ancorado em /termos-orcamento#visita-99
  *      diretamente abaixo do preço.
  *
@@ -55,7 +56,7 @@ export function OfferHighlight({
     <aside
       data-component="offer-highlight"
       data-service={serviceSlug}
-      aria-label="Oferta visita técnica R$ 99,99"
+      aria-label={PRICING.technicalVisit.label}
       className={cn(
         "relative overflow-hidden rounded-2xl border border-primary/60 bg-primary text-primary-foreground shadow-lg",
         variant === "full" ? "p-6 sm:p-8" : "p-4",
@@ -84,10 +85,10 @@ export function OfferHighlight({
             {/* (1) PREÇO — hierarquia máxima */}
             <p className="flex items-baseline gap-2 font-display">
               <span className="text-3xl font-extrabold leading-none sm:text-4xl">
-                R$&nbsp;99,99
+                {PRICING.technicalVisit.priceLabel}
               </span>
               <span className="text-sm font-semibold opacity-90 sm:text-base">
-                / visita técnica de 30 min
+                / inspeção de até {PRICING.technicalVisit.durationMinutes} min
               </span>
             </p>
 

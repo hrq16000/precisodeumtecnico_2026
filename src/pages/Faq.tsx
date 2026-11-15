@@ -33,7 +33,7 @@ const FAQ_GROUPS: FaqGroup[] = [
     intro: "Como começa o atendimento, quanto custa a visita e em quanto tempo o serviço anda.",
     items: [
       { q: "Como funciona o atendimento?", a: `Você preenche a triagem online (fotos e vídeos obrigatórios). Nossa equipe avalia, retorna com escopo, prazo e valor pré-aprovado. ${COMMERCIAL.triageRequirement}` },
-      { q: "Qual o valor mínimo da visita técnica?", a: `${PRICING.technicalVisit.priceLabel} por bloco de até 30 minutos, limitado a 2 horas. Valor abatido em caso de fechamento.` },
+      { q: "Qual o valor mínimo da visita técnica?", a: PRICING.technicalVisit.description },
       { q: "E o diagnóstico em bancada?", a: `${PRICING.benchDiagnosis.priceLabel} — ${PRICING.benchDiagnosis.description}` },
       { q: "Como funciona a coleta e entrega?", a: PRICING.pickupDelivery.description },
       { q: "Qual o prazo do atendimento?", a: `Mínimo de ${SLA.minLabel}, podendo chegar a ${SLA.maxLabel} conforme complexidade, peças e logística. ${SLA.disclaimer}` },

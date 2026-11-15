@@ -46,7 +46,7 @@ const WARRANTY_OUT = [
 const FAQ = [
   {
     question: "Qual é o valor mínimo cobrado?",
-    answer: `Diagnóstico em bancada e visita técnica partem de ${PRICING.benchDiagnosis.priceLabel} por bloco de até 30 minutos. Atendimento com coleta e entrega tem valor mínimo pré-aprovado de ${PRICING.pickupDelivery.priceLabel}.`,
+    answer: `${PRICING.benchDiagnosis.description} ${PRICING.technicalVisit.description} Atendimento com coleta e entrega tem valor mínimo pré-aprovado de ${PRICING.pickupDelivery.priceLabel}.`,
   },
   {
     question: "O preço pode mudar depois do orçamento?",

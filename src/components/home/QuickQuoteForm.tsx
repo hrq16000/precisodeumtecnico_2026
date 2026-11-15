@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { useState } from "react";
 import { TermsDialog } from "@/components/TermsDialog";
 import { TERMS_SOURCE } from "@/lib/termsSource";
@@ -86,7 +87,7 @@ export function QuickQuoteForm() {
       category: SERVICE_TO_CATEGORY[formData.service],
     });
 
-    toast.success("Abrindo triagem técnica — valor mínimo confirmado: R$ 99,99.");
+    toast.success("Abrindo triagem técnica para definir a modalidade.");
     setIsLoading(false);
     setAcceptedTerms(false);
     setFormData({ name: "", phone: "", service: "", description: "" });
@@ -210,7 +211,7 @@ export function QuickQuoteForm() {
             </div>
 
             <p className="text-center text-sm text-muted-foreground mt-4">
-              💬 Atendimento 100% via funil técnico — valor mínimo de visita: <strong>R$ 99,99</strong> (30 min).
+              {PRICING.technicalVisit.description} {PRICING.demandService.description}
             </p>
           </form>
         </div>

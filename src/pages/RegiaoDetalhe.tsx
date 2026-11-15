@@ -383,7 +383,7 @@ const RegiaoDetalhe = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-1" />
-                      <span><strong>Preço justo:</strong> Visitas a partir de R$ 99,99 até 30 minutos</span>
+                      <span><strong>Preço justo:</strong> Visitas a partir de R$ 99,99 até 20 minutos</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-1" />

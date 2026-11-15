@@ -8,13 +8,13 @@
  *   - faixas ("R$ 150 a R$ 250") viram minPrice/maxPrice, nunca string;
  *   - "Sob consulta" NÃO gera Offer (preço inventado = claim falso);
  *   - min ≤ max e nenhum valor ≤ 0;
- *   - a visita mínima permanece R$ 99,99 e a coleta R$ 299,99.
+ *   - visita e coleta aparecem com os valores da política.
  *
  * Executar: bunx tsx scripts/check-price-schema.ts
  */
 import { readFileSync } from "node:fs";
 import { parsePriceBRL } from "../src/lib/priceSpec";
-import { COMMERCIAL_TERMS } from "../src/data/commercialTerms";
+import { PRICING } from "../src/data/pricingPolicy";
 
 const PAGE = "src/pages/Precos.tsx";
 const src = readFileSync(PAGE, "utf8");
@@ -26,7 +26,10 @@ if (!table) {
   process.exit(1);
 }
 
-const rows = [...table.matchAll(/\{\s*service:\s*"([^"]+)"[\s\S]*?price:\s*"([^"]+)"\s*\}/g)].map(
+const resolvedTable = table
+  .replace("PRICING.technicalVisit.label", JSON.stringify(PRICING.technicalVisit.label))
+  .replace("PRICING.technicalVisit.priceLabel", JSON.stringify(PRICING.technicalVisit.priceLabel));
+const rows = [...resolvedTable.matchAll(/\{\s*service:\s*"([^"]+)"[\s\S]*?price:\s*"([^"]+)"\s*\}/g)].map(
   (m) => ({ service: m[1], price: m[2] }),
 );
 if (rows.length === 0) errors.push("priceTable sem linhas reconhecíveis");
@@ -61,8 +64,8 @@ if (/priceSpecification[\s\S]{0,120}price:\s*r\.price/.test(src)) {
 }
 
 // Âncoras comerciais
-const visita = COMMERCIAL_TERMS.diagnosisFee?.priceLabel ?? "R$ 99,99";
-if (!table.includes(visita)) {
+const visita = PRICING.technicalVisit.priceLabel;
+if (!rows.some((row) => row.service === PRICING.technicalVisit.label && row.price === visita)) {
   errors.push(`priceTable não contém a taxa de visita oficial ${visita}`);
 }
 if (!table.includes("R$ 299,99")) {

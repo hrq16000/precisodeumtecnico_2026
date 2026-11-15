@@ -72,7 +72,7 @@ export const SYMPTOMS: Symptom[] = [
     shortDescription: "Pode ser fonte, bateria, BIOS ou chip de alimentação na placa.",
     faq: [
       { q: "Vale a pena consertar notebook antigo?", a: "Avaliamos sem compromisso. Se o orçamento passar de 60% do valor de mercado, indicamos não reparar." },
-      { q: "Faz a domicílio?", a: "Diagnóstico inicial em visita (R$ 99,99). Reparo de placa é sempre em bancada." },
+      { q: "Faz a domicílio?", a: "Inspeção inicial em visita (R$ 99,99). Reparo de placa é sempre em bancada." },
     ],
     triage: { mode: "visita", ticketMin: 150, ticketMax: 1200, slaMinDays: 1, slaMaxDays: 15, mediaRequired: false },
   },

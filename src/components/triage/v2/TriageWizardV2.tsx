@@ -1,3 +1,4 @@
+import { PRICING as SITE_PRICING } from "@/data/pricingPolicy";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2, Zap, X, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -688,10 +689,7 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
               <li><strong>Prazo:</strong> {pricing.slaText}</li>
               {pricing.route === "visita" && (
                 <li className="text-xs text-muted-foreground">
-                  R$ {PRICING.visitaFee.toFixed(2).replace(".", ",")} por até {PRICING.visitaWindowMinutes} minutos.
-                  Cada novo período de até {PRICING.visitaWindowMinutes} minutos pode gerar nova cobrança de
-                  R$ {PRICING.visitaFee.toFixed(2).replace(".", ",")}, limitado a 4 blocos (2 horas).
-                  A visita não garante reparo; peças não inclusas.
+                  A execução por demanda exige aprovação. {SITE_PRICING.demandService.description}
                 </li>
               )}
               {pricing.route === "coleta" && (
@@ -768,10 +766,8 @@ export function TriageWizardV2({ source = "triagem", onClose }: Props) {
                     onCheckedChange={(v) => dispatch({ type: "TOGGLE_TERM", key: "visit", value: !!v })}
                   />
                   <span className="text-sm">
-                    Estou ciente de que a visita técnica para PC/Notebook custa <strong>R$ 99,99</strong> por
-                    até 30 minutos, e que cada novo período de até 30 minutos pode gerar nova cobrança de R$ 99,99,
-                    limitado a 4 blocos (2 horas). A visita não garante o reparo e peças não estão inclusas.
-                    Se for identificada necessidade de bancada, o atendimento será convertido em coleta e entrega.
+                    Estou ciente das condições. {SITE_PRICING.technicalVisit.description}
+                    Serviços adicionais exigem minha aprovação.
                   </span>
                 </label>
                 {errors.visit && <p role="alert" className="text-xs text-destructive">{errors.visit}</p>}

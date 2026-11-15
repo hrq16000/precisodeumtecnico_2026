@@ -28,7 +28,7 @@ const MODALITIES: Record<
   visita: {
     label: "Visita técnica",
     headline: "Visita técnica registrada — vamos confirmar a agenda",
-    body: `A visita/diagnóstico é de ${COMMERCIAL_TERMS.diagnosisFee.priceLabel} por bloco de até 30 minutos. Se o serviço exigir bancada, seguimos para coleta (${PRICING.pickupDelivery.priceLabel}), sempre com sua aprovação.`,
+    body: `${PRICING.technicalVisit.description} Diagnóstico em bancada: ${COMMERCIAL_TERMS.diagnosisFee.priceLabel}. Se o serviço exigir bancada, seguimos para coleta (${PRICING.pickupDelivery.priceLabel}), sempre com sua aprovação.`,
     icon: Wrench,
     next: [
       "Confirme bairro, referência e horário no WhatsApp.",

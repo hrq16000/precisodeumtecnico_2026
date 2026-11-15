@@ -33,14 +33,13 @@ export interface ServiceStandard {
 const BASE = {
   startingPriceBRL: PRICING.technicalVisit.priceBRL,
   startingPriceLabel: PRICING.technicalVisit.priceLabel,
-  startingPriceNote:
-    "Valor por bloco de até 30 minutos de visita técnica, limitado a 2 horas (4 blocos). Abatido no fechamento do serviço.",
-  diagnosisDurationLabel: "até 30 minutos (bloco inicial de diagnóstico)",
+  startingPriceNote: PRICING.technicalVisit.description,
+  diagnosisDurationLabel: `até ${PRICING.technicalVisit.durationMinutes} minutos de inspeção`,
   executionSlaLabel: SLA.minLabel,
 } as const;
 
 const COMMON_SURCHARGES = [
-  "Blocos adicionais de 30 minutos além do primeiro, dentro do limite de 2 horas.",
+  "Trabalho fora da inspeção mediante orçamento e aprovação.",
   "Peças, componentes e materiais, orçados à parte e só após aprovação.",
   `Coleta e entrega personalizada no endereço: ${PRICING.pickupDelivery.priceLabel}.`,
   "Deslocamento fora de Curitiba e Região Metropolitana, conforme distância.",

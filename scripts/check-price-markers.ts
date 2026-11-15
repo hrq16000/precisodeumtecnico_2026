@@ -1,12 +1,12 @@
 /**
- * Gate de PR: garante que a fonte única comercial (R$ 99,99 visita/bancada e
+ * Gate de PR: garante que a fonte única comercial (R$ 99,99 visita e bancada e
  * R$ 299,99 coleta) está intacta e que nenhum marcador legado voltou.
  *
  * Complementa scripts/check-no-bancada-legacy.ts:
  *  1. src/data/commercialTerms.ts e src/data/pricingPolicy.ts precisam existir
  *     e conter os valores oficiais;
  *  2. nenhum arquivo público pode citar taxa de diagnóstico/visita diferente
- *     de R$ 99,99 (ex.: "taxa de R$ 120", "visita R$ 150");
+ *     dos valores oficiais (ex.: "taxa de R$ 120", "visita R$ 150");
  *  3. marcadores de telemetria legados continuam proibidos.
  *
  * Uso: bunx tsx scripts/check-price-markers.ts
@@ -81,4 +81,4 @@ if (problems.length) {
   for (const p of problems) console.error(`  ✗ ${p}`);
   process.exit(1);
 }
-console.log("[price-markers] OK — fonte única R$ 99,99 / R$ 299,99 íntegra, sem marcadores legados.");
+console.log("[price-markers] OK — fonte única íntegra, sem marcadores legados.");

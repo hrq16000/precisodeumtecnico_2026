@@ -27,6 +27,9 @@ test.describe("/precos — estimativa rápida em 3 perguntas", () => {
     await card.locator("[data-estimate-equipment='cftv']").click();
     await card.locator("[data-estimate-mode='bancada']").click();
     await card.locator("[data-estimate-urgency='prioridade']").click();
-    await expect(card.locator("[data-estimate-result]")).toContainText("Visita técnica");
+    const result = card.locator("[data-estimate-result]");
+    await expect(result).toContainText("Visita técnica");
+    await expect(result.locator("[data-estimate-price]")).toHaveText("R$ 99,99");
+    await expect(result).toContainText("até 20 minutos");
   });
 });

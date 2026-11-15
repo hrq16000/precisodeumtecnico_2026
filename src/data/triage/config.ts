@@ -1,3 +1,4 @@
+import { PRICING as SITE_PRICING } from "@/data/pricingPolicy";
 /**
  * Configuração central do funil de triagem (Rodada 26).
  *
@@ -59,8 +60,8 @@ export const LIGHT_SYMPTOMS_BY_EQUIPMENT: Partial<Record<EquipmentId, readonly s
 
 /** Preços mínimos e regras de negócio da rodada 26. */
 export const PRICING = {
-  visitaFee: 99.99,
-  visitaWindowMinutes: 30,
+  visitaFee: SITE_PRICING.technicalVisit.priceBRL,
+  visitaWindowMinutes: SITE_PRICING.technicalVisit.durationMinutes,
   coletaMin: 299.99,
   coletaAutoApprovedCap: 300, // até este valor não exige nova autorização
   cancelDiagnosticFee: 99.99,
@@ -119,7 +120,7 @@ export function routeExplanation(route: ServiceRoute, equipmentId?: EquipmentId)
     case "remoto":
       return "Pelas informações fornecidas, o serviço pode ser compatível com atendimento remoto, pois o computador está funcionando e a solicitação envolve instalação ou configuração. A confirmação será feita no WhatsApp.";
     case "visita":
-      return "Pelas informações fornecidas, seu caso pode ser avaliado por visita técnica. O atendimento custa R$ 99,99 por até 30 minutos. Se for identificada necessidade de bancada, coleta ou peças, você será informado antes.";
+      return SITE_PRICING.technicalVisit.description;
     case "coleta":
     default:
       return equipmentId === "tv"

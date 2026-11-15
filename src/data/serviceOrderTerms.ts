@@ -16,7 +16,7 @@ export const VISIT_TERMS: TermGroup[] = [
     id: "escopo",
     title: "Escopo e valor da visita técnica",
     items: [
-      `Visita válida para serviços rápidos (até 30 minutos), montagem ou inspeção presencial para orçamento. Valor: ${PRICING.technicalVisit.priceLabel} por bloco de até 30 minutos.`,
+      PRICING.technicalVisit.description,
       "Para reparo rápido ou upgrade, o equipamento precisa estar FUNCIONANDO (ligando e montado) no momento da visita.",
       "Não existe garantia de solução imediata para defeitos que não podem ser diagnosticados pelo WhatsApp: a visita serve para inspeção visual e tátil.",
       "Se a inspeção indicar necessidade de laboratório, o atendimento migra para coleta, com termos próprios.",

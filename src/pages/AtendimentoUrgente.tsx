@@ -34,7 +34,7 @@ const FAQ = [
   {
     question: "Urgência tem custo adicional?",
     answer:
-      "A taxa de deslocamento segue a mesma política publicada: visita técnica a partir de R$ 99,99 por bloco de até 30 minutos e coleta com entrega a partir de R$ 299,99. Encaixes fora de rota podem exigir aprovação específica, sempre informada antes.",
+      "A taxa de deslocamento segue a mesma política publicada: visita técnica a partir de R$ 99,99 por até 20 minutos e coleta com entrega a partir de R$ 299,99. Encaixes fora de rota podem exigir aprovação específica, sempre informada antes.",
   },
   {
     question: "Qual informação acelera o atendimento urgente?",

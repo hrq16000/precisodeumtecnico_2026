@@ -34,7 +34,7 @@ interface Row {
 }
 
 const priceTable: Row[] = [
-  { service: "Visita técnica + diagnóstico (até 30 min)", example: "Avaliação no local, abatida do orçamento", price: "R$ 99,99" },
+  { service: PRICING.technicalVisit.label, example: "Avaliação no local, abatida do orçamento quando aprovado", price: PRICING.technicalVisit.priceLabel },
   { service: "Diagnóstico em bancada (até 30 min)", example: "No nosso endereço, abatido em caso de fechamento", price: "R$ 99,99" },
   { service: "Coleta e entrega personalizada (até 2h)", example: "Valor mínimo pré-aprovado; varia por distância", price: "A partir de R$ 299,99" },
   { service: "Formatação de PC/Notebook", example: "Windows 11 com backup e drivers", price: "R$ 150 a R$ 250" },
@@ -62,7 +62,7 @@ const priceTable: Row[] = [
 
 const faqs = [
   { question: "Os preços são fixos?", answer: "São faixas reais praticadas em Curitiba e região metropolitana. Após a visita técnica, formalizamos um orçamento por escrito antes de iniciar qualquer serviço — sem surpresas." },
-  { question: "A visita técnica é cobrada mesmo se eu não aprovar?", answer: "A visita é R$ 99,99 e cobre deslocamento + diagnóstico. Se o serviço for aprovado, esse valor é abatido do orçamento final." },
+  { question: "A visita técnica é cobrada mesmo se eu não aprovar?", answer: PRICING.technicalVisit.description },
   { question: "Como é documentado o serviço?", answer: "O valor é informado por escrito antes da execução e a garantia é definida conforme o serviço realizado. Peças, componentes ou materiais adicionais são orçados separadamente e só seguem com sua aprovação." },
   { question: "Atendem aos finais de semana?", answer: "Sim, com agendamento 24 horas via WhatsApp. Atendimento presencial 8h às 22h, com chamados emergenciais 24h." },
   { question: "Quais são os prazos?", answer: COMMERCIAL_TERMS.minimumQueueText + " " + SLA.disclaimer },
@@ -127,7 +127,7 @@ export default function Precos() {
     <Layout>
       <SEOHead
         title="Preços de Assistência Técnica em Curitiba"
-        description="Tabela completa e transparente de preços: informática, redes Wi-Fi, CFTV, elétrica, ar-condicionado e celulares. Visita a partir de R$ 99,99."
+        description="Tabela completa e transparente de preços: informática, redes Wi-Fi, CFTV, elétrica, ar-condicionado e celulares. Visita de inspeção de até 20 minutos."
         canonical={url}
         ogImage={ogImage}
         keywords="preço técnico curitiba, tabela de preços assistência técnica, quanto custa técnico"
@@ -140,8 +140,10 @@ export default function Precos() {
             <Badge variant="secondary" className="mb-3">Preços transparentes</Badge>
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-3">Tabela de preços 2026</h1>
             <p className="text-lg text-background/80 max-w-2xl reading-width">
-              Faixas reais praticadas em Curitiba e Região Metropolitana. Visita técnica + diagnóstico a partir de
-              R$ 99,99 — abatido do orçamento se aprovado.
+              {PRICING.technicalVisit.description}
+            </p>
+            <p className="mt-3 text-background/80 max-w-2xl reading-width">
+              {PRICING.demandService.description}
             </p>
             {/* Rodada 3P — CTA na primeira dobra, mesmo fluxo de triagem. */}
             <div className="mt-6">

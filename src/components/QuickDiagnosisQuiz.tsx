@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { useState, useEffect } from "react";
 import { TermsDialog } from "@/components/TermsDialog";
 import { TERMS_SOURCE } from "@/lib/termsSource";
@@ -332,7 +333,7 @@ export function QuickDiagnosisQuiz({ city, bairro }: QuickDiagnosisQuizProps = {
         </Card>
 
         <p className="text-xs text-muted-foreground text-center mt-4">
-          *Diagnóstico orientativo. O valor final é definido após visita técnica (R$ 99,99, abatida na execução).{" "}
+          *Resultado orientativo. {PRICING.technicalVisit.description}{" "}
           <TermsDialog
             source={TERMS_SOURCE.quiz}
             triggerLabel="Termos de Orçamento Pré-Aprovado"
