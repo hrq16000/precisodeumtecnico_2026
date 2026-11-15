@@ -29,7 +29,8 @@ test.describe("/precos — estimativa rápida em 3 perguntas", () => {
     await card.locator("[data-estimate-urgency='prioridade']").click();
     const result = card.locator("[data-estimate-result]");
     await expect(result).toContainText("Visita técnica");
-    await expect(result.locator("[data-estimate-price]")).toHaveText("R$ 99,99");
+    await expect(result.locator("[data-estimate-price]")).toHaveText("A partir de R$ 99,99");
     await expect(result).toContainText("até 20 minutos");
+    await expect(result).toContainText("tolerância até 30 minutos no total");
   });
 });

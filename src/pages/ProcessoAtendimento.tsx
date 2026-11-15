@@ -27,7 +27,7 @@ const STEPS: Step[] = [
     text:
       "A equipe analisa o registro, classifica a urgência e confirma se o caso é visita no local, bancada ou coleta.",
     detail:
-      `Casos leves resolvem em visita técnica (${PRICING.technicalVisit.priceLabel} por até 20 minutos). Equipamentos que exigem bancada seguem para coleta e entrega, com valor mínimo pré-aprovado de ${PRICING.pickupDelivery.priceLabel}.`,
+      `Casos leves resolvem em visita técnica (${PRICING.technicalVisit.startingPriceLabel}, ${PRICING.technicalVisit.timeLabel}). Equipamentos que exigem bancada seguem para coleta e entrega, com valor mínimo pré-aprovado de ${PRICING.pickupDelivery.priceLabel}.`,
   },
   {
     name: "3. Diagnóstico técnico",
@@ -65,7 +65,7 @@ const FAQ = [
   },
   {
     question: "Quanto custa o diagnóstico?",
-    answer: `Diagnóstico em bancada: ${PRICING.benchDiagnosis.priceLabel}, abatido em caso de fechamento. Visita técnica no seu endereço: ${PRICING.technicalVisit.priceLabel} por até 20 minutos.`,
+    answer: `Diagnóstico em bancada: ${PRICING.benchDiagnosis.priceLabel}, abatido em caso de fechamento. Visita técnica no seu endereço: ${PRICING.technicalVisit.startingPriceLabel}, ${PRICING.technicalVisit.timeLabel}.`,
   },
   {
     question: "O orçamento já inclui as peças?",

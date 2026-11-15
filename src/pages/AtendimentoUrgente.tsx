@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/lib/router-compat";
 import { Clock, Zap, ShieldCheck, MessageCircle, ArrowRight } from "lucide-react";
@@ -34,7 +35,7 @@ const FAQ = [
   {
     question: "Urgência tem custo adicional?",
     answer:
-      "A taxa de deslocamento segue a mesma política publicada: visita técnica a partir de R$ 99,99 por até 20 minutos e coleta com entrega a partir de R$ 299,99. Encaixes fora de rota podem exigir aprovação específica, sempre informada antes.",
+      `A taxa de deslocamento segue a mesma política publicada: visita técnica a partir de R$ 99,99, ${PRICING.technicalVisit.timeLabel} e coleta com entrega a partir de R$ 299,99. Encaixes fora de rota podem exigir aprovação específica, sempre informada antes.`,
   },
   {
     question: "Qual informação acelera o atendimento urgente?",

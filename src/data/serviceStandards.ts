@@ -34,7 +34,7 @@ const BASE = {
   startingPriceBRL: PRICING.technicalVisit.priceBRL,
   startingPriceLabel: PRICING.technicalVisit.priceLabel,
   startingPriceNote: PRICING.technicalVisit.description,
-  diagnosisDurationLabel: `até ${PRICING.technicalVisit.durationMinutes} minutos de inspeção`,
+  diagnosisDurationLabel: PRICING.technicalVisit.timeLabel,
   executionSlaLabel: SLA.minLabel,
 } as const;
 

@@ -23,7 +23,7 @@ export const COLLECTION_ONLY_POLICY = {
     "Videogames, consoles, controles, tablets e equipamentos similares são atendidos apenas com coleta e entrega no endereço do cliente. Não temos balcão de atendimento ao público e não recebemos equipamento sem triagem prévia.",
   bullets: [
     `Coleta e entrega personalizada: valor mínimo pré-aprovado de ${COMMERCIAL_TERMS.preApprovedBudget.minLabel}, sem incluir peças, componentes ou materiais adicionais.`,
-    `Diagnóstico em bancada: ${COMMERCIAL_TERMS.diagnosisFee.priceLabel}. Visita de inspeção de até 20 minutos: R$ 99,99.`,
+    `Diagnóstico em bancada: ${COMMERCIAL_TERMS.diagnosisFee.priceLabel}. ${PRICING.technicalVisit.description}`,
     COMMERCIAL_TERMS.cancellationText,
     COMMERCIAL_TERMS.minimumQueueText,
     PRICING.pickupDelivery.description,
@@ -40,7 +40,7 @@ export const COLLECTION_ONLY_POLICY = {
     },
     {
       question: "E se eu quiser só o diagnóstico?",
-      answer: `O diagnóstico em bancada custa ${COMMERCIAL_TERMS.diagnosisFee.priceLabel}. A visita de inspeção dura até 20 minutos e custa R$ 99,99. ${COMMERCIAL_TERMS.cancellationText}`,
+      answer: `O diagnóstico em bancada custa ${COMMERCIAL_TERMS.diagnosisFee.priceLabel}. ${PRICING.technicalVisit.description} ${COMMERCIAL_TERMS.cancellationText}`,
     },
   ] as const,
 } as const;

@@ -46,7 +46,7 @@ for (const slug of curated) {
   if (std.executionSlaLabel !== SLA.minLabel) {
     errors.push(`"${slug}": prazo "${std.executionSlaLabel}" ≠ SLA oficial "${SLA.minLabel}"`);
   }
-  const visitDuration = `até ${PRICING.technicalVisit.durationMinutes} minutos de inspeção`;
+  const visitDuration = PRICING.technicalVisit.timeLabel;
   if (std.diagnosisDurationLabel !== visitDuration) {
     errors.push(`"${slug}": duração da inspeção diverge da política (${visitDuration})`);
   }

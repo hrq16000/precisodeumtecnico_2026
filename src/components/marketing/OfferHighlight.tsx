@@ -83,12 +83,13 @@ export function OfferHighlight({
             )}
 
             {/* (1) PREÇO — hierarquia máxima */}
-            <p className="flex items-baseline gap-2 font-display">
+            <p className="flex flex-wrap items-baseline gap-x-2 font-display">
+              <span className="text-sm font-semibold">A partir de</span>
               <span className="text-3xl font-extrabold leading-none sm:text-4xl">
                 {PRICING.technicalVisit.priceLabel}
               </span>
               <span className="text-sm font-semibold opacity-90 sm:text-base">
-                / inspeção de até {PRICING.technicalVisit.durationMinutes} min
+                {PRICING.technicalVisit.timeLabel}
               </span>
             </p>
 

@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -168,7 +169,7 @@ export default function AbrirOrdemServico() {
                       value: "visita" as OsMode,
                       icon: Wrench,
                       title: "Visita técnica",
-                      desc: "Inspeção presencial de até 20 minutos, com ajustes simples quando couberem.",
+                      desc: PRICING.technicalVisit.description,
                     },
                     {
                       value: "coleta" as OsMode,

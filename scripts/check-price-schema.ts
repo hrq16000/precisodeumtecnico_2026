@@ -28,7 +28,7 @@ if (!table) {
 
 const resolvedTable = table
   .replace("PRICING.technicalVisit.label", JSON.stringify(PRICING.technicalVisit.label))
-  .replace("PRICING.technicalVisit.priceLabel", JSON.stringify(PRICING.technicalVisit.priceLabel));
+  .replace("PRICING.technicalVisit.startingPriceLabel", JSON.stringify(PRICING.technicalVisit.startingPriceLabel));
 const rows = [...resolvedTable.matchAll(/\{\s*service:\s*"([^"]+)"[\s\S]*?price:\s*"([^"]+)"\s*\}/g)].map(
   (m) => ({ service: m[1], price: m[2] }),
 );
@@ -64,7 +64,7 @@ if (/priceSpecification[\s\S]{0,120}price:\s*r\.price/.test(src)) {
 }
 
 // Âncoras comerciais
-const visita = PRICING.technicalVisit.priceLabel;
+const visita = PRICING.technicalVisit.startingPriceLabel;
 if (!rows.some((row) => row.service === PRICING.technicalVisit.label && row.price === visita)) {
   errors.push(`priceTable não contém a taxa de visita oficial ${visita}`);
 }

@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { Link } from "@/lib/router-compat";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -65,7 +66,7 @@ const FAQ = [
   {
     question: "O deslocamento tem custo?",
     answer:
-      "A visita técnica de inspeção custa R$ 99,99 e dura até 20 minutos. A coleta para bancada é de R$ 299,99 e inclui retirada e devolução do equipamento.",
+      `Visita técnica de inspeção: ${PRICING.technicalVisit.startingPriceLabel}, ${PRICING.technicalVisit.timeLabel}. A coleta para bancada é de R$ 299,99 e inclui retirada e devolução do equipamento.`,
   },
   {
     question: "Consigo confirmar o bairro sem ligar?",

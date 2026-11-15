@@ -83,7 +83,7 @@ const TermosOrcamento = () => {
               <div className="grid md:grid-cols-3 gap-4 my-6" id="visita-99">
                 <div className="bg-primary/5 border-2 border-primary/20 rounded-xl p-5 text-center">
                   <p className="text-xs text-muted-foreground mb-1">{PRICING.technicalVisit.label}</p>
-                  <p className="text-3xl font-bold text-primary">{PRICING.technicalVisit.priceLabel}</p>
+                  <p className="text-3xl font-bold text-primary">{PRICING.technicalVisit.startingPriceLabel}</p>
                   <p className="text-xs text-muted-foreground mt-1">no endereço do cliente</p>
                 </div>
                 <div className="bg-primary/5 border-2 border-primary/20 rounded-xl p-5 text-center">
@@ -275,7 +275,7 @@ const TermosOrcamento = () => {
                     <Clock className="h-5 w-5 text-primary shrink-0" />
                     <span className="font-medium text-foreground">Duração da visita de inspeção</span>
                   </div>
-                  <span className="font-bold text-primary text-sm md:text-base text-right">Até {PRICING.technicalVisit.durationMinutes} min</span>
+                  <span className="font-bold text-primary text-sm md:text-base text-right">{PRICING.technicalVisit.timeLabel}</span>
                 </div>
               </div>
 

@@ -74,7 +74,7 @@ function resolveResult(equipment: EquipmentId, mode: ModeId, urgency: UrgencyId)
         : route === "visita"
           ? "Visita técnica"
           : "Coleta e entrega personalizada",
-    priceLabel: base.priceLabel,
+    priceLabel: route === "visita" ? PRICING.technicalVisit.startingPriceLabel : base.priceLabel,
     description: forcedOnSite
       ? `Esse tipo de serviço é executado no local: ${base.description}`
       : base.description,

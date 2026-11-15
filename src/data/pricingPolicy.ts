@@ -4,6 +4,11 @@
  * Alterar aqui reflete no site inteiro sem risco de divergência.
  */
 
+const visitPriceLabel = "R$ 99,99";
+const visitDurationMinutes = 20;
+const visitToleranceMinutes = 30;
+const visitTimeLabel = `até ${visitDurationMinutes} minutos de inspeção, com tolerância até ${visitToleranceMinutes} minutos no total`;
+
 export const PRICING = {
   /** Diagnóstico em bancada — cliente entrega/retira em nosso endereço */
   benchDiagnosis: {
@@ -14,13 +19,15 @@ export const PRICING = {
       "Diagnóstico em bancada, até 30 minutos, no nosso endereço. Valor abatido em caso de fechamento.",
   },
   technicalVisit: {
-    label: "Visita técnica de inspeção (até 20 min)",
+    label: "Visita técnica de inspeção",
     priceBRL: 99.99,
-    priceLabel: "R$ 99,99",
+    priceLabel: visitPriceLabel,
+    startingPriceLabel: `A partir de ${visitPriceLabel}`,
     minPriceBRL: 99.99,
-    durationMinutes: 20,
+    durationMinutes: visitDurationMinutes,
+    timeLabel: visitTimeLabel,
     description:
-      "Visita de inspeção de até 20 minutos por R$ 99,99. Inclui avaliação no local e ajustes simples compatíveis com a inspeção. O valor é abatido se você aprovar o serviço.",
+      `Visita técnica a partir de ${visitPriceLabel}: ${visitTimeLabel}. A tolerância faz parte da mesma visita. O valor é confirmado antes do agendamento e abatido se você aprovar o serviço. A inspeção inclui avaliação no local e ajustes simples quando couberem. Serviços adicionais exigem aprovação prévia.`,
   },
 
   demandService: {

@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { useParams, Link } from "@/lib/router-compat";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -188,9 +189,9 @@ const RegiaoDetalhe = () => {
               {/* Price Badge */}
               <div className="flex flex-wrap items-center gap-4">
                 <div className="price-tag">
-                  A partir de R$ 99,99
+                  {PRICING.technicalVisit.startingPriceLabel}
                 </div>
-                <span className="text-white/70 text-sm">até 20 min de inspeção</span>
+                <span className="text-white/70 text-sm">{PRICING.technicalVisit.timeLabel}</span>
               </div>
 
               {/* Trust Indicators */}
@@ -383,7 +384,7 @@ const RegiaoDetalhe = () => {
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-1" />
-                      <span><strong>Preço justo:</strong> Visitas a partir de R$ 99,99 até 20 minutos</span>
+                      <span><strong>Preço justo:</strong> {PRICING.technicalVisit.startingPriceLabel}, {PRICING.technicalVisit.timeLabel}</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-1" />

@@ -34,7 +34,7 @@ interface Row {
 }
 
 const priceTable: Row[] = [
-  { service: PRICING.technicalVisit.label, example: "Avaliação no local, abatida do orçamento quando aprovado", price: PRICING.technicalVisit.priceLabel },
+  { service: PRICING.technicalVisit.label, example: PRICING.technicalVisit.timeLabel, price: PRICING.technicalVisit.startingPriceLabel },
   { service: "Diagnóstico em bancada (até 30 min)", example: "No nosso endereço, abatido em caso de fechamento", price: "R$ 99,99" },
   { service: "Coleta e entrega personalizada (até 2h)", example: "Valor mínimo pré-aprovado; varia por distância", price: "A partir de R$ 299,99" },
   { service: "Formatação de PC/Notebook", example: "Windows 11 com backup e drivers", price: "R$ 150 a R$ 250" },

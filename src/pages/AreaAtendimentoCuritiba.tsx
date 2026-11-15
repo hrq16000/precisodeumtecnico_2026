@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { Link } from "@/lib/router-compat";
 import { MapPin, Clock, Route, ArrowRight } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -24,7 +25,7 @@ const FAQ = [
   {
     question: "O deslocamento é cobrado à parte?",
     answer:
-      "A visita técnica custa a partir de R$ 99,99 por até 20 minutos, já considerando o atendimento no endereço. A coleta com entrega parte de R$ 299,99. Distâncias maiores dentro da Região Metropolitana podem alterar o valor, sempre informado antes da confirmação.",
+      `A visita técnica custa a partir de R$ 99,99, ${PRICING.technicalVisit.timeLabel}, já considerando o atendimento no endereço. A coleta com entrega parte de R$ 299,99. Distâncias maiores dentro da Região Metropolitana podem alterar o valor, sempre informado antes da confirmação.`,
   },
   {
     question: "Dá para agendar por janela de horário?",

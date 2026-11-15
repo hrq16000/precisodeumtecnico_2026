@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { CTASection } from "@/components/home/CTASection";
@@ -19,7 +20,7 @@ const STEPS = [
   {
     icon: ClipboardList,
     title: "2. Você vê a faixa de preço antes de decidir",
-    text: "Com o sintoma classificado, a própria triagem indica o caminho: visita de inspeção (R$ 99,99 por até 20 minutos) ou coleta para bancada (R$ 299,99). A faixa completa por tipo de serviço fica na página de preços e condições, sem valor escondido.",
+    text: `Com o sintoma classificado, a própria triagem indica o caminho: visita de inspeção (a partir de R$ 99,99, ${PRICING.technicalVisit.timeLabel}) ou coleta para bancada (R$ 299,99). A faixa completa por tipo de serviço fica na página de preços e condições, sem valor escondido.`,
   },
   {
     icon: Wrench,

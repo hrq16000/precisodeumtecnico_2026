@@ -111,7 +111,7 @@ export const KEYWORD_SERVICE_PAGES: KeywordServicePage[] = [
     ],
     averageTime: "2 a 4 horas em bancada (com backup, até 1 dia útil quando há muitos dados).",
     priceFrom: BENCH,
-    priceNote: `Diagnóstico em bancada por ${BENCH}, abatido no fechamento. Visita técnica a partir de ${VISIT} por até 20 minutos.`,
+    priceNote: `Diagnóstico em bancada por ${BENCH}, abatido no fechamento. Visita técnica a partir de ${VISIT} ${PRICING.technicalVisit.timeLabel}.`,
     warranty: WARRANTY,
     compare: [
       { aspect: "Tempo de inicialização", before: "2 a 5 minutos até abrir a área de trabalho", after: "15 a 30 segundos com SSD e sistema limpo" },
@@ -124,7 +124,7 @@ export const KEYWORD_SERVICE_PAGES: KeywordServicePage[] = [
       { question: "Vou perder meus arquivos na formatação?", answer: "Não. O backup é feito e conferido antes da formatação. Documentos, fotos, favoritos e perfis de e-mail voltam para a máquina após a instalação limpa." },
       { question: "Quanto tempo demora a formatação?", answer: "Entre 2 e 4 horas em bancada. Quando o volume de dados é grande, o prazo pode chegar a 1 dia útil por causa do backup e da restauração." },
       { question: "A formatação resolve vírus?", answer: "Na maioria dos casos, sim — a instalação limpa remove infecções persistentes. Se o objetivo é preservar o sistema atual, a remoção de vírus é a alternativa indicada." },
-      { question: "Vocês formatam na minha casa ou empresa?", answer: `Sim. A visita técnica em Curitiba e Região começa em ${VISIT} por até 20 minutos. Para formatação com backup extenso, a bancada costuma sair mais barata.` },
+      { question: "Vocês formatam na minha casa ou empresa?", answer: `Sim. A visita técnica em Curitiba e Região começa em ${VISIT} ${PRICING.technicalVisit.timeLabel}. Para formatação com backup extenso, a bancada costuma sair mais barata.` },
     ],
     relatedServices: [
       { label: "Remoção de vírus em Curitiba", to: "/remocao-de-virus-curitiba" },
@@ -440,7 +440,7 @@ export const KEYWORD_SERVICE_PAGES: KeywordServicePage[] = [
     ],
     averageTime: "Resposta remota em até 4 horas úteis; visita conforme criticidade acordada.",
     priceFrom: VISIT,
-    priceNote: `Visita técnica a partir de ${VISIT} por até 20 minutos. Contratos mensais são orçados conforme número de estações e escopo.`,
+    priceNote: `Visita técnica a partir de ${VISIT} ${PRICING.technicalVisit.timeLabel}. Contratos mensais são orçados conforme número de estações e escopo.`,
     warranty: WARRANTY,
     compare: [
       { aspect: "Chamados", before: "Resolvidos no improviso, sem registro", after: "Registro técnico e histórico por chamado" },
@@ -449,7 +449,7 @@ export const KEYWORD_SERVICE_PAGES: KeywordServicePage[] = [
       { aspect: "Custo", before: "Emergências caras e imprevisíveis", after: "Manutenção preventiva com custo previsível" },
     ],
     faq: [
-      { question: `Quanto custa o suporte de TI para empresas em Curitiba?`, answer: `Atendimento avulso a partir de ${VISIT} por até 20 minutos. Contratos mensais são orçados conforme número de estações, criticidade e escopo (rede, backup, CFTV).` },
+      { question: `Quanto custa o suporte de TI para empresas em Curitiba?`, answer: `Atendimento avulso a partir de ${VISIT} ${PRICING.technicalVisit.timeLabel}. Contratos mensais são orçados conforme número de estações, criticidade e escopo (rede, backup, CFTV).` },
       { question: "Vocês atendem empresas fora de Curitiba?", answer: "Sim. Atendimento presencial em Curitiba e Região Metropolitana, e suporte remoto para todo o Brasil dentro do horário de 08h às 22h." },
       { question: "Existe contrato de fidelidade?", answer: "Não trabalhamos com fidelidade obrigatória. O contrato define escopo e SLA; o encerramento segue o aviso prévio combinado." },
       { question: "Vocês cuidam também de CFTV e cabeamento?", answer: "Sim. CFTV, controle de acesso, cabeamento estruturado e elétrica de baixa tensão fazem parte do escopo corporativo." },
@@ -458,7 +458,7 @@ export const KEYWORD_SERVICE_PAGES: KeywordServicePage[] = [
       { question: "Vocês dão suporte a sistemas de terceiros (ERP, contábil, prontuário, sistema jurídico)?", answer: "Atuamos na camada de infraestrutura: instalação do cliente, permissões de pasta, banco local, impressão, rede e acesso remoto. Erros internos do software, atualização de versão e regras de negócio permanecem com o fornecedor do sistema — quando necessário, participamos do chamado junto ao suporte dele." },
       { question: "Como funciona o acesso remoto e quem autoriza?", answer: "A sessão só é aberta com autorização de um responsável da empresa, é acompanhada na tela e encerrada ao final. Registramos data, chamado e o que foi executado. Não mantemos acesso permanente sem contrato que preveja isso." },
       { question: "Vocês acessam contas de terceiros da empresa (banco, e-mail, sistema fiscal)?", answer: "Não solicitamos e não usamos senhas de banco. Em contas administrativas de sistemas ou e-mail, o acesso é feito pelo responsável da empresa durante a sessão, ou com credencial técnica fornecida por escrito por ele. A responsabilidade pelo conteúdo e pelas permissões dessas contas é do cliente." },
-      { question: "Qual a diferença entre atendimento avulso e contrato recorrente?", answer: `Avulso é por chamado, a partir de ${VISIT} por até 20 minutos, sem SLA garantido. Recorrente é mensal, com SLA por criticidade, manutenção preventiva, monitoramento de backup e relatório mensal.` },
+      { question: "Qual a diferença entre atendimento avulso e contrato recorrente?", answer: `Avulso é por chamado, a partir de ${VISIT} ${PRICING.technicalVisit.timeLabel}, sem SLA garantido. Recorrente é mensal, com SLA por criticidade, manutenção preventiva, monitoramento de backup e relatório mensal.` },
     ],
     businessTracks: [
       {
@@ -508,7 +508,7 @@ export const KEYWORD_SERVICE_PAGES: KeywordServicePage[] = [
     engagementModels: [
       {
         name: "Atendimento avulso (por chamado)",
-        howItWorks: `Você aciona pela triagem, descreve o problema e recebe o valor por escrito antes de começar. Cobrança a partir de ${VISIT} por até 20 minutos.`,
+        howItWorks: `Você aciona pela triagem, descreve o problema e recebe o valor por escrito antes de começar. Cobrança a partir de ${VISIT} ${PRICING.technicalVisit.timeLabel}.`,
         includes: [
           "Diagnóstico e execução do chamado aberto",
           "Registro técnico do que foi feito",

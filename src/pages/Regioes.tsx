@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 import { Link } from "@/lib/router-compat";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -295,7 +296,7 @@ const Regioes = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />
-                  <span><strong>Preço justo:</strong> Inspeção de até 20 minutos por R$ 99,99</span>
+                  <span><strong>Preço justo:</strong> {PRICING.technicalVisit.startingPriceLabel}, {PRICING.technicalVisit.timeLabel}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-success flex-shrink-0 mt-0.5" />

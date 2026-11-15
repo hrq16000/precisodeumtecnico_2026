@@ -1,3 +1,4 @@
+import { PRICING } from "@/data/pricingPolicy";
 export interface ServiceData {
   slug: string;
   title: string;
@@ -63,7 +64,7 @@ export const servicesData: Record<string, ServiceData> = {
       { step: 6, title: "Garantia por Escrito", description: "Receba garantia de 90 dias a 1 ano por escrito e nota fiscal" }
     ],
     pricing: [
-      { name: "Visita técnica de inspeção", price: "R$ 99,99", description: "Inspeção no local (até 20 min)" },
+      { name: PRICING.technicalVisit.label, price: PRICING.technicalVisit.startingPriceLabel, description: PRICING.technicalVisit.timeLabel },
       { name: "Formatação Completa", price: "A partir de R$ 150,00", description: "Windows + drivers + programas essenciais" },
       { name: "Formatação + Backup", price: "A partir de R$ 200,00", description: "Backup completo + formatação + restauração" },
       { name: "Limpeza Interna Completa", price: "A partir de R$ 80,00", description: "Limpeza + troca de pasta térmica premium" },
@@ -277,7 +278,7 @@ export const servicesData: Record<string, ServiceData> = {
       { step: 7, title: "Garantia por Escrito", description: "Garantia do serviço e nota fiscal" }
     ],
     pricing: [
-      { name: "Visita técnica de inspeção", price: "R$ 99,99", description: "Inspeção da instalação (até 20 min)" },
+      { name: PRICING.technicalVisit.label, price: PRICING.technicalVisit.startingPriceLabel, description: PRICING.technicalVisit.timeLabel },
       { name: "Instalação de Tomada", price: "A partir de R$ 60,00", description: "Tomada + espelho + instalação" },
       { name: "Instalação de Interruptor", price: "A partir de R$ 50,00", description: "Interruptor + instalação" },
       { name: "Instalação Chuveiro Elétrico", price: "A partir de R$ 120,00", description: "Instalação completa + disjuntor" },
