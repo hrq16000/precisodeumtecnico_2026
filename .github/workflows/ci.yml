@@ -7,7 +7,7 @@ on:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
@@ -145,7 +145,7 @@ jobs:
   performance-localidades:
     # Lighthouse por página de bairro/cidade + alerta de regressão após
     # mudanças de imagem ou layout.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     needs: verify
     steps:
@@ -175,7 +175,7 @@ jobs:
   post-deploy-smoke:
     # Smoke pós-deploy contra produção: index + todos os shards + amostra de
     # 50 URLs por shard, tudo precisa responder 200.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     needs: verify
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -240,7 +240,7 @@ jobs:
 
 
   security:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     needs: verify
     steps:
@@ -299,7 +299,7 @@ jobs:
 
   submit-sitemap-gsc:
     # Pinga o Google Search Console quando o sitemap muda em main.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: verify
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
@@ -335,7 +335,7 @@ jobs:
     # Requer secrets do repo: SUPABASE_URL, SUPABASE_ANON_KEY.
     # A chave IndexNow em si vive como secret runtime (BING_INDEXNOW_KEY),
     # e o arquivo público /{KEY}.txt deve existir no domínio.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: verify
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
@@ -387,7 +387,7 @@ jobs:
 
 
   lighthouse:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     needs: verify
     steps:
