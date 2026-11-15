@@ -41,9 +41,9 @@ jobs:
         run: bun run check:legacy-price
       - name: Gate — fonte única R$ 99,99 / R$ 299,99 presente
         run: |
-          rg -q "99,99" src/data/pricingPolicy.ts || { echo "R$ 99,99 ausente da fonte única"; exit 1; }
-          rg -q "299,99" src/data/pricingPolicy.ts || { echo "R$ 299,99 ausente da fonte única"; exit 1; }
-          ! rg -n "bancada-90|taxa-90|visita-90|diagn[oó]stico-90" src e2e
+          grep -Fq "99,99" src/data/pricingPolicy.ts || { echo "R$ 99,99 ausente da fonte única"; exit 1; }
+          grep -Fq "299,99" src/data/pricingPolicy.ts || { echo "R$ 299,99 ausente da fonte única"; exit 1; }
+          if grep -rEn "bancada-90|taxa-90|visita-90|diagn[oó]stico-90" src e2e; then exit 1; fi
       - name: Gate — capacidade de montagem de PC (rota bloqueada sem prova)
         run: bun run check:pc-assembly-service
       - name: Otimização de fotos (WebP/AVIF)
@@ -255,7 +255,7 @@ jobs:
       - name: Guard — no service role in frontend
         run: |
           set -e
-          if rg -n "SUPABASE_SERVICE_ROLE_KEY|service_role|serviceRole" src/ 2>&1 | rg -v "supabase/functions/"; then
+          if grep -rEn "SUPABASE_SERVICE_ROLE_KEY|service_role|serviceRole" src/; then
             echo "::error::Service role reference found in frontend code — must live only in edge functions."
             exit 1
           fi
@@ -266,7 +266,7 @@ jobs:
           # Coordenadas cruas só podem viver em SmartLocationPrompt (persistência
           # local) e reverseGeocode (helper). Aqui garantimos que analytics e
           # auditoria não recebem lat/lng — bucket qualitativo é permitido.
-          MATCHES=$(rg -n "latitude|longitude" src/lib/analytics.ts src/lib/waAudit.ts 2>/dev/null || true)
+          MATCHES=$(grep -En "latitude|longitude" src/lib/analytics.ts src/lib/waAudit.ts 2>/dev/null || true)
           if [ -n "$MATCHES" ]; then
             echo "::error::Raw GPS coords leaked into analytics/audit code:"
             echo "$MATCHES"
