@@ -18,14 +18,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { trackCtaClick } from "@/lib/analytics";
 
-import serviceComputer from "@/assets/service-computer.jpg";
-import serviceNotebook from "@/assets/service-notebook.jpg";
-import serviceCftv from "@/assets/service-cftv.jpg";
-import serviceEletrica from "@/assets/service-eletrica.jpg";
-import serviceRedes from "@/assets/service-redes.jpg";
-import serviceAr from "@/assets/service-arcondicionado.jpg";
-import serviceCelular from "@/assets/service-celular.jpg";
-import serviceGames from "@/assets/service-games.jpg";
+import serviceComputer from "@/assets/service-computer.webp";
+import serviceNotebook from "@/assets/service-notebook.webp";
+import serviceCftv from "@/assets/service-cftv.webp";
+import serviceEletrica from "@/assets/service-eletrica.webp";
+import serviceRedes from "@/assets/service-redes.webp";
+import serviceAr from "@/assets/service-arcondicionado.webp";
+import serviceCelular from "@/assets/service-celular.webp";
+import serviceGames from "@/assets/service-games.webp";
 
 const services = [
   {
