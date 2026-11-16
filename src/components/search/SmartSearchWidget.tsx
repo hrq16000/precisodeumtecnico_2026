@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MapPin, Search, MessageCircle, ArrowRight } from "lucide-react";
 import { EQUIPMENTS } from "@/data/triage/config";
-import { SEARCH_INDEX, searchEntries, normalize } from "@/lib/searchIndex";
 import { trackCtaClick, trackEvent } from "@/lib/analytics";
 
 interface Place {
@@ -25,9 +24,9 @@ interface Place {
 }
 
 /** Cidades e bairros extraídos das rotas reais (sem duplicar). */
-const PLACES: Place[] = (() => {
+function buildPlaces(index: typeof import("@/lib/searchIndex").SEARCH_INDEX): Place[] {
   const map = new Map<string, Place>();
-  for (const entry of SEARCH_INDEX) {
+  for (const entry of index) {
     if (entry.bairro && entry.city) {
       const key = `${entry.city}|${entry.bairro}`;
       if (!map.has(key)) map.set(key, { label: `${entry.bairro}, ${entry.city}`, city: entry.city, bairro: entry.bairro });
@@ -36,7 +35,12 @@ const PLACES: Place[] = (() => {
     }
   }
   return Array.from(map.values()).sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
-})();
+}
+
+async function loadSearchData() {
+  const { SEARCH_INDEX, normalize, searchEntries } = await import("@/lib/searchIndex");
+  return { places: buildPlaces(SEARCH_INDEX), normalize, searchEntries };
+}
 
 interface Props {
   title?: string;
@@ -56,12 +60,28 @@ export function SmartSearchWidget({
   const [selected, setSelected] = useState<Place | null>(null);
   const [openList, setOpenList] = useState(false);
   const blurTimer = useRef<number | null>(null);
+  const [searchData, setSearchData] = useState<Awaited<ReturnType<typeof loadSearchData>> | null>(null);
+  const loadingSearch = useRef(false);
+
+  async function prepareSearch() {
+    if (searchData || loadingSearch.current) return;
+    loadingSearch.current = true;
+    try {
+      setSearchData(await loadSearchData());
+    } catch {
+      // The full search link and direct triage remain available.
+    } finally {
+      loadingSearch.current = false;
+    }
+  }
 
   const suggestions = useMemo(() => {
+    if (!searchData) return [];
+    const { places, normalize } = searchData;
     const q = normalize(placeQuery);
-    if (!q) return PLACES.slice(0, 8);
-    return PLACES.filter((p) => normalize(p.label).includes(q)).slice(0, 8);
-  }, [placeQuery]);
+    if (!q) return places.slice(0, 8);
+    return places.filter((p) => normalize(p.label).includes(q)).slice(0, 8);
+  }, [placeQuery, searchData]);
 
   /** Melhor página existente para o par equipamento + região. */
   const bestMatch = useMemo(() => {
@@ -72,9 +92,9 @@ export function SmartSearchWidget({
     ]
       .filter(Boolean)
       .join(" ");
-    if (!terms.trim()) return null;
-    return searchEntries({ query: terms }, 1)[0] ?? null;
-  }, [equipment, selected]);
+    if (!searchData || !terms.trim()) return null;
+    return searchData.searchEntries({ query: terms }, 1)[0] ?? null;
+  }, [equipment, selected, searchData]);
 
   const openTriage = () => {
     const params = new URLSearchParams();
@@ -118,7 +138,10 @@ export function SmartSearchWidget({
             id="smart-search-equipment"
             data-testid="smart-search-equipment"
             value={equipment}
-            onChange={(e) => setEquipment(e.target.value)}
+            onChange={(e) => {
+              setEquipment(e.target.value);
+              void prepareSearch();
+            }}
             className="h-12 w-full rounded-md border border-input bg-background px-3 text-sm"
           >
             <option value="">Selecione o equipamento</option>
@@ -153,8 +176,12 @@ export function SmartSearchWidget({
               setSelected(null);
               setPlaceQuery(e.target.value);
               setOpenList(true);
+              void prepareSearch();
             }}
-            onFocus={() => setOpenList(true)}
+            onFocus={() => {
+              setOpenList(true);
+              void prepareSearch();
+            }}
             onBlur={() => {
               blurTimer.current = window.setTimeout(() => setOpenList(false), 150);
             }}
