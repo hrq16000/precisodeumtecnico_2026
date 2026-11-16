@@ -101,7 +101,19 @@ export function QuickEstimate() {
   const equipmentLabel = EQUIPMENTS.find((e) => e.id === equipment)?.label ?? "";
 
   const waText = result
-    ? `Olá! Fiz a estimativa rápida no site. Equipamento: ${equipmentLabel}. Atendimento: ${result.routeLabel} (${result.priceLabel}). Prioridade: ${urgency === "prioridade" ? "sim" : "não"}. [service=estimativa-rapida · source=precos · utm_source=whatsapp_cta]`
+    ? [
+        "Olá! Fiz a estimativa rápida no site.",
+        `Equipamento ou serviço: ${equipmentLabel}.`,
+        `Atendimento: ${result.routeLabel} (${result.priceLabel}).`,
+        ...(result.route === "visita"
+          ? [
+              `A visita inclui ${PRICING.technicalVisit.timeLabel}.`,
+              "Valor confirmado antes do agendamento e abatido se eu aprovar o serviço.",
+            ]
+          : []),
+        `Prioridade: ${urgency === "prioridade" ? "sim" : "não"}.`,
+        "[service=estimativa-rapida · source=precos · utm_source=whatsapp_cta]",
+      ].join("\n")
     : "";
 
   function handleAnswer(step: "equipamento" | "modalidade" | "urgencia", value: string) {
@@ -202,6 +214,15 @@ export function QuickEstimate() {
             <p className="text-sm text-muted-foreground mt-2">{result.description}</p>
             <p className="text-sm text-muted-foreground mt-2">{result.slaLabel}</p>
             <p className="text-xs text-muted-foreground mt-3">{SLA.disclaimer}</p>
+
+            <details className="mt-4 rounded-lg border border-border bg-background">
+              <summary className="cursor-pointer px-3 py-3 text-sm font-medium">
+                Conferir mensagem do WhatsApp
+              </summary>
+              <p data-estimate-message className="whitespace-pre-wrap break-words px-3 pb-3 text-sm text-muted-foreground">
+                {waText}
+              </p>
+            </details>
 
             <div className="mt-4 flex flex-wrap gap-2">
               <Button variant="whatsapp" asChild>

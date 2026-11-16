@@ -34,5 +34,12 @@ test.describe("/precos — estimativa rápida em 3 perguntas", () => {
     await expect(result.locator("[data-estimate-price]")).toHaveText("A partir de R$ 99,99");
     await expect(result).toContainText("até 20 minutos");
     await expect(result).toContainText("tolerância até 30 minutos no total");
+    await result.getByText("Conferir mensagem do WhatsApp", { exact: true }).click();
+    const message = result.locator("[data-estimate-message]");
+    await expect(message).toBeVisible();
+    await expect(message).toContainText("tolerância até 30 minutos no total");
+    await expect(message).toContainText("abatido se eu aprovar o serviço");
+    const href = await result.locator('a[data-wa-source="pricing-quick-estimate"]').getAttribute("href");
+    expect(new URL(href!).searchParams.get("text")).toBe(await message.textContent());
   });
 });
