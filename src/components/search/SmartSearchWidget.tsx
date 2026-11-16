@@ -9,7 +9,7 @@
  * Nunca inventa rota: os destinos vêm de SEARCH_INDEX, que só contém páginas
  * publicadas.
  */
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -62,16 +62,21 @@ export function SmartSearchWidget({
   const blurTimer = useRef<number | null>(null);
   const [searchData, setSearchData] = useState<Awaited<ReturnType<typeof loadSearchData>> | null>(null);
   const loadingSearch = useRef(false);
+  const [searchPending, setSearchPending] = useState(false);
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
 
   async function prepareSearch() {
     if (searchData || loadingSearch.current) return;
     loadingSearch.current = true;
+    setSearchPending(true);
     try {
       setSearchData(await loadSearchData());
     } catch {
       // The full search link and direct triage remain available.
     } finally {
       loadingSearch.current = false;
+      setSearchPending(false);
     }
   }
 
@@ -136,6 +141,7 @@ export function SmartSearchWidget({
           </label>
           <select
             id="smart-search-equipment"
+            disabled={!ready}
             data-testid="smart-search-equipment"
             value={equipment}
             onChange={(e) => {
@@ -163,6 +169,8 @@ export function SmartSearchWidget({
           />
           <Input
             id="smart-search-place"
+            disabled={!ready}
+            aria-busy={searchPending}
             data-testid="smart-search-place"
             className="pl-9 h-12"
             autoComplete="off"
@@ -186,6 +194,9 @@ export function SmartSearchWidget({
               blurTimer.current = window.setTimeout(() => setOpenList(false), 150);
             }}
           />
+          <p role="status" className="text-xs text-muted-foreground">
+            {openList && searchPending ? "Carregando sugestões…" : ""}
+          </p>
           {openList && suggestions.length > 0 && (
             <ul
               id="smart-search-place-list"
@@ -218,7 +229,7 @@ export function SmartSearchWidget({
       </div>
 
       <div className="mt-5 flex flex-col sm:flex-row gap-3">
-        <Button variant="whatsapp" onClick={openTriage} data-testid="smart-search-triage">
+        <Button variant="whatsapp" disabled={!ready} onClick={openTriage} data-testid="smart-search-triage">
           <MessageCircle className="w-4 h-4" /> Abrir triagem com esses dados
         </Button>
         {bestMatch ? (
