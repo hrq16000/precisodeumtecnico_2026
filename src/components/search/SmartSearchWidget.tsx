@@ -250,7 +250,7 @@ export function SmartSearchWidget({
       <p className="mt-3 text-xs text-muted-foreground">
         Sem telefone exposto: o atendimento começa pela triagem, que define modalidade (remoto,
         visita ou coleta) e as condições em{" "}
-        <Link to="/precos" className="text-primary hover:underline">
+        <Link to="/precos" className="text-primary underline underline-offset-4">
           preços
         </Link>
         .{" "}
