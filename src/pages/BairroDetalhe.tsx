@@ -149,7 +149,12 @@ export default function BairroDetalhe() {
           description: pageDescription,
           areaServed: `${neighborhoodName}, ${cityData.name}`,
         }}
-        structuredData={[localBusinessSchema, faqSchema, offerSchema, reviewsSchema].filter(Boolean) as object[]}
+        structuredData={[localBusinessSchema, offerSchema, reviewsSchema].filter(Boolean) as object[]}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
 
       {/* Hero Section */}
