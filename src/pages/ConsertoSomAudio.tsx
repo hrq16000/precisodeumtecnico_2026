@@ -1,3 +1,4 @@
+import { resolveOgImage } from "@/lib/seo/ogImage";
 import { Helmet } from "@/lib/helmet-compat";
 import { Link } from "@/lib/router-compat";
 import {
@@ -173,6 +174,8 @@ export default function ConsertoSomAudio() {
 
   return (
     <Layout>
+      <meta property="og:image" content={resolveOgImage(PAGE_URL)} />
+      <meta name="twitter:image" content={resolveOgImage(PAGE_URL)} />
       <Helmet>
         <title>{clampTitle(metaTitle)}</title>
         <meta name="description" content={clampDescription(metaDescription)} />

@@ -13,7 +13,7 @@ import { test, expect } from "@playwright/test";
  * Roda localmente contra o build atual; em produção contra a URL definida
  * por E2E_BASE_URL.
  */
-const BASE = process.env.E2E_BASE_URL || "http://localhost:8080";
+const BASE = process.env.E2E_BASE_URL || "http://127.0.0.1:5173";
 
 const ROUTES_WITH_BREADCRUMB = [
   "/assistencia-tecnica",

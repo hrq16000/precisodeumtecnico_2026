@@ -1,3 +1,4 @@
+import { resolveOgImage } from "@/lib/seo/ogImage";
 import { Helmet } from "@/lib/helmet-compat";
 import { Link, useParams, Navigate } from "@/lib/router-compat";
 import { ArrowRight, MapPin, ShieldCheck, Clock, HelpCircle, ChevronRight } from "lucide-react";
@@ -111,6 +112,8 @@ export default function ServicoBairroCuritiba({ service }: Props) {
 
   return (
     <Layout>
+      <meta property="og:image" content={resolveOgImage(canonical)} />
+      <meta name="twitter:image" content={resolveOgImage(canonical)} />
       <Helmet>
         <title>{clampTitle(title)}</title>
         <meta name="description" content={clampDescription(description)} />

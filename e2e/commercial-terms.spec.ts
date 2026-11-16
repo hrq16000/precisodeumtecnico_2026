@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const BASE = process.env.E2E_BASE_URL || "http://localhost:8080";
+const BASE = process.env.E2E_BASE_URL || "http://127.0.0.1:5173";
 
 test.describe("Termos comerciais — alinhamento global", () => {
   test("/termos-orcamento-pre-aprovado expõe regra oficial completa", async ({ page }) => {

@@ -1,3 +1,4 @@
+import { resolveOgImage } from "@/lib/seo/ogImage";
 import { Helmet } from "@/lib/helmet-compat";
 import { motion } from "framer-motion";
 import { Link } from "@/lib/router-compat";
@@ -149,6 +150,8 @@ export default function AssistenciaTecnica() {
 
   return (
     <Layout>
+      <meta property="og:image" content={resolveOgImage(pageUrl)} />
+      <meta name="twitter:image" content={resolveOgImage(pageUrl)} />
       <Helmet>
         <title>Assistência Técnica em Todo o Brasil | PCs, Consoles e TVs</title>
         <meta
@@ -171,7 +174,6 @@ export default function AssistenciaTecnica() {
           content="Reparo de consoles, GPUs, PCs, notebooks, TVs e som. Central em Curitiba, parceiros em todos os estados do Brasil."
         />
         <meta property="og:url" content={pageUrl} />
-        {/* og:image / twitter:image ficam a cargo da hospedagem (evita duplicidade). */}
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Assistência Técnica Nacional — Preciso de um Técnico" />

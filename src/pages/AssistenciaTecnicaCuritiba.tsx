@@ -1,3 +1,4 @@
+import { resolveOgImage } from "@/lib/seo/ogImage";
 import { Helmet } from "@/lib/helmet-compat";
 import { buildWebPageSchema } from "@/lib/seo/webPageSchema";
 import { motion } from "framer-motion";
@@ -334,6 +335,8 @@ export default function AssistenciaTecnicaCuritiba() {
 
   return (
     <Layout>
+      <meta property="og:image" content={resolveOgImage(pageUrl)} />
+      <meta name="twitter:image" content={resolveOgImage(pageUrl)} />
       <Helmet>
         <title>Assistência Técnica em Informática em Curitiba | Técnico</title>
         <meta
@@ -358,7 +361,6 @@ export default function AssistenciaTecnicaCuritiba() {
           content="Manutenção de computadores e notebooks, diagnóstico, upgrade e redes em Curitiba. Atendimento via WhatsApp."
         />
         <meta property="og:url" content={pageUrl} />
-        {/* og:image / twitter:image ficam a cargo da hospedagem (evita duplicidade). */}
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Assistência Técnica em Informática em Curitiba" />

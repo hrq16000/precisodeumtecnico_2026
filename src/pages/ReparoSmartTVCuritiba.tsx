@@ -1,3 +1,4 @@
+import { resolveOgImage } from "@/lib/seo/ogImage";
 import { Helmet } from "@/lib/helmet-compat";
 import { buildWebPageSchema } from "@/lib/seo/webPageSchema";
 import { Link } from "@/lib/router-compat";
@@ -133,6 +134,8 @@ export default function ReparoSmartTVCuritiba() {
 
   return (
     <Layout>
+      <meta property="og:image" content={resolveOgImage(PAGE_URL)} />
+      <meta name="twitter:image" content={resolveOgImage(PAGE_URL)} />
       <Helmet>
         <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} />

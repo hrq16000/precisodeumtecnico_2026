@@ -1,3 +1,4 @@
+import { resolveOgImage } from "@/lib/seo/ogImage";
 import { Helmet } from "@/lib/helmet-compat";
 import { Link } from "@/lib/router-compat";
 import { ArrowRight, ShieldCheck, Truck, Clock, AlertTriangle, CheckCircle2, HelpCircle, Tv } from "lucide-react";
@@ -133,6 +134,8 @@ export default function TrocaDeTelaTVCuritiba() {
 
   return (
     <Layout>
+      <meta property="og:image" content={resolveOgImage(PAGE_URL)} />
+      <meta name="twitter:image" content={resolveOgImage(PAGE_URL)} />
       <Helmet>
         <title>{clampTitle(metaTitle)}</title>
         <meta name="description" content={clampDescription(metaDescription)} />
