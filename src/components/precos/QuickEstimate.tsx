@@ -3,7 +3,7 @@
  * Apenas apresentação: todos os valores e prazos vêm de PRICING/SLA
  * (fonte única em src/data/pricingPolicy.ts). Nenhuma promessa nova.
  */
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -86,6 +86,9 @@ function resolveResult(equipment: EquipmentId, mode: ModeId, urgency: UrgencyId)
 }
 
 export function QuickEstimate() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
+
   const [equipment, setEquipment] = useState<EquipmentId | null>(null);
   const [mode, setMode] = useState<ModeId | null>(null);
   const [urgency, setUrgency] = useState<UrgencyId | null>(null);
@@ -116,7 +119,7 @@ export function QuickEstimate() {
         mínimo praticados. O orçamento final é sempre confirmado por escrito após o diagnóstico.
       </p>
 
-      <fieldset className="mb-5">
+      <fieldset disabled={!ready} className="mb-5">
         <legend className="font-semibold mb-2 text-sm">1. O que precisa de atendimento?</legend>
         <div className="flex flex-wrap gap-2">
           {EQUIPMENTS.map((e) => (
@@ -138,7 +141,7 @@ export function QuickEstimate() {
         </div>
       </fieldset>
 
-      <fieldset className="mb-5">
+      <fieldset disabled={!ready} className="mb-5">
         <legend className="font-semibold mb-2 text-sm">2. Como prefere o atendimento?</legend>
         <div className="grid gap-2 sm:grid-cols-3">
           {MODES.map((m) => (
@@ -161,7 +164,7 @@ export function QuickEstimate() {
         </div>
       </fieldset>
 
-      <fieldset className="mb-2">
+      <fieldset disabled={!ready} className="mb-2">
         <legend className="font-semibold mb-2 text-sm">3. Qual a urgência?</legend>
         <div className="flex flex-wrap gap-2">
           {URGENCIES.map((u) => (
