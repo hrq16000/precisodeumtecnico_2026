@@ -131,7 +131,7 @@ export function SmartSearchWidget({
         </div>
 
         <div className="relative">
-          <label htmlFor="smart-search-place" className="block text-sm font-medium mb-1.5">
+          <label id="smart-search-place-label" htmlFor="smart-search-place" className="block text-sm font-medium mb-1.5">
             Cidade ou bairro
           </label>
           <MapPin
@@ -144,8 +144,9 @@ export function SmartSearchWidget({
             className="pl-9 h-12"
             autoComplete="off"
             role="combobox"
-            aria-expanded={openList}
-            aria-controls="smart-search-place-list"
+            aria-labelledby="smart-search-place-label"
+            aria-expanded={openList && suggestions.length > 0}
+            aria-controls={openList && suggestions.length > 0 ? "smart-search-place-list" : undefined}
             placeholder="Ex.: Batel, Curitiba ou Pinhais"
             value={selected ? selected.label : placeQuery}
             onChange={(e) => {
