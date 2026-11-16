@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -22,23 +21,8 @@ import { buildReviewsSchema } from "@/data/testimonials";
 import { homeFaqs } from "@/data/homeFaqs";
 import { buildLocalBusinessSchema } from "@/lib/schema/localBusiness";
 import { buildOrganizationSchema, buildPersonSchema } from "@/lib/schema/organization";
-import logoWebp from "@/assets/logo.webp";
 
 const Index = () => {
-  useEffect(() => {
-    // Selective preload of the header logo on the homepage to improve LCP.
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "image";
-    link.href = logoWebp;
-    link.type = "image/webp";
-    link.fetchPriority = "high";
-    document.head.appendChild(link);
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, []);
-
   return (
     <Layout>
       <SEOHead
