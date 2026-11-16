@@ -27,7 +27,7 @@
     "e2e": "playwright test",
     "e2e:install": "playwright install --with-deps chromium",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "bun scripts/preview-nitro.ts",
     "lhci:desktop": "lhci autorun --config=./lighthouserc.cjs",
     "lhci:mobile": "lhci autorun --config=./lighthouserc.mobile.cjs",
     "lhci:local": "lhci autorun --config=./lighthouserc.json",
