@@ -6,13 +6,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { LOCATION_UPDATED_EVENT, useUserRegion } from "@/hooks/useUserRegion";
+import { useLocation } from "@/lib/router-compat";
 import { reverseGeocode } from "@/lib/reverseGeocode";
 import { accuracyBucket, trackLocationEvent } from "@/lib/locationTelemetry";
 
 const KEY = "user_location_full_v1";
 const REGION_KEY = "user_region_v1";
 const PROMPTED = "user_location_prompted_v2";
-const BLOCKED_PATHS = ["/admin", "/auth", "/diagnostics"];
+const BLOCKED_PATHS = ["/admin", "/auth", "/diagnostics", "/precos"];
 
 interface StoredLocation {
   city?: string;
@@ -50,6 +51,7 @@ function confidenceLabel(accuracy?: number): { label: string; tone: "text-green-
 
 export function SmartLocationPrompt() {
   const { region } = useUserRegion();
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [gpsLoading, setGpsLoading] = useState(false);
   const [gpsError, setGpsError] = useState<string | null>(null);
@@ -60,9 +62,12 @@ export function SmartLocationPrompt() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (BLOCKED_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`))) {
+      setOpen(false);
+      return;
+    }
     if (readStored()) return;
     try { if (sessionStorage.getItem(PROMPTED)) return; } catch { /* noop */ }
-    if (BLOCKED_PATHS.some((p) => window.location.pathname.startsWith(p))) return;
 
     const t = setTimeout(() => {
       if (document.querySelector('[role="dialog"]')) return;
@@ -72,7 +77,7 @@ export function SmartLocationPrompt() {
       try { sessionStorage.setItem(PROMPTED, "1"); } catch { /* noop */ }
     }, 5000);
     return () => clearTimeout(t);
-  }, [region.city, region.region, region.source]);
+  }, [pathname, region.city, region.region, region.source]);
 
   const persist = (payload: StoredLocation) => {
     try { localStorage.setItem(KEY, JSON.stringify(payload)); } catch { /* noop */ }
