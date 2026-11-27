@@ -206,7 +206,7 @@ export default function KeywordServicePage({ slug }: Props) {
       {/* O QUE É */}
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
-          <h2 id="o-que-esta-incluido" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-4">
+          <h2 id="o-que-esta-incluido" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-4">
             O que é {page.keyword} e o que está incluído
           </h2>
 
@@ -263,7 +263,7 @@ export default function KeywordServicePage({ slug }: Props) {
       {/* COMO FAZEMOS */}
       <section className="section-padding bg-muted/30">
         <div className="container-custom">
-          <h2 id="como-funciona" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-8">
+          <h2 id="como-funciona" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-8">
             Como funciona o atendimento, passo a passo
           </h2>
           <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -312,7 +312,7 @@ export default function KeywordServicePage({ slug }: Props) {
       {/* ANTES x DEPOIS */}
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
-          <h2 id="antes-e-depois" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-6">
+          <h2 id="antes-e-depois" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-6">
             Antes e depois do serviço
           </h2>
           <div className="overflow-x-auto">
@@ -383,7 +383,7 @@ export default function KeywordServicePage({ slug }: Props) {
       {page.engagementModels && (
         <section className="section-padding bg-muted/30">
           <div className="container-custom max-w-5xl">
-            <h2 id="avulso-ou-recorrente" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-8">
+            <h2 id="avulso-ou-recorrente" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-8">
               Avulso ou recorrente: como funciona cada opção
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -411,7 +411,7 @@ export default function KeywordServicePage({ slug }: Props) {
       {page.scopeLimits && (
         <section className="section-padding">
           <div className="container-custom max-w-4xl">
-            <h2 id="limites-do-atendimento" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-3">
+            <h2 id="limites-do-atendimento" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-3">
               Limites do atendimento: o que não fazemos
             </h2>
             <p className="text-muted-foreground mb-6">
@@ -434,7 +434,7 @@ export default function KeywordServicePage({ slug }: Props) {
 
       <section className="section-padding bg-muted/30">
         <div className="container-custom max-w-3xl">
-          <h2 id="perguntas-frequentes" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-6">
+          <h2 id="perguntas-frequentes" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-6">
             Perguntas frequentes sobre {page.keyword}
           </h2>
           <Accordion type="single" collapsible className="w-full">
@@ -451,7 +451,7 @@ export default function KeywordServicePage({ slug }: Props) {
       {/* LINKS INTERNOS DO SERVIÇO */}
       <section className="section-padding">
         <div className="container-custom max-w-4xl">
-          <h2 id="servicos-relacionados" data-toc-anchor className="text-2xl md:text-3xl font-display font-bold mb-4">
+          <h2 id="servicos-relacionados" data-toc-anchor tabIndex={-1} className="text-2xl md:text-3xl font-display font-bold mb-4">
             Serviços relacionados
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2">

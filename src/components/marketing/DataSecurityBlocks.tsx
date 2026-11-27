@@ -91,7 +91,7 @@ export function SecurityPrinciple({ className = "" }: { className?: string }) {
 
 export function SecurityPillars({ className = "" }: { className?: string }) {
   return (
-    <section id="pilares-seguranca" data-security-pillars className={`scroll-mt-24 ${className}`}>
+    <section id="pilares-seguranca" tabIndex={-1} data-toc-anchor data-security-pillars className={`scroll-mt-24 ${className}`}>
       <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
         Quatro pilares aplicáveis na prática
       </h2>
@@ -116,7 +116,7 @@ export function SecurityPillars({ className = "" }: { className?: string }) {
 
 export function ResponsibilityMatrix({ className = "" }: { className?: string }) {
   return (
-    <section id="responsabilidades" data-security-matrix className={`scroll-mt-24 ${className}`}>
+    <section id="responsabilidades" tabIndex={-1} data-toc-anchor data-security-matrix className={`scroll-mt-24 ${className}`}>
       <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
         Quem responde por cada parte
       </h2>
@@ -141,7 +141,7 @@ export function ResponsibilityMatrix({ className = "" }: { className?: string })
 
 export function NeverSendBox({ className = "" }: { className?: string }) {
   return (
-    <section id="credenciais" data-security-credentials className={`scroll-mt-24 ${className}`}>
+    <section id="credenciais" tabIndex={-1} data-toc-anchor data-security-credentials className={`scroll-mt-24 ${className}`}>
       <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
         O que nunca deve ser enviado por mensagem
       </h2>
@@ -165,7 +165,7 @@ export function NeverSendBox({ className = "" }: { className?: string }) {
 
 export function SecurityRemoteAccessNote({ className = "" }: { className?: string }) {
   return (
-    <section id="acesso-remoto" data-security-remote className={`scroll-mt-24 ${className}`}>
+    <section id="acesso-remoto" tabIndex={-1} data-toc-anchor data-security-remote className={`scroll-mt-24 ${className}`}>
       <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
         Acesso remoto: autorização e encerramento
       </h2>
