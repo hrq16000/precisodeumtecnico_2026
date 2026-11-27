@@ -51,7 +51,8 @@ for (const vp of VIEWPORTS) {
 
       const target = page.locator(`[id="${id}"]`);
       await expect(target).toHaveAttribute("tabindex", "-1");
-      await expect(target).toHaveAttribute("data-toc-anchor", "");
+      // React serializa atributos data-* booleanos como a string "true".
+      await expect(target).toHaveAttribute("data-toc-anchor", "true");
       await link.focus();
       // Foco visível: o link focado deve expor um outline/ring (classe focus-visible).
       const cls = await link.getAttribute("class");
