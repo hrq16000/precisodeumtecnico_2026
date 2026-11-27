@@ -108,11 +108,16 @@
 
 /* container config ported from tailwind.config.ts (center, padding 2rem, 2xl 1400px) */
 @utility container {
+  width: 100%;
+  max-width: 1400px;
   margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
+  padding-inline: clamp(1rem, 2.5vw, 2rem);
+  /* Keep the page shell fluid between breakpoints instead of snapping to narrower widths. */
+  @media (width >= 40rem) { max-width: 1400px; }
+  @media (width >= 48rem) { max-width: 1400px; }
+  @media (width >= 64rem) { max-width: 1400px; }
+  @media (width >= 80rem) { max-width: 1400px; }
+  @media (width >= 96rem) { max-width: 1400px; }
 }
 
 /* tailwind.config.ts backgroundImage.hero-pattern */

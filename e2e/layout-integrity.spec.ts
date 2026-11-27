@@ -128,3 +128,22 @@ for (const viewport of VIEWPORTS) {
     });
   }
 }
+
+// Detect a squeezed page shell even when it does not cause horizontal overflow.
+for (const width of [390, 600, 768, 900, 1024, 1440, 1600]) {
+  test(`fluid shared shell at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/?utm_source=qa&utm_medium=layout_test", { waitUntil: "domcontentloaded" });
+    const measured = await page.evaluate(() => {
+      const probe = document.createElement("div");
+      probe.className = "container";
+      document.body.appendChild(probe);
+      const style = getComputedStyle(probe);
+      const measured = { viewport: document.documentElement.clientWidth, width: probe.getBoundingClientRect().width, padding: parseFloat(style.paddingInlineStart) };
+      probe.remove();
+      return measured;
+    });
+    expect(measured.width).toBeCloseTo(Math.min(measured.viewport, 1400), 0);
+    if (width === 390) expect(measured.padding).toBeLessThanOrEqual(16.5);
+  });
+}
