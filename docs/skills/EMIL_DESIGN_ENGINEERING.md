@@ -1,6 +1,6 @@
 # Design engineering premium — análise e adoção Emil Kowalski
 
-**Estado:** R0 + R1.2 — diagnóstico estático e auditoria visual desktop parcial; implementação NÃO iniciada.
+**Estado:** R0 + R1.2/R1.3 — diagnóstico estático e auditoria inicial desktop/mobile; implementação NÃO iniciada.
 **Data:** 27/11/2026 • **Repositório:** hrq16000/precisodeumtecnico_2026 • **Checkpoint analisado da main:** `f781f9f6f5c8192596fdae65cd89030253219b86`.
 
 Este documento é incremental. As regras locais de AGENTS.md, DESIGN.md, segurança, SEO, arquitetura, publicação, dados e funis prevalecem. Não autoriza alterações de runtime, instalações, custos, merge ou deploy. Não substitui a homologação visual da versão efetivamente publicada. A auditoria ao vivo posterior (R1.2) está registrada na seção 7; não implica homologação da produção.
@@ -83,4 +83,14 @@ GO para implementação somente com baseline visual, brief próprio da marca, pr
 - **P0 — antes de direção de arte:** Revisar Reveal (transition-all/duração 700 ms na leitura R0), manter formulários, conteúdo e links sempre disponíveis em fallback. Validar foco e visibilidade sem movimento/JS e mobile. Orquestrar os CTAs e consentimento.
 - **P1 — candidato de protótipo:** Dar hierarquia própria à triagem, visita e condições, com marca e composição distintas; evitar repetição de badges/CTAs apenas por visual. Transições curtas e interrompíveis apenas no quiz e estados de escolha; nenhuma animação de entrada obrigatória em grupos de serviço ou busca.
 - **Skills aplicáveis:** find-animation-opportunities, remove-animations, review-animations, emil-design-eng, animation-performance, break-ui e mobile-native quando houver baseline móvel. `prototype` somente após terminar R1.
-- **Limites:** Calibração para 1440/390 px não concluída por timeout na extensão; o navegador alternativo permitiu inspeção desktop sem ajuste do viewport. Mobile e tablet pendentes. Não houve submissão de formulários, acionamento de WhatsApp, mudança de consentimento, verificação de commit implantado, medição de Web Vitals ou teste completo de acessibilidade/funil. Nenhuma captura foi incluída no Git. Não alterar contratos comerciais, SEO, dados, dependências, código ou produção com base neste diagnóstico. A aprovação R1 integral permanece pendente.
+- **Limites:** Calibração para 1440/390 px não concluída por timeout na extensão; o navegador alternativo permitiu inspeção desktop sem ajuste do viewport. Mobile e tablet estavam pendentes na R1.2; recuperação mobile consta na seção 8. Não houve submissão de formulários, acionamento de WhatsApp, mudança de consentimento, verificação de commit implantado, medição de Web Vitals ou teste completo de acessibilidade/funil. Nenhuma captura foi incluída no Git. Não alterar contratos comerciais, SEO, dados, dependências, código ou produção com base neste diagnóstico. A aprovação R1 integral permanece pendente.
+
+## 8. R1.3 — Recuperação da baseline mobile (27/11/2026)
+
+- **URL pública observada:** https://precisodeumtecnico.com/
+- **Viewport medido:** 390 × 844 CSS px, scrollWidth 377.
+- **Evidência:** captura(s) do primeiro viewport, leitura de DOM/estado público. Hero apresenta preço e termos, CTA de triagem e atendimento verde imediatamente visíveis. O botão flutuante ocupa parte da informação de horário no canto inferior direito; não apareceu banner de consentimento nesta captura inicial, sem inferir configuração. Sem overflow. A composição exige rolagem para acesso às outras superfícies.
+- **P0 — prioridade antes de prototipar:** Separar CTA flutuante de horários/condições; preservar preço e termos completos. Verificar reveals, foco e consentimento em estado posterior.
+- **P1 — direção de arte e motion:** Refinar espaçamento e destaque de uma ação principal, sem alterar lógica ou preços.
+- **Skills aplicáveis:** find-animation-opportunities, remove-animations, review-animations, emil-design-eng, animation-performance, break-ui, mobile-native; prototype após diagnóstico completo.
+- **Limites:** Desktop anterior registrado na seção 7; tentativa de recalibrar 1440 exatos interrompida. Tablet, outras rotas, teclado, reduced-motion, LCP/CLS/INP, build/deployment SHA e funil completo pendentes. Não houve submissão de formulário, WhatsApp, alteração de consentimento, código, dependências, dados, produção ou merge. Não incluímos screenshots no Git. Esta é baseline inicial, não homologação.
