@@ -28,11 +28,14 @@ export function GeoStatusChip({ className }: { className?: string }) {
   }, [loading, region.city, region.region, region.source]);
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={() => window.dispatchEvent(new Event("home-location:open"))}
+      aria-label="Alterar localização do atendimento"
       data-testid="geo-status-chip"
       data-geo-status={loading ? "loading" : confirmed ? "confirmed" : "detected"}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/90 transition-opacity duration-500",
+        "inline-flex items-center gap-2 min-h-10 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/90 transition-colors hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
         loading ? "opacity-70" : "opacity-100",
         className,
       )}
@@ -40,7 +43,7 @@ export function GeoStatusChip({ className }: { className?: string }) {
     >
       {loading ? (
         <>
-          <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
+          <Loader2 className="h-3.5 w-3.5 motion-safe:animate-spin" aria-hidden="true" />
           <span>Detectando sua cidade...</span>
         </>
       ) : (
@@ -56,6 +59,7 @@ export function GeoStatusChip({ className }: { className?: string }) {
           </span>
         </>
       )}
-    </div>
+      <span className="underline underline-offset-2">Alterar</span>
+    </button>
   );
 }

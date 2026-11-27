@@ -60,8 +60,22 @@ export function SmartLocationPrompt() {
   const [confirmReset, setConfirmReset] = useState(false);
   const [form, setForm] = useState<StoredLocation>({});
 
+  // Na Home, localização detalhada é voluntária: o chip abre o mesmo diálogo,
+  // sem interromper a primeira leitura nem alterar a coleta de GPS.
+  useEffect(() => {
+    const openFromHome = () => {
+      setForm(readStored() ?? { city: region.city, uf: region.region, source: "ip" });
+      setOpen(true);
+      trackLocationEvent("prompt_shown", { source: region.source });
+      try { sessionStorage.setItem(PROMPTED, "1"); } catch { /* noop */ }
+    };
+    window.addEventListener("home-location:open", openFromHome);
+    return () => window.removeEventListener("home-location:open", openFromHome);
+  }, [region.city, region.region, region.source]);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (pathname === "/") return;
     if (BLOCKED_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`))) {
       setOpen(false);
       return;
