@@ -11,3 +11,8 @@ Instruções incrementais para referências visuais. Consultar antes o README e 
 - Escopo: Portal de serviços técnicos: aprimorar filtros, CTA e jornada de solicitação, sem afetar preços, consentimento, rotas, funil e indexação.
 - Implementar mudanças funcionais só em PRs pequenas com gates existentes, QA em 390/1440 quando houver UI e fallback sem animação. Preservar SEO, privacidade, dados, integrações e produção.
 - Não instalar CLIs, skills, pacotes externos ou serviços pagos de forma automática. Regras existentes do projeto têm precedência.
+
+## Design engineering premium — Emil Kowalski (27/11/2026)
+
+- Para qualquer trabalho visual autorizado, ler `docs/skills/EMIL_DESIGN_ENGINEERING.md` antes de editar runtime. Aplicar diagnóstico, direção de arte autoral, decisão de motion por frequência/propósito, performance, reduced motion e QA 390/768/1440; reaproveitar tokens e bibliotecas existentes.
+- Referência oficial: https://github.com/emilkowalski/skills. As regras específicas deste repositório permanecem prioritárias. Esta documentação não autoriza execução automática de scripts, instalações, mudanças de código ou deploy.
