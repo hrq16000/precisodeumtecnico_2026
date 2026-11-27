@@ -124,8 +124,12 @@ export default function ServicoBairroCuritiba({ service }: Props) {
         <meta property="og:url" content={canonical} />
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
+      <script
+        type="application/ld+json"
+        data-faq-schema="bairro-servico"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
+      />
 
       {/* Breadcrumb */}
       <nav aria-label="Trilha de navegação" className="container-custom max-w-5xl pt-6 text-sm text-muted-foreground">

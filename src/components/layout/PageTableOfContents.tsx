@@ -33,17 +33,21 @@ export function PageTableOfContents({ items, title = "Nesta página", className 
   if (items.length < 2) return null;
 
   function goTo(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+    // Mantém comportamento nativo para cliques modificados (nova aba) e SSR.
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     const target = document.getElementById(id);
     if (!target) return; // sem alvo, deixa o navegador tentar a âncora nativa
     e.preventDefault();
     target.setAttribute("data-toc-anchor", "");
     if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
-    target.focus({ preventScroll: true });
-    if (window.history?.replaceState) {
-      window.history.replaceState(null, "", `#${id}`);
+    // A rota TanStack mantém estado de navegação/scroll no history.state.
+    const hash = `#${id}`;
+    if (window.location.hash !== hash && window.history?.replaceState) {
+      window.history.replaceState(window.history.state, "", hash);
     }
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ behavior: reduced ? "instant" : "smooth", block: "start" });
   }
 
   const list = (

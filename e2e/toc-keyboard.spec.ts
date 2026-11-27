@@ -49,6 +49,10 @@ for (const vp of VIEWPORTS) {
       expect(href).toMatch(/^#/);
       const id = (href ?? "").slice(1);
 
+      const target = page.locator(`[id="${id}"]`);
+      await expect(target).toHaveAttribute("tabindex", "-1");
+      // React serializa atributos data-* booleanos como a string "true".
+      await expect(target).toHaveAttribute("data-toc-anchor", "true");
       await link.focus();
       // Foco visível: o link focado deve expor um outline/ring (classe focus-visible).
       const cls = await link.getAttribute("class");
@@ -77,3 +81,21 @@ for (const vp of VIEWPORTS) {
     });
   }
 }
+
+
+test.describe("sumário SSR sem hidratação", () => {
+  test.use({ javaScriptEnabled: false });
+  test("âncora nativa move foco mesmo sem JavaScript", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/empresa-de-ti-curitiba", { waitUntil: "domcontentloaded" });
+    const link = page.locator("[data-page-toc] a:visible").first();
+    const id = (await link.getAttribute("href"))?.slice(1);
+    expect(id).toBe("pilares");
+    const target = page.locator('[id="pilares"]');
+    await expect(target).toHaveAttribute("tabindex", "-1");
+    await link.focus();
+    await page.keyboard.press("Enter");
+    await expect(target).toBeFocused();
+    await expect(page).toHaveURL(/#pilares$/);
+  });
+});

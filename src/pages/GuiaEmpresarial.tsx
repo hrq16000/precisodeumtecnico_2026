@@ -264,7 +264,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
 
             {/* Rodada 3S — hub abre por pilares operacionais (amplitude). */}
             {isHubPilot && (
-              <section id="pilares" className="mb-10 scroll-mt-24">
+              <section id="pilares" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Pilares operacionais
                 </h2>
@@ -274,7 +274,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
 
             {/* Rodada 3T — redes: público misto declarado antes do conteúdo. */}
             {isRedes && (
-              <section id="contextos-rede" className="mb-10 scroll-mt-24">
+              <section id="contextos-rede" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Casa, home office e escritório
                 </h2>
@@ -306,7 +306,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
             )}
 
             {guide.sections.map((s) => (
-              <section key={s.id} id={s.id} className="mb-10 scroll-mt-24">
+              <section key={s.id} id={s.id} tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   {s.title}
                 </h2>
@@ -359,7 +359,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
 
             {/* Rodada 3S — hub: mapa de serviços; serviço: fluxo e impacto. */}
             {isHubPilot && (
-              <section id="mapa-servicos" className="mb-10 scroll-mt-24">
+              <section id="mapa-servicos" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Mapa de serviços empresariais
                 </h2>
@@ -369,7 +369,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
 
             {/* Rodada 3T — bloco de diferenciação por página. */}
             {isPreventiva && (
-              <section id="prioridades" className="mb-10 scroll-mt-24">
+              <section id="prioridades" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Riscos e prioridades no registro
                 </h2>
@@ -378,7 +378,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
             )}
 
             {isBackup && (
-              <section id="conceitos-backup" className="mb-10 scroll-mt-24">
+              <section id="conceitos-backup" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Sincronização, backup e recuperação
                 </h2>
@@ -387,7 +387,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
             )}
 
             {isRedes && (
-              <section id="limites-externos" className="mb-10 scroll-mt-24">
+              <section id="limites-externos" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Cobertura, operadora e impressoras
                 </h2>
@@ -396,7 +396,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
             )}
 
             {isServicePilot && (
-              <section id="fluxo" className="mb-10 scroll-mt-24">
+              <section id="fluxo" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                   Fluxo de atendimento e impacto operacional
                 </h2>
@@ -420,7 +420,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
 
 
 
-            <section id="checklist" className="mb-10 scroll-mt-24">
+            <section id="checklist" tabIndex={-1} data-toc-anchor className="mb-10 scroll-mt-24">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Checklist de requisitos
               </h2>
@@ -434,7 +434,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
               </div>
             </section>
 
-            <section id="limites" className="mb-12 scroll-mt-24">
+            <section id="limites" tabIndex={-1} data-toc-anchor className="mb-12 scroll-mt-24">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Limites operacionais
               </h2>
@@ -460,7 +460,7 @@ export default function GuiaEmpresarial({ slug }: Props) {
 
 
 
-            <section id="faq" className="mb-12 scroll-mt-24">
+            <section id="faq" tabIndex={-1} data-toc-anchor className="mb-12 scroll-mt-24">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Perguntas frequentes
               </h2>

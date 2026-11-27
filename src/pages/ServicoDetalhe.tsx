@@ -380,7 +380,7 @@ const ServicoDetalhe = () => {
 
               {/* Description */}
               <div className="mb-12">
-                <h2 id="sobre-o-servico" className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                <h2 id="sobre-o-servico" tabIndex={-1} data-toc-anchor className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
                   Sobre o Serviço
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -392,7 +392,7 @@ const ServicoDetalhe = () => {
 
               {/* Benefits */}
               <div className="mb-12">
-                <h2 id="o-que-esta-incluido" className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                <h2 id="o-que-esta-incluido" tabIndex={-1} data-toc-anchor className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
                   O Que Está Incluído
                 </h2>
                 <div className="grid sm:grid-cols-2 gap-3">
@@ -417,7 +417,7 @@ const ServicoDetalhe = () => {
                   </h2>
                   <AssemblyUseContexts className="mb-10" />
 
-                  <h2 id="escopo-da-montagem" className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                  <h2 id="escopo-da-montagem" tabIndex={-1} data-toc-anchor className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
                     Escopo da montagem
                   </h2>
                   <AssemblyScopeBand className="mb-8" />
@@ -431,7 +431,7 @@ const ServicoDetalhe = () => {
 
 
 
-                  <div className="mt-8" id="orcamento-da-montagem">
+                  <div className="mt-8" id="orcamento-da-montagem" tabIndex={-1} data-toc-anchor>
                     <PcQuoteWizard sourcePage="/servicos/pc-gamer" />
                   </div>
                   <div className="mt-8 p-5 rounded-xl border border-border bg-card">
@@ -466,7 +466,7 @@ const ServicoDetalhe = () => {
 
               {/* Process */}
               <div className="mb-12">
-                <h2 id="como-funciona" className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                <h2 id="como-funciona" tabIndex={-1} data-toc-anchor className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
                   Como Funciona
                 </h2>
                 <div className="space-y-6">
@@ -536,7 +536,7 @@ const ServicoDetalhe = () => {
 
               {/* FAQs */}
               <div>
-                <h2 id="perguntas-frequentes" className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                <h2 id="perguntas-frequentes" tabIndex={-1} data-toc-anchor className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
                   Perguntas Frequentes
                 </h2>
                 <div className="space-y-4">
