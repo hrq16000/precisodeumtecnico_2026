@@ -76,3 +76,48 @@ test("FAQPage muda entre bairros da mesma cidade", async ({ page }) => {
 
   expect(a.raw).not.toBe(b.raw);
 });
+
+
+// Três URLs registradas no relatório de paridade de CI em 27/11.
+for (const route of [
+  "/servicos/configuracao-wifi/curitiba/centro",
+  "/atendimento-nacional/recife/casa-forte",
+  "/servico-em-nacional/rio-de-janeiro/copacabana/informatica",
+]) {
+  test(`FAQ SSR e paridade 1:1 — ${route}`, async ({ page }) => {
+    const response = await page.goto(route, { waitUntil: "domcontentloaded" });
+    expect(response?.ok()).toBe(true);
+    expect(await response!.text()).toContain("data-faq-schema=");
+    const faq = page.locator('script[type="application/ld+json"][data-faq-schema]');
+    await expect(faq).toHaveCount(1);
+    const data = await faq.evaluate((node) => JSON.parse(node.textContent || "{}") as {
+      "@type": string;
+      mainEntity: Array<{ name: string; acceptedAnswer: { text: string } }>;
+    });
+    expect(data["@type"]).toBe("FAQPage");
+    const questions = page.locator('[data-testid="faq-question"], [data-faq-question]');
+    await expect(questions).toHaveCount(data.mainEntity.length);
+    expect(data.mainEntity.length).toBeGreaterThan(0);
+    const norm = (value: string) => value.replace(/\s+/g, " ").trim();
+    for (let i = 0; i < data.mainEntity.length; i++) {
+      const question = questions.nth(i);
+      expect(norm((await question.textContent()) ?? "")).toBe(norm(data.mainEntity[i].name));
+      const item = question.locator("xpath=ancestor::*[@data-faq-item][1]");
+      const answer = item.locator("[data-faq-answer]");
+      if (!(await answer.count()) || !(await answer.textContent())?.trim()) {
+        await question.click();
+      }
+      await expect(answer).toHaveText(data.mainEntity[i].acceptedAnswer.text);
+    }
+    // Verifica que não houve duplicação por outro emissor após hidratação.
+    const total = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+      nodes.flatMap((node) => {
+        try {
+          const value = JSON.parse(node.textContent ?? "{}");
+          return Array.isArray(value) ? value : [value];
+        } catch { return []; }
+      }).filter((node) => node?.["@type"] === "FAQPage").length
+    );
+    expect(total).toBe(1);
+  });
+}

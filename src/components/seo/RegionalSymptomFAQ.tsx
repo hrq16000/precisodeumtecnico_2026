@@ -9,7 +9,6 @@
  * aumentar relevância local sem duplicar conteúdo entre 100+ páginas
  * (usamos apenas 3 sintomas por página, escolhidos deterministicamente).
  */
-import { Helmet } from "@/lib/helmet-compat";
 import { SYMPTOMS, type Symptom } from "@/data/symptoms";
 import { buildSymptomFAQ } from "@/components/seo/SymptomFAQ";
 
@@ -144,9 +143,11 @@ export function RegionalSymptomFAQ({
         </div>
       </div>
       {jsonLd && (
-        <Helmet>
-          <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-        </Helmet>
+        <script
+          type="application/ld+json"
+          data-faq-schema="regional"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
       )}
     </section>
   );
