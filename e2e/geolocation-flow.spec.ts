@@ -42,9 +42,18 @@ async function disableTriage(context: BrowserContext) {
 }
 
 // ─── A ────────────────────────────────────────────────────────────────────────
+test("Home: localização não abre automaticamente; o chip abre o diálogo completo", async ({ page }) => {
+  await page.goto("/");
+  await page.waitForTimeout(6000);
+  await expect(page.getByTestId("smart-location-dialog")).not.toBeVisible();
+  await page.getByRole("button", { name: "Alterar localização do atendimento" }).click();
+  await expect(page.getByTestId("smart-location-dialog")).toBeVisible();
+});
+
 test("A: GPS aceito + reverse geocode OK grava coordenadas + endereço", async ({ context, page }) => {
   await grantGps(context); await mockNominatimOk(context);
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Alterar localização do atendimento" }).click();
   await expect(page.getByTestId("smart-location-dialog")).toBeVisible({ timeout: 15_000 });
   await page.getByTestId("smart-location-gps").click();
   await expect(page.getByTestId("smart-location-success")).toBeVisible({ timeout: 10_000 });
@@ -68,6 +77,7 @@ test("A: GPS aceito + reverse geocode OK grava coordenadas + endereço", async (
 test("B: GPS aceito + reverse geocode falha mantém coordenadas e source=gps", async ({ context, page }) => {
   await grantGps(context); await mockNominatimFail(context);
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Alterar localização do atendimento" }).click();
   await expect(page.getByTestId("smart-location-dialog")).toBeVisible({ timeout: 15_000 });
   await page.getByTestId("smart-location-gps").click();
   await expect(page.getByTestId("smart-location-warning")).toBeVisible({ timeout: 10_000 });
@@ -117,6 +127,7 @@ test("D: permissão negada mantém manual e não grava GPS falso", async ({ cont
   await context.clearPermissions();
   await mockNominatimOk(context);
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Alterar localização do atendimento" }).click();
   await expect(page.getByTestId("smart-location-dialog")).toBeVisible({ timeout: 15_000 });
   await page.getByTestId("smart-location-gps").click();
   await expect(page.getByTestId("smart-location-error")).toBeVisible({ timeout: 10_000 });
@@ -178,6 +189,7 @@ test("E2: WhatsApp float sem cidade/bairro não fabrica localização", async ({
 test("F: botão de reset limpa storage após confirmação", async ({ context, page }) => {
   await grantGps(context); await mockNominatimOk(context);
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Alterar localização do atendimento" }).click();
   await expect(page.getByTestId("smart-location-dialog")).toBeVisible({ timeout: 15_000 });
   await page.getByTestId("smart-location-gps").click();
   await expect(page.getByTestId("smart-location-success")).toBeVisible({ timeout: 10_000 });

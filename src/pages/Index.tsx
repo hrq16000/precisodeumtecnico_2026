@@ -14,7 +14,6 @@ import { CTASection } from "@/components/home/CTASection";
 import { QuickQuoteForm } from "@/components/home/QuickQuoteForm";
 import { QuickDiagnosisQuiz } from "@/components/QuickDiagnosisQuiz";
 import { RelatedLinksSection } from "@/components/seo/RelatedLinksSection";
-import { Reveal } from "@/components/Reveal";
 import { SmartSearchWidget } from "@/components/search/SmartSearchWidget";
 import { AuthoritySince } from "@/components/marketing/AuthoritySince";
 import { buildReviewsSchema } from "@/data/testimonials";
@@ -24,7 +23,7 @@ import { buildOrganizationSchema, buildPersonSchema } from "@/lib/schema/organiz
 
 const Index = () => {
   return (
-    <Layout>
+    <Layout staticContent>
       <SEOHead
         title="Preciso de Um Técnico | Assistência Técnica Curitiba 24h"
         description="Técnico em Curitiba e região no mesmo dia: informática, notebooks, CFTV, elétrica e ar-condicionado. Orçamento antes do reparo. Visita de inspeção de até 20 minutos."
@@ -50,7 +49,7 @@ const Index = () => {
         })()}
       />
 
-      
+
       <HeroSection />
       {/* Prova social + confiança logo após o hero, antes dos CTAs secundários. */}
       <SocialProofBar />
@@ -58,30 +57,29 @@ const Index = () => {
           ("como podemos atender"). A prova de autoridade do hero não é repetida
           imediatamente abaixo: a faixa AuthoritySince passa para depois dos
           serviços, sem perda de conteúdo. */}
-      <section className="py-8 bg-background">
-        <div className="container-custom max-w-4xl">
+      <section className="border-b border-border bg-background py-8 md:py-12">
+        <div className="container-custom max-w-5xl">
           <SmartSearchWidget />
         </div>
       </section>
-      <Reveal><HomeSymptomsSection /></Reveal>
-      <Reveal><ServicesSection /></Reveal>
+      <HomeSymptomsSection />
+      <ServicesSection />
       <AuthoritySince />
-      <Reveal><QuickDiagnosisQuiz /></Reveal>
+      <QuickDiagnosisQuiz />
 
-      <Reveal><QuickQuoteForm /></Reveal>
-      <Reveal><BenefitsSection /></Reveal>
-      <Reveal><BrandsSection /></Reveal>
-      <Reveal><RegionsSection /></Reveal>
-      <Reveal><TestimonialsSection /></Reveal>
-      <Reveal><FAQSection /></Reveal>
-      <Reveal>
-        <RelatedLinksSection
-          surface="cta_section"
-          title="Continue por aqui"
-          items={["precos", "areas", "servicos"]}
-        />
-      </Reveal>
-      <Reveal><CTASection /></Reveal>
+      <QuickQuoteForm />
+      <BenefitsSection />
+      <BrandsSection />
+      <RegionsSection />
+      <TestimonialsSection />
+      <FAQSection />
+      <RelatedLinksSection
+        surface="cta_section"
+        title="Continue por aqui"
+        items={["precos", "areas", "servicos"]}
+      />
+
+      <CTASection />
 
     </Layout>
   );

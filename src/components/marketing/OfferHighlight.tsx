@@ -12,6 +12,8 @@ interface OfferHighlightProps {
   /** Variante visual: full = bloco hero; inline = faixa compacta. */
   variant?: "full" | "inline";
   className?: string;
+  /** Stacked composition in a narrow editorial column. */
+  layout?: "responsive" | "stacked";
   /** Handler opcional do CTA. Quando ausente, faz scroll para #triagem. */
   onStartTriage?: () => void;
 }
@@ -32,6 +34,7 @@ export function OfferHighlight({
   region,
   variant = "full",
   className,
+  layout = "responsive",
   onStartTriage,
 }: OfferHighlightProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -69,7 +72,7 @@ export function OfferHighlight({
         className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-primary-foreground/10 blur-2xl"
       />
 
-      <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className={cn("relative flex flex-col gap-4", layout === "responsive" && "sm:flex-row sm:items-center sm:justify-between")}>
         <div className="flex items-start gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15 ring-1 ring-primary-foreground/30">
             <Zap className="h-6 w-6" aria-hidden />
@@ -112,8 +115,11 @@ export function OfferHighlight({
           type="button"
           onClick={handleClick}
           className={cn(
-            "inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold uppercase tracking-wide transition",
-            "bg-primary-foreground text-primary shadow-md hover:shadow-xl hover:scale-[1.02]",
+            "inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold uppercase tracking-wide",
+            "bg-primary-foreground text-primary shadow-md",
+            layout === "stacked"
+              ? "transition-colors hover:bg-primary-foreground/90 active:bg-primary-foreground/80"
+              : "transition hover:shadow-xl hover:scale-[1.02]",
             "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary",
             variant === "full" ? "sm:text-base" : "",
           )}

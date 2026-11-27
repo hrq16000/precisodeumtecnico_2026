@@ -11,6 +11,8 @@ export function GlobalReveal() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // A Home é uma jornada de decisão: conteúdo sempre visível, sem revelar blocos.
+    if (location.pathname === "/") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document
         .querySelectorAll<HTMLElement>(".reveal-on-scroll")
