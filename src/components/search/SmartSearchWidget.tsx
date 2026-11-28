@@ -12,6 +12,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { Input } from "@/components/ui/input";
+import { SearchableChoice } from "@/components/ui/searchable-choice";
 import { Button } from "@/components/ui/button";
 import { MapPin, Search, MessageCircle, ArrowRight } from "lucide-react";
 import { EQUIPMENTS } from "@/data/triage/config";
@@ -136,27 +137,13 @@ export function SmartSearchWidget({
 
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label htmlFor="smart-search-equipment" className="block text-sm font-medium mb-1.5">
+          <label id="smart-search-equipment-label" htmlFor="smart-search-equipment" className="block text-sm font-medium mb-1.5">
             Equipamento ou serviço
           </label>
-          <select
-            id="smart-search-equipment"
-            disabled={!ready}
-            data-testid="smart-search-equipment"
-            value={equipment}
-            onChange={(e) => {
-              setEquipment(e.target.value);
-              void prepareSearch();
-            }}
-            className="h-12 w-full rounded-md border border-input bg-background px-3 text-sm"
-          >
-            <option value="">Selecione o equipamento</option>
-            {EQUIPMENTS.map((e) => (
-              <option key={e.id} value={e.id}>
-                {e.label}
-              </option>
-            ))}
-          </select>
+          <SearchableChoice id="smart-search-equipment" aria-labelledby="smart-search-equipment-label" disabled={!ready}
+            data-testid="smart-search-equipment" value={equipment} placeholder="Digite ou escolha o equipamento"
+            options={[{ value: "", label: "Não informado" }, ...EQUIPMENTS.map(e => ({ value: e.id, label: e.label }))]}
+            onValueChange={(value) => { setEquipment(value); void prepareSearch(); }} className="h-12" />
         </div>
 
         <div className="relative">
