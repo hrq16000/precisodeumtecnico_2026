@@ -29,10 +29,12 @@ for (const width of [390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/contato");
     const service = page.getByRole("combobox", { name: "Tipo de serviço", exact: true });
+    await expect(service).toBeEnabled();
     await service.fill("informatica");
     await page.getByRole("option", { name: "Informática", exact: true }).click();
     await expect(service).toHaveAttribute("data-choice-value", "Informática");
     const city = page.getByRole("combobox", { name: "Cidade", exact: true });
+    await expect(city).toBeEnabled();
     await city.fill("sao jose");
     await page.getByRole("option", { name: "São José dos Pinhais", exact: true }).click();
     await expect(city).toHaveAttribute("data-choice-value", "São José dos Pinhais");

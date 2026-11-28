@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TermsDialog } from "@/components/TermsDialog";
 import { TERMS_SOURCE } from "@/lib/termsSource";
 import { useForm } from "react-hook-form";
@@ -66,6 +66,9 @@ const cities = [
 ];
 
 export function ContactForm() {
+  // Match the Home search: prevent edits before React can handle them.
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(() => getStoredTermsAcceptance());
@@ -276,7 +279,7 @@ export function ContactForm() {
                 <FormItem>
                   <FormLabel>Tipo de Serviço</FormLabel>
                   <FormControl>
-                    <SearchableChoice value={field.value ?? ""} onValueChange={field.onChange} onBlur={field.onBlur}
+                    <SearchableChoice disabled={!ready} value={field.value ?? ""} onValueChange={field.onChange} onBlur={field.onBlur}
                       ref={field.ref} aria-label="Tipo de serviço" placeholder="Digite ou escolha o serviço"
                       options={[{ value: "", label: "Não informado" }, ...services.map(value => ({ value, label: value }))]} />
                   </FormControl>
@@ -292,7 +295,7 @@ export function ContactForm() {
                 <FormItem>
                   <FormLabel>Cidade</FormLabel>
                   <FormControl>
-                    <SearchableChoice value={field.value ?? ""} onValueChange={field.onChange} onBlur={field.onBlur}
+                    <SearchableChoice disabled={!ready} value={field.value ?? ""} onValueChange={field.onChange} onBlur={field.onBlur}
                       ref={field.ref} aria-label="Cidade" placeholder="Digite ou escolha sua cidade"
                       options={[{ value: "", label: "Não informado" }, ...cities.map(value => ({ value, label: value }))]} />
                   </FormControl>
