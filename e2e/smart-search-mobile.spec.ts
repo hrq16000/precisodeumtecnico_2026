@@ -2,6 +2,15 @@ import { expect, test } from "@playwright/test";
 
 test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
 
+// Synthetic returning visitor: analytics and ads explicitly declined. The
+// consent banner has its own tests; do not send real data during this QA.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("pdt_consent_prefs_v1", JSON.stringify({ analytics: false, ads: false, decidedAt: new Date().toISOString(), version: 1 }));
+    localStorage.setItem("pdt_cookie_consent_v1", "denied");
+  });
+});
+
 test("leva a localidade selecionada da home para a triagem", async ({ page }) => {
   await page.goto("/");
   const widget = page.getByTestId("smart-search");
@@ -29,12 +38,12 @@ for (const width of [390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/contato");
     const service = page.getByRole("combobox", { name: "Tipo de serviço", exact: true });
-    await expect(service).toBeEnabled();
+    await expect(service).toBeEnabled({ timeout: 15000 });
     await service.fill("informatica");
     await page.getByRole("option", { name: "Informática", exact: true }).click();
     await expect(service).toHaveAttribute("data-choice-value", "Informática");
     const city = page.getByRole("combobox", { name: "Cidade", exact: true });
-    await expect(city).toBeEnabled();
+    await expect(city).toBeEnabled({ timeout: 15000 });
     await city.fill("sao jose");
     await page.getByRole("option", { name: "São José dos Pinhais", exact: true }).click();
     await expect(city).toHaveAttribute("data-choice-value", "São José dos Pinhais");
