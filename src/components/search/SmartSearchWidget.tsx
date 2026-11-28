@@ -137,10 +137,10 @@ export function SmartSearchWidget({
 
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label htmlFor="smart-search-equipment" className="block text-sm font-medium mb-1.5">
+          <label id="smart-search-equipment-label" htmlFor="smart-search-equipment" className="block text-sm font-medium mb-1.5">
             Equipamento ou serviço
           </label>
-          <SearchableChoice id="smart-search-equipment" disabled={!ready}
+          <SearchableChoice id="smart-search-equipment" aria-labelledby="smart-search-equipment-label" disabled={!ready}
             data-testid="smart-search-equipment" value={equipment} placeholder="Digite ou escolha o equipamento"
             options={[{ value: "", label: "Não informado" }, ...EQUIPMENTS.map(e => ({ value: e.id, label: e.label }))]}
             onValueChange={(value) => { setEquipment(value); void prepareSearch(); }} className="h-12" />

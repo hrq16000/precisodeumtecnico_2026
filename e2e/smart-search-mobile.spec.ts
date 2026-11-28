@@ -15,6 +15,8 @@ test("leva a localidade selecionada da home para a triagem", async ({ page }) =>
   await page.goto("/");
   const widget = page.getByTestId("smart-search");
   const equipment = widget.getByRole("combobox", { name: "Equipamento ou serviço" });
+  await expect(equipment).toHaveAttribute("aria-labelledby", "smart-search-equipment-label");
+  await expect(widget.locator("#smart-search-equipment-label")).toHaveText("Equipamento ou serviço");
   await equipment.fill("notebook");
   await widget.getByRole("option", { name: "PC / Notebook", exact: true }).click();
   await expect(equipment).toHaveAttribute("data-choice-value", "pc_notebook");
