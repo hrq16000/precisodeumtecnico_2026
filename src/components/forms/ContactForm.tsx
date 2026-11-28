@@ -8,13 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { SearchableChoice } from "@/components/ui/searchable-choice";
 import {
   Form,
   FormControl,
@@ -281,20 +275,11 @@ export function ContactForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tipo de Serviço</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger aria-label="Tipo de serviço">
-                        <SelectValue placeholder="Selecione um serviço" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {services.map((service) => (
-                        <SelectItem key={service} value={service}>
-                          {service}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <SearchableChoice value={field.value ?? ""} onValueChange={field.onChange} onBlur={field.onBlur}
+                      ref={field.ref} aria-label="Tipo de serviço" placeholder="Digite ou escolha o serviço"
+                      options={[{ value: "", label: "Não informado" }, ...services.map(value => ({ value, label: value }))]} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -306,20 +291,11 @@ export function ContactForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Cidade</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger aria-label="Cidade">
-                        <SelectValue placeholder="Selecione sua cidade" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {cities.map((city) => (
-                        <SelectItem key={city} value={city}>
-                          {city}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <SearchableChoice value={field.value ?? ""} onValueChange={field.onChange} onBlur={field.onBlur}
+                      ref={field.ref} aria-label="Cidade" placeholder="Digite ou escolha sua cidade"
+                      options={[{ value: "", label: "Não informado" }, ...cities.map(value => ({ value, label: value }))]} />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
