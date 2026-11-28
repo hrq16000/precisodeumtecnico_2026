@@ -45,12 +45,20 @@ for (const width of [390, 768, 1440]) {
     const city = page.getByRole("combobox", { name: "Cidade", exact: true });
     await expect(city).toBeEnabled({ timeout: 15000 });
     await city.fill("sao jose");
+    await expect(city).toHaveAttribute("aria-expanded", "true");
+    await expect(page.locator("html")).toHaveCSS("scroll-behavior", "auto");
     await page.getByRole("option", { name: "São José dos Pinhais", exact: true }).click();
     await expect(city).toHaveAttribute("data-choice-value", "São José dos Pinhais");
     await city.fill("inexistente");
     await expect(page.getByText("Nenhuma opção encontrada. Tente outro termo.")).toBeVisible();
     await city.press("Escape");
     await expect(city).toHaveValue("São José dos Pinhais");
+    // No mobile, exercitar também o toque real sem depender de clique forçado.
+    if (width === 390) {
+      await city.fill("pinhais");
+      await page.getByRole("option", { name: "Pinhais", exact: true }).tap();
+      await expect(city).toHaveAttribute("data-choice-value", "Pinhais");
+    }
     await expect(page).toHaveURL(/\/contato(?:[?#]|$)/);
   });
 }

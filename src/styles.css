@@ -124,6 +124,11 @@
 
 /* Scroll suave universal (respeita prefers-reduced-motion). */
 html { scroll-behavior: smooth; }
+/* Durante a escolha, a rolagem precisa ser imediata: o destino de toque
+   não pode continuar se deslocando enquanto a lista está aberta. */
+html:has([data-searchable-choice]:is(:focus, [aria-expanded="true"])) {
+  scroll-behavior: auto;
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
