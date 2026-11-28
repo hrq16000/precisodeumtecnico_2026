@@ -24,3 +24,7 @@ Instruções incrementais para referências visuais. Consultar antes o README e 
 ## R19 — Busca e contato pesquisáveis (28/11/2026)
 - Preservar `GlobalTriageLauncher`, perguntas adaptativas e autocomplete de localidades por rotas reais. O SmartSearchWidget usa o ID canônico de equipamento e encaminha cidade/bairro na mesma rota; ContactForm pesquisa serviço e município já previstos, com “Outro/Outra” existente. Digitação sem confirmação não altera o valor salvo; não criar localidade, contrato ou serviço fictício.
 - Sem novo motion, dependências, pagamentos, preços, dados ou alterações de host. QA Vitest e Playwright em 390/768/1440, sem submissão; não remover área geográfica de atendimento legítima. Publicar só após gates locais e vínculo confirmado.
+
+## Contrato de evolução do motor de atendimento e CRM (28/11/2026)
+
+- Norma permanente e plano pós-ciclo visual: [docs/CONTRATO_MOTOR_ATENDIMENTO_E_CRM.md](docs/CONTRATO_MOTOR_ATENDIMENTO_E_CRM.md). Regras de cidade/bairro/UF contextual, classificação de modalidade, evidência necessária, persistência privada antes do WhatsApp, Google Sheets/CRM e CTA acessível. Respeitar o perfil local e os contratos vigentes. Registro documental; execução somente após concluir o ciclo visual atual.
