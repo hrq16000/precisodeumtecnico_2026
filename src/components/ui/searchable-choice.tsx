@@ -7,12 +7,14 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "value" | "o
   value: string;
   options: readonly SearchChoice[];
   onValueChange: (value: string) => void;
+  /** On narrow forms, keep suggestions in normal flow instead of covering the next field. */
+  flowOnMobile?: boolean;
 }
 
 /** Editing is separate from selection: blur/Escape cancels the draft, and
  * only a deliberate choice changes commercial IDs, price or triage context. */
 export const SearchableChoice = forwardRef<HTMLInputElement, Props>(function SearchableChoice(
-  { value, options, onValueChange, id, className, disabled, onBlur, ...props }, ref,
+  { value, options, onValueChange, id, className, disabled, onBlur, flowOnMobile = false, ...props }, ref,
 ) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
@@ -69,7 +71,7 @@ export const SearchableChoice = forwardRef<HTMLInputElement, Props>(function Sea
       />
       <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden="true" />
     </div>
-    {visible && <div className="absolute inset-x-0 top-full z-30 mt-1 rounded-lg border border-border bg-popover text-popover-foreground shadow-lg">
+    {visible && <div className={(flowOnMobile ? "relative sm:absolute sm:inset-x-0 sm:top-full" : "absolute inset-x-0 top-full") + " z-30 mt-1 rounded-lg border border-border bg-popover text-popover-foreground shadow-lg"}>
       <p className="px-3 pt-2 text-xs text-muted-foreground">Digite para pesquisar; confirme uma opção.</p>
       <div id={listId} role="listbox" aria-label="Sugestões" className="max-h-52 overflow-y-auto overscroll-contain p-1">
         {results.map((option, index) => <div key={option.value} id={listId + "-" + index}
